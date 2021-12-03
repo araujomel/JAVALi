@@ -2,7 +2,7 @@
 
 ## Sistema de cardápio virtual para café e livraria.
 
-###Integrantes: Layon Martins - 4220, Melissa Araújo - 4244
+### Integrantes: Layon Martins - 4220, Melissa Araújo - 4244
   
 Sistema para controle de pedidos e cardápio virtual para ser utilizado em uma cafeteria/livraria física. O sistema será dividido entre clientes e funcionários da loja, onde os clientes poderão fazer pedidos no cardápio e os funcionários realizarão o controle de pedidos. O sistema estará disponível em máquinas dispostas pela cafeteria/livraria.
 
