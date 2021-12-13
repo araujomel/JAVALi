@@ -1,23 +1,22 @@
-public class Funcionario extends Usuario {
+public class Usuario{
+    String tipoUsuario;
+    String login;
+    String senha;
+    String nome;
 
-    String funcao; // barista, confeiteiro, gerente
 
-    public Funcionario(String nome, String funcao, String login, String senha){
+    public Usuario(){
         setNome(nome);
-        setFuncao(funcao);
         setLogin(login);
         setSenha(senha);
     }
 
+    //get
     public String getNome(){
         return this.nome;
     }
 
-    public String getFuncao(){
-        return this.funcao;
-    }
-
-    private String getLogin(){
+    public String getLogin(){
         return this.login;
     }
 
@@ -25,18 +24,13 @@ public class Funcionario extends Usuario {
         return this.senha;
     }
 
-    public void setNome(String nome){
+    //set
+    private void setNome(String nome){
         this.nome = nome;
     }
-
-    public void setFuncao(String funcao){
-        this.funcao = funcao;
-    }
-
     private void setLogin(String login){
         this.login = login;
     }
-
     private void setSenha(String senha){
         this.senha = senha;
     }
