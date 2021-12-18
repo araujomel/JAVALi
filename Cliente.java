@@ -3,9 +3,7 @@ public class Cliente extends Usuario {
 
     //construtor
     public Cliente(String nome, String login, String senha){
-        setNome(nome);
-        setLogin(login);
-        setSenha(senha);
+        super(nome, login, senha);
     }
     
     //get
@@ -22,7 +20,7 @@ public class Cliente extends Usuario {
     }
 
     //set
-    private void setNome(String nome){
+   /* private void setNome(String nome){
         this.nome = nome;
     }
     private void setLogin(String login){
@@ -31,6 +29,7 @@ public class Cliente extends Usuario {
     private void setSenha(String senha){
         this.senha = senha;
     }
+    */
 
 /*     public boolean login(String login, String senha, Cliente cliente){
 

@@ -1,11 +1,12 @@
 public class Usuario{
+
     String tipoUsuario;
     String login;
     String senha;
     String nome;
 
 
-    public Usuario(){
+    public Usuario(String nome, String login, String senha){
         setNome(nome);
         setLogin(login);
         setSenha(senha);
@@ -16,7 +17,7 @@ public class Usuario{
         return this.nome;
     }
 
-    public String getLogin(){
+    private String getLogin(){
         return this.login;
     }
 

@@ -3,12 +3,15 @@ public class Estudante extends Cliente {
     String instituicao;
 
     public Estudante(String nome, String login, String senha, String instituicao){
-        setNome(nome);
-        setLogin(login);
-        setSenha(senha);
+        super(nome, login, senha);
+
+        //setNome(nome);
+        //setLogin(login);
+        //setSenha(senha);
         setInstituicao(instituicao);
     }
     
+    /*
     public String getNome(){
         return this.nome;
     }
@@ -20,11 +23,13 @@ public class Estudante extends Cliente {
     private String getSenha(){
         return this.senha;
     }
+    */
 
     private String getInstituicao(){
         return this.instituicao;
     }
 
+    /*
     public void setNome(String nome){
         this.nome = nome;
     }
@@ -36,6 +41,8 @@ public class Estudante extends Cliente {
     private void setSenha(String senha){
         this.senha = senha;
     }
+
+    */
 
     private void setInstituicao(String instituicao){
         this.instituicao = instituicao;
