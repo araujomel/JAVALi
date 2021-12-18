@@ -1,13 +1,32 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Comida {
     
-    String descricao;
+    int idComida;
+    String nome;
     int quantidade;
     double preco;
+    String descricao;
 
-    public Comida(String descricao, int quantidade, double preco){
+    public Comida(String nome, String descricao, int quantidade, double preco)throws IOException{
+        
+        setNome(nome);
         setDescricao(descricao);
         setQuantidade(quantidade);
         setPreco(preco);
+        escreverArquivoComida();
+    }
+
+    public int getIdComida(){
+        return this.idComida;
+    }
+
+    public String getNome(){
+        return this.nome;
     }
 
     public String getDescricao(){
@@ -22,6 +41,14 @@ public class Comida {
         return this.preco;
     }
 
+    public void setIdComida(int idComida){
+        this.idComida = idComida;
+    }
+
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+
     public void setDescricao(String descricao){
         this.descricao = descricao;
     }
@@ -32,6 +59,36 @@ public class Comida {
 
     public void setPreco (double preco){
         this.preco = preco;
+    }
+
+    public void escreverArquivoComida() throws IOException{
+        int cont = 0, idComida;
+        BufferedWriter buffWrite = new BufferedWriter(new FileWriter("./Arquivos/Comidas.txt"));
+        BufferedReader buffRead = new BufferedReader(new FileReader("./Arquivos/Comidas.txt"));
+        String linha = "";
+        
+
+        while(true){
+            linha = buffRead.readLine();
+            if (linha!=null)
+                cont++;
+            else
+                break;
+        }
+        
+        idComida = cont/5;
+        setIdComida(idComida);
+        buffWrite.append(idComida + "/");
+        buffWrite.append(this.getNome() + "/");
+        buffWrite.append(this.getQuantidade() + "/");
+        buffWrite.append(this.getPreco() + "/");
+        buffWrite.append(this.getDescricao() + "/");
+
+
+         buffWrite.close();
+         buffRead.close();
+
+
     }
 
     

@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.io.IOException;
 
 public class Aplicativo {
     public static void main(String[] args) throws Exception {
@@ -20,9 +21,11 @@ public class Aplicativo {
 
     }
 
-    public static void escolheTipoDeUsuario(){
+    public static void escolheTipoDeUsuario() throws IOException{
 
         Scanner scan = new Scanner(System.in);
+
+    
 
         System.out.println("           JAVA Li           ");
         System.out.println("=============================");
@@ -30,8 +33,16 @@ public class Aplicativo {
         System.out.println("2 - Funcionário");
         int op = scan.nextInt();
 
-        if(op == 1){
-            
+        switch(op){
+
+            case 1:
+                Cliente.paginaInicialCliente();
+                break;
+            case 2:
+                Funcionario.paginaInicialFuncionario();
+                break;
+            default:
+                escolheTipoDeUsuario();
         }
 
         scan.close();
