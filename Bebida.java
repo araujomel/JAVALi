@@ -73,7 +73,7 @@ public class Bebida {
     private void escreverArquivoBebida() throws IOException{
         
         BufferedWriter buffWrite = new BufferedWriter(new FileWriter("./Arquivos/Bebidas.txt", true));
-        int cont = 0;
+        int cont = 0, idBebida;
         BufferedReader buffRead = new BufferedReader(new FileReader("./Arquivos/Bebidas.txt"));
         String linha = "";
 
@@ -86,19 +86,22 @@ public class Bebida {
         }
         
         // erro: não adiciona no arquivo e não muda o separador
-        buffWrite.write((cont/6) + "/");
-        setIdBebida(cont/6);
+        idBebida = cont;
+        setIdBebida(idBebida);
+
+        buffWrite.append(Integer.toString(this.idBebida) + "/");
         buffWrite.append(this.getNome() + "/");
-        buffWrite.append(this.getQuantidade() + "/");
-        buffWrite.append(this.getPrecoMedio() + "/");
-        buffWrite.append(this.getPrecoGrande() + "/");
+        buffWrite.append(Integer.toString(this.getQuantidade()) + "/");
+        buffWrite.append(Double.toString(this.getPrecoMedio()) + "/");
+        buffWrite.append(Double.toString(this.getPrecoGrande()) + "/");
         buffWrite.append(this.getDescricao() + "\n");
 
-        buffWrite.newLine();
+        System.out.println("Bebida cadastrada com sucesso!");
+
 
         buffWrite.close();
         buffRead.close();
-        this.escreverArquivoBebida();
+      
     }
 
 }

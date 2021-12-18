@@ -50,11 +50,12 @@ public class Funcionario extends Usuario {
     */
 
     public static void paginaInicialFuncionario() throws IOException{
-        Scanner scan = new Scanner(System.in); 
+        Scanner scanf = new Scanner(System.in); 
         System.out.println("O que deseja fazer?");
         System.out.println("1 - Fila de Pedidos");
         System.out.println("2 - Configurações");
-        int op = scan.nextInt();
+        int op = scanf.nextInt();
+        String resposta = "";
 
         switch(op){
 
@@ -64,9 +65,9 @@ public class Funcionario extends Usuario {
             case 2:
                 System.out.println("O que deseja cadastrar?");
                 System.out.println("1 - Bebida \n2 - Comida");
-                op = scan.nextInt();
+                op = scanf.nextInt();
                 if (op==1)
-                    cadastrarBebida();
+                    cadastrarBebida(); 
                 else
                     cadastrarComida();
                 break;
@@ -74,7 +75,7 @@ public class Funcionario extends Usuario {
                 paginaInicialFuncionario();
         }
 
-        scan.close();
+        scanf.close();
     }
 
     public static void cadastrarBebida() throws IOException{
@@ -88,7 +89,6 @@ public class Funcionario extends Usuario {
         double precoMedio = scanFuncionario.nextDouble();
         System.out.println("Digite o preço da bebida tamanho grande");
         double precoGrande = scanFuncionario.nextDouble();
-
         scanFuncionario.nextLine();
         System.out.println("Digite uma descrição para a bebida");
         String descricao = scanFuncionario.nextLine();
@@ -105,7 +105,7 @@ public class Funcionario extends Usuario {
         Scanner scanFunc = new Scanner(System.in);
 
         System.out.println("Digite o nome da comida:");
-        String nome = scanFunc.next();
+        String nome = scanFunc.nextLine();
         System.out.println("Digite a quantidade disponivel:");
         int quantidade = scanFunc.nextInt();
         System.out.println("Digite o preço unitario:");

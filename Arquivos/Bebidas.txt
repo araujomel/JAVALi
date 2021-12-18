@@ -1,1 +1,11 @@
-0/edfuhs/1/2.0/3.0/sdjfgs/
+0/cafezinho/70/4.0/5.5/caf‚ preto
+1/chai/30/4.0/6.0/Com caramelo
+2/Cha gelado/40/4.0/6.0/Hortela
+3/Agua/50/3.0/4.0/300 ml e 500 ml
+4/suco de laranja/20/4.0/6.0/Natural
+5/suco de morango/15/4.5/4.0/Natural
+6/cafezinho/40/3.5/5.0/gostoso
+7/Cerveja amanteigada/40/8.0/12.0/Artesanal
+8/Refrigerante/40/5.0/7.0/coca cola
+9/leite/40/3.0/5.0/Leite ‚ leite
+10/leite/40/4.0/5.0/leite

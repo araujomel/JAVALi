@@ -1,1 +1,4 @@
-0/pao/3/4.5//
+0/Pudim/20/5.0/Mini Pudim
+1/Sonho/30/4.5/sonho medio com doce de leite
+2/Bolo de murango/40/5.5/pedaco
+3/torta de limao/10/6.0/Torta pequena

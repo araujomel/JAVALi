@@ -63,7 +63,7 @@ public class Comida {
 
     public void escreverArquivoComida() throws IOException{
         int cont = 0, idComida;
-        BufferedWriter buffWrite = new BufferedWriter(new FileWriter("./Arquivos/Comidas.txt"));
+        BufferedWriter buffWrite = new BufferedWriter(new FileWriter("./Arquivos/Comidas.txt", true));
         BufferedReader buffRead = new BufferedReader(new FileReader("./Arquivos/Comidas.txt"));
         String linha = "";
         
@@ -76,13 +76,16 @@ public class Comida {
                 break;
         }
         
-        idComida = cont/5;
+        idComida = cont;
         setIdComida(idComida);
-        buffWrite.append(idComida + "/");
+
+        buffWrite.append(Integer.toString(this.idComida) + "/");
         buffWrite.append(this.getNome() + "/");
-        buffWrite.append(this.getQuantidade() + "/");
-        buffWrite.append(this.getPreco() + "/");
-        buffWrite.append(this.getDescricao() + "/");
+        buffWrite.append(Integer.toString(this.getQuantidade()) + "/");
+        buffWrite.append(Double.toString(this.getPreco())+ "/");
+        buffWrite.append(this.getDescricao() + "\n");
+        
+        System.out.println("Comida cadastrada com sucesso!");
 
 
          buffWrite.close();

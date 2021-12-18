@@ -23,7 +23,7 @@ public class Aplicativo {
 
     public static void escolheTipoDeUsuario() throws IOException{
 
-        Scanner scan = new Scanner(System.in);
+        Scanner scanTipoUsuario = new Scanner(System.in);
 
     
 
@@ -31,7 +31,7 @@ public class Aplicativo {
         System.out.println("=============================");
         System.out.println("1 - Cliente");
         System.out.println("2 - Funcionário");
-        int op = scan.nextInt();
+        int op = scanTipoUsuario.nextInt();
 
         switch(op){
 
@@ -45,7 +45,7 @@ public class Aplicativo {
                 escolheTipoDeUsuario();
         }
 
-        scan.close();
+        scanTipoUsuario.close();
 
     }
 }
