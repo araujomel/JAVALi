@@ -85,7 +85,6 @@ public class Bebida {
                 break;
         }
         
-        // erro: não adiciona no arquivo e não muda o separador
         idBebida = cont;
         setIdBebida(idBebida);
 
@@ -97,7 +96,6 @@ public class Bebida {
         buffWrite.append(this.getDescricao() + "\n");
 
         System.out.println("Bebida cadastrada com sucesso!");
-
 
         buffWrite.close();
         buffRead.close();

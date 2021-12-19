@@ -9,3 +9,7 @@
 8/Refrigerante/40/5.0/7.0/coca cola
 9/leite/40/3.0/5.0/Leite ‚ leite
 10/leite/40/4.0/5.0/leite
+11/cafe frio/0/0.23/0.5/ruim demais mas tem louco pra tudo
+12/cha verde/100/3.5/5.0/muito bom pra dormir
+13/suco de limao/13/3.0/4.0/amargo porem refrescante
+14/choconhaque/15/6.0/8.0/chique

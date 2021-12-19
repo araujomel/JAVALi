@@ -4,6 +4,11 @@ import java.io.IOException;
 public class Aplicativo {
     public static void main(String[] args) throws Exception {
 
+        menu();
+
+    }
+
+    public static void menu() throws IOException{
         Scanner scan = new Scanner(System.in);
 
         System.out.println("           JAVA Li           ");
@@ -15,10 +20,12 @@ public class Aplicativo {
 
         if((login.equals("admin")) && (senha.equals("123"))){
             escolheTipoDeUsuario();
+        } else{
+            System.out.println("Usuário ou senha incorretos.");
+            menu();
         }
 
         scan.close();
-
     }
 
     public static void escolheTipoDeUsuario() throws IOException{
