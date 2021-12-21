@@ -1,9 +1,9 @@
 public class Usuario{
 
-    String tipoUsuario;
-    String login;
-    String senha;
-    String nome;
+    private String tipoUsuario;
+    private String login;
+    private String senha;
+    private String nome;
 
 
     public Usuario(String nome, String login, String senha){

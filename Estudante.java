@@ -1,6 +1,6 @@
 public class Estudante extends Cliente {
 
-    String instituicao;
+    private String instituicao;
 
     public Estudante(String nome, String login, String senha, String instituicao){
         super(nome, login, senha);

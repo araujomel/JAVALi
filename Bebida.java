@@ -6,12 +6,12 @@ import java.io.IOException;
 
 public class Bebida {
     
-    int idBebida;
-    String nome;
-    int quantidade;
-    double precoMedio;
-    double precoGrande;
-    String descricao;
+    private int idBebida;
+    private String nome;
+    private int quantidade;
+    private double precoMedio;
+    private double precoGrande;
+    private String descricao;
 
     public Bebida(String nome, String descricao, int quantidade, double precoMedio, double precoGrande) throws IOException{
         setNome(nome);

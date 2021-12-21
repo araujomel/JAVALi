@@ -6,11 +6,11 @@ import java.io.IOException;
 
 public class Comida {
     
-    int idComida;
-    String nome;
-    int quantidade;
-    double preco;
-    String descricao;
+    private int idComida;
+    private String nome;
+    private int quantidade;
+    private double preco;
+    private String descricao;
 
     public Comida(String nome, String descricao, int quantidade, double preco)throws IOException{
         
