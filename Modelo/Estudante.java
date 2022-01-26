@@ -1,3 +1,4 @@
+package Modelo;
 public class Estudante extends Cliente {
 
     private String instituicao;

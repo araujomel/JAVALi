@@ -1,3 +1,4 @@
+package Modelo;
 public enum FuncaoFuncionario {
     BARISTA,
     CONFEITEIRO,
