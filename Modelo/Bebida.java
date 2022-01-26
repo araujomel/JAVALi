@@ -73,9 +73,9 @@ public class Bebida {
 
     private void escreverArquivoBebida() throws IOException{
         
-        BufferedWriter buffWrite = new BufferedWriter(new FileWriter("./Arquivos/Bebidas.txt", true));
+        BufferedWriter buffWrite = new BufferedWriter(new FileWriter("./Modelo/Arquivos/Bebidas.txt", true));
         int cont = 0, idBebida;
-        BufferedReader buffRead = new BufferedReader(new FileReader("./Arquivos/Bebidas.txt"));
+        BufferedReader buffRead = new BufferedReader(new FileReader("./Modelo/Arquivos/Bebidas.txt"));
         String linha = "";
 
         while (true) {

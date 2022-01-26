@@ -64,8 +64,8 @@ public class Comida {
 
     public void escreverArquivoComida() throws IOException{
         int cont = 0, idComida;
-        BufferedWriter buffWrite = new BufferedWriter(new FileWriter("./Arquivos/Comidas.txt", true));
-        BufferedReader buffRead = new BufferedReader(new FileReader("./Arquivos/Comidas.txt"));
+        BufferedWriter buffWrite = new BufferedWriter(new FileWriter("./Modelo/Arquivos/Comidas.txt", true));
+        BufferedReader buffRead = new BufferedReader(new FileReader("./Modelo/Arquivos/Comidas.txt"));
         String linha = "";
         
 

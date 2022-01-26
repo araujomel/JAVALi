@@ -29,7 +29,7 @@ public class TelaFuncionario {
                 if (op==1)
                    telaCadastrarBebida();
                 else
-                    cadastrarComida();
+                    telaCadastrarComida();
                 break;
             default:
                 paginaInicialFuncionario();
@@ -62,6 +62,28 @@ public class TelaFuncionario {
         ControleFuncionario.controleCadastrarBebida(nome, descricao, quantidade, precoMedio, precoGrande);
 
         scanFuncionario.close();
+    }
+
+    public static void telaCadastrarComida() throws IOException{
+        Scanner scanFunc = new Scanner(System.in);
+
+        System.out.println("Digite o nome da comida:");
+        String nome = scanFunc.nextLine();
+        System.out.println("Digite a quantidade disponivel:");
+        int quantidade = scanFunc.nextInt();
+        System.out.println("Digite o preço unitario:");
+        double preco = scanFunc.nextDouble();
+        scanFunc.nextLine();
+        System.out.println("Digite a descrição da comida:");
+        String descricao = scanFunc.nextLine();
+        
+       ControleFuncionario.controleCadastrarComida(nome, descricao, quantidade, preco);
+
+
+
+        scanFunc.close();
+
+        
     }
 
 }

@@ -10,20 +10,7 @@ public class Cliente extends Usuario {
     public Cliente(String nome, String login, String senha){
         super(nome, login, senha);
     }
-    
-    //get
-    public String getNome(){
-        return this.nome;
-    }
-
-    public String getLogin(){
-        return this.login;
-    }
-
-    private String getSenha(){
-        return this.senha;
-    }
-
+   
     //set
    /* private void setNome(String nome){
         this.nome = nome;
