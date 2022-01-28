@@ -2,12 +2,14 @@ package Visao;
 import java.io.IOException;
 import java.util.Scanner;
 
+import Controle.ControleBebida;
 import Controle.ControleFuncionario;
 
 public class TelaFuncionario {
 
     public TelaFuncionario(){
         ControleFuncionario controleFuncionario = new ControleFuncionario();
+       
     }
 
     public static void paginaInicialFuncionario() throws IOException{
@@ -45,6 +47,7 @@ public class TelaFuncionario {
     }
 
     public static void telaCadastrarBebida() throws IOException{
+        ControleBebida controleBebida = new ControleBebida();
         Scanner scanFuncionario = new Scanner(System.in);
 
         System.out.println("Digite o nome da bebida");
@@ -59,7 +62,7 @@ public class TelaFuncionario {
         System.out.println("Digite uma descrição para a bebida");
         String descricao = scanFuncionario.nextLine();
 
-        ControleFuncionario.controleCadastrarBebida(nome, descricao, quantidade, precoMedio, precoGrande);
+        controleBebida.controleCadastrarBebida(nome, descricao, quantidade, precoMedio, precoGrande);
 
         scanFuncionario.close();
     }

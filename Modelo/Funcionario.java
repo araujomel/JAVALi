@@ -50,43 +50,8 @@ public class Funcionario extends Usuario {
     }
     */
 
-    
-
-    public static void cadastrarBebida() throws IOException{
-        
-        
-        
-        
-        
-    }
 
 
-
-    public static void cadastrarComida() throws IOException{
-        Scanner scanFunc = new Scanner(System.in);
-
-        System.out.println("Digite o nome da comida:");
-        String nome = scanFunc.nextLine();
-        System.out.println("Digite a quantidade disponivel:");
-        int quantidade = scanFunc.nextInt();
-        System.out.println("Digite o preço unitario:");
-        double preco = scanFunc.nextDouble();
-        scanFunc.nextLine();
-        System.out.println("Digite a descrição da comida:");
-        String descricao = scanFunc.nextLine();
-        
-        Comida comida = new Comida(nome, descricao, quantidade, preco);
-        
-    
-        
-
-        
-
-
-        scanFunc.close();
-
-        
-    }
 
    
 }

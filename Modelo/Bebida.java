@@ -20,7 +20,6 @@ public class Bebida {
         setQuantidade(quantidade);
         setPrecoMedio(precoMedio);
         setPrecoGrande(precoGrande);
-        escreverArquivoBebida();
     }
 
     public int getIdBebida(){
@@ -71,7 +70,7 @@ public class Bebida {
         this.precoGrande = preco;
     }
 
-    private void escreverArquivoBebida() throws IOException{
+   /* private void escreverArquivoBebida() throws IOException{
         
         BufferedWriter buffWrite = new BufferedWriter(new FileWriter("./Modelo/Arquivos/Bebidas.txt", true));
         int cont = 0, idBebida;
@@ -102,7 +101,7 @@ public class Bebida {
         buffRead.close();
       
     }
-
+*/
 }
 
 	

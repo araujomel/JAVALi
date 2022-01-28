@@ -27,11 +27,7 @@ public class Cliente extends Usuario {
 
     } */
 
-    public static void paginaInicialCliente(){
-        System.out.println("Cardápio");
-        System.out.println("Livros");
-
-    }
+    
 
     
 
