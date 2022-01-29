@@ -19,7 +19,6 @@ public class Comida {
         setDescricao(descricao);
         setQuantidade(quantidade);
         setPreco(preco);
-        escreverArquivoComida();
     }
 
     public int getIdComida(){
@@ -61,40 +60,6 @@ public class Comida {
     public void setPreco (double preco){
         this.preco = preco;
     }
-
-    public void escreverArquivoComida() throws IOException{
-        int cont = 0, idComida;
-        BufferedWriter buffWrite = new BufferedWriter(new FileWriter("./Modelo/Persistencia/Arquivos/Comidas.txt", true));
-        BufferedReader buffRead = new BufferedReader(new FileReader("./Modelo/Persistencia/Arquivos/Comidas.txt"));
-        String linha = "";
-        
-
-        while(true){
-            linha = buffRead.readLine();
-            if (linha!=null)
-                cont++;
-            else
-                break;
-        }
-        
-        idComida = cont;
-        setIdComida(idComida);
-
-        buffWrite.append(Integer.toString(this.idComida) + "/");
-        buffWrite.append(this.getNome() + "/");
-        buffWrite.append(Integer.toString(this.getQuantidade()) + "/");
-        buffWrite.append(Double.toString(this.getPreco())+ "/");
-        buffWrite.append(this.getDescricao() + "\n");
-        
-        System.out.println("Comida cadastrada com sucesso!");
-
-
-         buffWrite.close();
-         buffRead.close();
-
-    }
-
     
-
 
 }

@@ -12,9 +12,9 @@ public class BebidaDAO{
 
     public void escreverArquivoBebida(Bebida bebida) throws IOException{
         
-        BufferedWriter buffWrite = new BufferedWriter(new FileWriter("./Persistencia/Arquivos/Bebidas.txt", true));
+        BufferedWriter buffWrite = new BufferedWriter(new FileWriter("./Modelo/Persistencia/Arquivos/Bebidas.txt", true));
         int cont = 0, idBebida;
-        BufferedReader buffRead = new BufferedReader(new FileReader("./Persistencia/Arquivos/Bebidas.txt"));
+        BufferedReader buffRead = new BufferedReader(new FileReader("./Modelo/Persistencia/Arquivos/Bebidas.txt"));
         String linha = "";
 
         while (true) {

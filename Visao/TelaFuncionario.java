@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import Controle.ControleBebida;
+import Controle.ControleComida;
 import Controle.ControleFuncionario;
 
 public class TelaFuncionario {
@@ -70,6 +71,8 @@ public class TelaFuncionario {
     public static void telaCadastrarComida() throws IOException{
         Scanner scanFunc = new Scanner(System.in);
 
+        ControleComida controleComida = new ControleComida();
+
         System.out.println("Digite o nome da comida:");
         String nome = scanFunc.nextLine();
         System.out.println("Digite a quantidade disponivel:");
@@ -80,7 +83,7 @@ public class TelaFuncionario {
         System.out.println("Digite a descrição da comida:");
         String descricao = scanFunc.nextLine();
         
-       ControleFuncionario.controleCadastrarComida(nome, descricao, quantidade, preco);
+       controleComida.controleCadastrarComida(nome, descricao, quantidade, preco);
 
 
 
