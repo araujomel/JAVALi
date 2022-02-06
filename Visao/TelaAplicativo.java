@@ -38,7 +38,7 @@ public class TelaAplicativo {
         switch(op){
 
             case 1:
-               // Cliente.paginaInicialCliente();
+                TelaCliente.paginaInicialCliente();
                 break;
             case 2:
                 TelaFuncionario.paginaInicialFuncionario();

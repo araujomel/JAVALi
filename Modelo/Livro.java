@@ -1,6 +1,7 @@
 package Modelo;
 public class Livro {
     
+    private int idLivro;
     private String titulo;
     private String autor;
     private int quantidade;
@@ -15,6 +16,10 @@ public class Livro {
         setDisponivel_leitura(disponivel_leitura);
     }
     
+    public void setIdLivro(int idLivro){
+        this.idLivro = idLivro;
+    }
+
     public String getTitulo(){
         return this.titulo;
     }
@@ -33,6 +38,10 @@ public class Livro {
 
     public boolean getDisponivel_leitura(){
         return this.disponivel_leitura;
+    }
+
+    public int getIdLivro(){
+        return this.idLivro;
     }
 
     public void setTitulo(String titulo){
@@ -54,4 +63,6 @@ public class Livro {
     public void setDisponivel_leitura(boolean disponivel_leitura){
         this.disponivel_leitura = disponivel_leitura;
     }
+
+
 }
