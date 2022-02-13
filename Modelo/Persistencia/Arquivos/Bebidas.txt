@@ -16,3 +16,5 @@
 15/d/3/2.0/6.0/deu certo
 16/cafezinho com canela/45/10.0/15.0/cafezinho com canela
 17/a/2/2.0/2.0/b
+18/cafe grande/40/3.0/5.0/cafe especial
+19/italiano/50/5.0/7.0/cafe especial italiano

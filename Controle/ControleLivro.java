@@ -17,5 +17,9 @@ public class ControleLivro {
         dao.escreverArquivoLivro(livro);
         
     }
+
+    public void controleMostrarLivros() throws IOException{
+        dao.lerArquivoLivros();
+    }
     
 }

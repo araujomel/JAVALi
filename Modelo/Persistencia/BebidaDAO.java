@@ -2,9 +2,11 @@ package Modelo.Persistencia;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 import Modelo.Bebida;
 
@@ -41,5 +43,17 @@ public class BebidaDAO{
         buffRead.close();
       
     }
+    
+public void lerArquivoBebidas() throws IOException {
+    File arquivo = new File("./Modelo/Persistencia/Arquivos/Bebidas.txt");
+  
+    Scanner lerArquivo = new Scanner(arquivo);
+    while (lerArquivo.hasNext()) {
+        System.out.println(lerArquivo.nextLine());
+    }
+
+    lerArquivo.close();
+  
+  }
 
 }

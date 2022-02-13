@@ -34,9 +34,9 @@ public class TelaFuncionario {
                     telaCadastrarComida();
                 else if(op==3)
                     telaCadastrarLivro();
-                else
+                else{
                     System.out.println("Opção inválida! Tente novamente.");
-                    paginaInicialFuncionario();
+                    paginaInicialFuncionario();}
                 break;
             case 2:
                 System.out.println("Em construção!");
@@ -162,7 +162,7 @@ public class TelaFuncionario {
 
         System.out.println("Se certifique de checar algum comprovante antes de repassar o código.");
         ControleFuncionario controleFuncionario = new ControleFuncionario();
-        controleFuncionario.gerarCodigoEstudante();
+       // controleFuncionario.gerarCodigoEstudante();
     }
 
 }
