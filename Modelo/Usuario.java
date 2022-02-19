@@ -1,7 +1,6 @@
 package Modelo;
 public class Usuario{
 
-    private String tipoUsuario;
     private String login;
     private String senha;
     private String nome;
@@ -18,22 +17,22 @@ public class Usuario{
         return this.nome;
     }
 
-    private String getLogin(){
+    public String getLogin(){
         return this.login;
     }
 
-    private String getSenha(){
+    public String getSenha(){
         return this.senha;
     }
 
     //set
-    private void setNome(String nome){
+    public void setNome(String nome){
         this.nome = nome;
     }
-    private void setLogin(String login){
+    public void setLogin(String login){
         this.login = login;
     }
-    private void setSenha(String senha){
+    public void setSenha(String senha){
         this.senha = senha;
     }
 }

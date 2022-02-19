@@ -162,7 +162,7 @@ public class TelaFuncionario {
 
         System.out.println("Se certifique de checar algum comprovante antes de repassar o código.");
         ControleFuncionario controleFuncionario = new ControleFuncionario();
-       // controleFuncionario.gerarCodigoEstudante();
+        System.out.println(controleFuncionario.gerarCodigoEstudante());
     }
 
 }

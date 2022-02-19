@@ -1,30 +1,33 @@
 package Modelo;
 import java.util.Scanner;
 import java.io.IOException;
+import java.lang.Math;
+import java.lang.String;
+import java.lang.StringBuilder;
 
 
 public class Funcionario extends Usuario {
     
     
 
-    String funcao; // barista, confeiteiro, gerente
+    FuncaoFuncionario funcao; // barista, confeiteiro, gerente
 
-    public Funcionario(String nome, String funcao, String login, String senha){
+    public Funcionario(String nome, FuncaoFuncionario funcao, String login, String senha){
         super(nome, login, senha);
-        //setNome(nome);
+        setNome(nome);
         setFuncao(funcao);
-        //setLogin(login);
-        //setSenha(senha);
+        setLogin(login);
+        setSenha(senha);
     }
 
 
 
-    /*
-    public String getFuncao(){
-        return this.funcao;
-    }*/
 
-    public void setFuncao(String funcao){
+    public FuncaoFuncionario getFuncao(){
+        return this.funcao;
+    }
+
+    public void setFuncao(FuncaoFuncionario funcao){
         this.funcao = funcao;
     }
 
@@ -50,8 +53,7 @@ public class Funcionario extends Usuario {
     }
     */
 
-
-
+    
 
    
 }
