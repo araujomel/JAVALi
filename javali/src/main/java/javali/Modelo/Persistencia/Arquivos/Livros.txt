@@ -4,3 +4,47 @@
 3/O manifesto comunista/Karl Marx/1/false/true
 4/cidade dos ossos/cassandra clare/3/true/true
 5/c¢dex dos ca‡adores das sombras/Cassandra Clare/1/false/true
+6/a culpa e das estrela/nao lembro/4/true/true
+7/a culpa ‚ das estrelas/jhon green/2/false/true
+8/a/b/3/true/true
+9/a/b/13/true/true
+10/dom casmurro/machado de assis/1/false/true
+11/a/b/3/true/true
+12/a/b/3/true/true
+13/a/b/2/true/true
+14/a/b/3/true/true
+15/a/b/3/true/true
+16/a/c/3/true/true
+17/a/d/3/true/true
+18/a/b/3/true/true
+19/a/b/3/true/true
+20/a/b/4/true/true
+21/a/b/4/true/true
+22/a/b/4/true/true
+23/a/a/3/true/true
+24/a/b/4/true/true
+25/v/d/3/true/true
+26/a/g/2/true/true
+27/a/b/3/true/true
+28/a/b/3/true/true
+29/3/3/1/true/true
+30/a/b/2/true/true
+31/f/gg/2/true/true
+32/a/2/2/true/true
+33/a/b/2/true/true
+34/a/f/3/true/true
+35/a/b/3/true/true
+36/a/b/2/true/true
+37/e/f/3/true/true
+38/a/b/3/true/true
+39/a/b/2/true/true
+40/a/b/2/true/true
+41/a/b/3/true/true
+42/c/b/1/true/false
+43/a/b/3/true/true
+44/a/b/2/true/true
+45/a/b/5/true/true
+46/a/b/3/true/true
+47/a/b/3/true/true
+48/a/fgggs/2/true/false
+49/a/b/10/true/true
