@@ -9,29 +9,40 @@ public class TelaLivraria {
 
     public static void telaMenuInicial() throws IOException{
         Scanner scan = new Scanner(System.in);
-        System.out.println("=============================");
-        System.out.println("           Livraria          ");
-        System.out.println("=============================");
-        System.out.println("1 - Listar todos os livros");
-        System.out.println("2 - Livros para comprar");
-        System.out.println("3 - Livros para ler");
+        boolean loop = true;
+        do{
+            try{
+                System.out.println("=============================");
+                System.out.println("           Livraria          ");
+                System.out.println("=============================");
+                System.out.println("1 - Listar todos os livros");
+                System.out.println("2 - Livros para comprar");
+                System.out.println("3 - Livros para ler");
+                System.out.println("4 - Voltar");
 
-        int op = scan.nextInt();
-        switch(op){
+                int op = Integer.parseInt(scan.next());
+                switch(op){
 
-            case 1:
-                telaListarLivros();
-                break;
-            case 2:
-                System.out.println("Em construção");
-                break;
-            case 3:
-                System.out.println("Em construção");
-                break;
-            default:
-                //paginaInicialFuncionario();
-        }
-
+                    case 1:
+                        telaListarLivros();
+                        break;
+                    case 2:
+                        System.out.println("Em construção");
+                        break;
+                    case 3:
+                        System.out.println("Em construção");
+                        break;
+                    case 4:
+                    TelaCliente.paginaInicialCliente();
+                    break;
+                    default:
+                        System.out.println("Opção inválida!");
+                        telaMenuInicial();
+                }
+            }catch (NumberFormatException e){
+                System.err.println("Erro, digite um número!"+e);
+            }
+        }while(loop);
         scan.close();
 
     }
