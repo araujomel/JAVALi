@@ -1,0 +1,6 @@
+0/Divina Com‚dia/Dante/1/false/true
+1/O di rio de Anne Frank/Anne Frank/2/true/true
+2/B¡blia/Jesus/500/true/true
+3/O manifesto comunista/Karl Marx/1/false/true
+4/cidade dos ossos/cassandra clare/3/true/true
+5/c¢dex dos ca‡adores das sombras/Cassandra Clare/1/false/true
