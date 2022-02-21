@@ -2,7 +2,6 @@ package javali.Visao;
 import java.io.IOException;
 import java.util.Scanner;
 import java.lang.String;
-import java.text.NumberFormat;
 
 import javali.Controle.ControleBebida;
 import javali.Controle.ControleComida;

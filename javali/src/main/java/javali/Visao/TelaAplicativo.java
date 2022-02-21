@@ -6,23 +6,33 @@ public class TelaAplicativo {
     
     public static void telaInicial() throws IOException{
 
-        Scanner scan = new Scanner(System.in);
+        
         System.out.println("           JAVA Li           ");
         System.out.println("=============================");
+        Scanner scan = new Scanner(System.in);
         System.out.println("Login:");
         String login = scan.next();
         System.out.println("Senha:");
         String senha = scan.next();
-
-        if((login.equals("admin")) && (senha.equals("123"))){
+    
+        if(logar(login, senha) == 1)
             telaEscolheTipoDeUsuario();
-        } else{
-            System.out.println("Usuário ou senha incorretos.");
+        else
             telaInicial();
-        }
 
         scan.close();
   }
+
+    public static int logar(String login, String senha) {
+       
+
+        if((login.equals("admin")) && (senha.equals("123"))){
+            return 1;
+        } else{
+            System.out.println("Usuário ou senha incorretos.");
+            return 0;
+        }
+    }
 
       public static void telaEscolheTipoDeUsuario() throws IOException{
 
