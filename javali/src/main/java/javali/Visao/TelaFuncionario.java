@@ -2,6 +2,7 @@ package javali.Visao;
 import java.io.IOException;
 import java.util.Scanner;
 import java.lang.String;
+import java.sql.SQLException;
 
 import javali.Controle.ControleBebida;
 import javali.Controle.ControleComida;
@@ -15,7 +16,7 @@ public class TelaFuncionario {
        
     }
 
-    public static void paginaInicialFuncionario() throws IOException{
+    public static void paginaInicialFuncionario() throws IOException, SQLException, ClassNotFoundException{
         Scanner scanf = new Scanner(System.in); 
         boolean loop = true;
 
@@ -72,7 +73,7 @@ public class TelaFuncionario {
         System.out.println("4 - Cadastrar Funcionário");
     }
 
-    public static void telaCadastrarBebida() throws IOException{
+    public static void telaCadastrarBebida() throws IOException, SQLException, ClassNotFoundException{
         ControleBebida controleBebida = new ControleBebida();
         Scanner scanFuncionario = new Scanner(System.in);   
         
@@ -97,7 +98,7 @@ public class TelaFuncionario {
         scanFuncionario.close();
     }
 
-    public static void telaCadastrarComida() throws IOException{
+    public static void telaCadastrarComida() throws IOException, SQLException, ClassNotFoundException{
         Scanner scanFunc = new Scanner(System.in);
 
         ControleComida controleComida = new ControleComida();
@@ -124,7 +125,7 @@ public class TelaFuncionario {
         
     }
 
-    public static void telaCadastrarLivro() throws IOException{
+    public static void telaCadastrarLivro() throws IOException, SQLException, ClassNotFoundException{
         Scanner scanFunci = new Scanner(System.in);
 
         ControleLivro controleLivro = new ControleLivro();
@@ -179,7 +180,7 @@ public class TelaFuncionario {
         
     }
 
-    private static void telaGerarCodigoEstudante() throws IOException{
+    private static void telaGerarCodigoEstudante() throws IOException, SQLException, ClassNotFoundException{
 
         System.out.println("Se certifique de checar algum comprovante antes de repassar o código.");
         ControleFuncionario controleFuncionario = new ControleFuncionario();

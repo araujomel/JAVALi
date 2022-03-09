@@ -8,13 +8,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.sql.SQLException;
 
 import javali.Modelo.Livro;
 import javali.Visao.TelaFuncionario;
 
 public class LivroDAO {
 
-    public void escreverArquivoLivro(Livro livro) throws IOException{
+    public void escreverArquivoLivro(Livro livro) throws IOException, SQLException, ClassNotFoundException{
         BufferedWriter buffWrite = null;
         BufferedReader buffRead = null;
 

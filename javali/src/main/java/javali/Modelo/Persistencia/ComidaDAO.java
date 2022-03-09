@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.sql.SQLException;
 
 import javali.Modelo.Comida;
 import javali.Visao.TelaFuncionario;
@@ -16,7 +17,7 @@ import javali.Visao.TelaFuncionario;
 
 public class ComidaDAO {
 
-  public void escreverArquivoComida(Comida comida) throws IOException{
+  public void escreverArquivoComida(Comida comida) throws IOException, SQLException, ClassNotFoundException{
       
       int cont = 0, idComida;
       BufferedWriter buffWrite = null;

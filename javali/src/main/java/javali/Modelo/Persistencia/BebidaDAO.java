@@ -8,15 +8,18 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javali.Modelo.Bebida;
 import javali.Visao.TelaFuncionario;
 
 public class BebidaDAO{
 
-    public void escreverArquivoBebida(Bebida bebida) throws IOException{
+    public void escreverArquivoBebida(Bebida bebida) throws IOException, SQLException, ClassNotFoundException{
 
-      BufferedWriter buffWrite = null;
+      /* BufferedWriter buffWrite = null;
       BufferedReader buffRead = null;
 
       try{
@@ -55,7 +58,22 @@ public class BebidaDAO{
                 System.err.println("Erro ao tentar fechar o arquivo "+ e);
             }
         
-    }
+    } */
+
+    Connection con = BancoDeDados.getConexao();
+        Statement st = con.createStatement();
+        try{
+
+            
+            st.executeUpdate("INSERT INTO Bebida (nome, quantidade, precoMedio, precoGrande, descricao) "
+          +"VALUES ('"+ bebida.getNome()+"', "+ bebida.getQuantidade()+", "
+          + bebida.getPrecoMedio()+", "+ bebida.getPrecoGrande()+", '"+ bebida.getDescricao()+"')");
+
+          con.close();}
+        catch(Exception e){
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }
 
     System.out.println("Bebida cadastrada com sucesso!");
     TelaFuncionario.paginaInicialFuncionario();
@@ -64,16 +82,24 @@ public class BebidaDAO{
     
 public void lerArquivoBebidas() throws IOException {
     try{
-        File arquivo = new File("./src/main/java/javali/Modelo/Persistencia/Arquivos/Bebidas.txt");
+
+        Connection con = BancoDeDados.getConexao();
+        Statement st = con.createStatement();
+
+
+        st.executeUpdate("");
+        con.close();
+
+        /* File arquivo = new File("./src/main/java/javali/Modelo/Persistencia/Arquivos/Bebidas.txt");
     
         Scanner lerArquivo = new Scanner(arquivo);
         while (lerArquivo.hasNext()) {
             System.out.println(lerArquivo.nextLine());
         }
 
-        lerArquivo.close();
-    }catch (FileNotFoundException e){
-    System.err.println("Erro ao acessar o arquivo "+ e);
+        lerArquivo.close(); */
+    }catch (Exception e){
+    System.err.println("Erro! "+ e);
 }
   
   }

@@ -80,11 +80,8 @@ public class TelaAplicativo {
     }
 
     static public void gacsf() throws SQLException, ClassNotFoundException{
-        if(BancoDeDados.getConexao() != null){
-            System.out.println("DEUE RRADO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        } else{
-            System.out.println("deu certo");
-        }
+        
+        
     }
     
 }
