@@ -1,10 +1,14 @@
 package javali.Visao;
 import java.io.IOException;
 import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javali.Modelo.Persistencia.*;
 
 public class TelaAplicativo {
     
-    public static void telaInicial() throws IOException{
+    public static void telaInicial() throws IOException, SQLException, ClassNotFoundException{
 
         
         System.out.println("           JAVA Li           ");
@@ -34,7 +38,7 @@ public class TelaAplicativo {
         }
     }
 
-      public static void telaEscolheTipoDeUsuario() throws IOException{
+      public static void telaEscolheTipoDeUsuario() throws IOException, SQLException, ClassNotFoundException{
 
         Scanner scanTipoUsuario = new Scanner(System.in);
         boolean loop = true;
@@ -47,6 +51,7 @@ public class TelaAplicativo {
                 System.out.println("=============================");
                 System.out.println("1 - Cliente");
                 System.out.println("2 - Funcionário");
+                System.out.println("3 - Fasdsa");
                 op = Integer.parseInt(scanTipoUsuario.next());
 
                 switch(op){
@@ -56,6 +61,9 @@ public class TelaAplicativo {
                         break;
                     case 2:
                         TelaFuncionario.paginaInicialFuncionario();
+                        break;
+                    case 3:
+                        gacsf();
                         break;
                     default:
                         System.out.println("Opção inválida!");
@@ -70,5 +78,14 @@ public class TelaAplicativo {
         scanTipoUsuario.close();
 
     }
+
+    static public void gacsf() throws SQLException, ClassNotFoundException{
+        if(BancoDeDados.getConexao() != null){
+            System.out.println("DEUE RRADO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        } else{
+            System.out.println("deu certo");
+        }
+    }
+    
 }
 
