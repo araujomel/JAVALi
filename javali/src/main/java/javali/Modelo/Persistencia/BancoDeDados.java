@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.lang.ClassNotFoundException;
+import java.sql.PreparedStatement;
 
 public class BancoDeDados {
 
@@ -21,6 +22,10 @@ public class BancoDeDados {
         }
 
         return conexao;
+    }
+
+    public static PreparedStatement criarPreparedStatement(String sql) throws SQLException, ClassNotFoundException {
+        return getConexao().prepareStatement(sql);
     }
 
 

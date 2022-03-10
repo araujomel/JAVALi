@@ -14,7 +14,7 @@ public class Bebida {
     private double precoGrande;
     private String descricao;
 
-    public Bebida(String nome, String descricao, int quantidade, double precoMedio, double precoGrande) throws IOException{
+    public Bebida(String nome, String descricao, int quantidade, double precoMedio, double precoGrande){
         setNome(nome);
         setDescricao(descricao);
         setQuantidade(quantidade);
