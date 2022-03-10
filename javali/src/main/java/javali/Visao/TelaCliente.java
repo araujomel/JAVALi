@@ -1,5 +1,6 @@
 package javali.Visao;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import javali.Controle.ControleCliente;
@@ -7,7 +8,7 @@ import javali.Controle.ControleCliente;
 public class TelaCliente {
     
 
-    public static void paginaInicialCliente() throws IOException{
+    public static void paginaInicialCliente() throws IOException, ClassNotFoundException, SQLException{
         
         Scanner scanc = new Scanner(System.in);
         boolean loop = true;

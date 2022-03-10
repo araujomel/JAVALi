@@ -1,6 +1,7 @@
 package javali.Controle;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javali.Modelo.Persistencia.BebidaDAO;
 import javali.Modelo.Persistencia.ComidaDAO;
@@ -19,7 +20,7 @@ public class ControleCardapio {
         comidaDAO.lerArquivoComidas();
     }
 
-    public void controleCardapioBebidas() throws IOException{
-        bebidaDAO.lerArquivoBebidas();
+    public void controleCardapioBebidas() throws IOException, ClassNotFoundException, SQLException{
+        bebidaDAO.lerBebidasDAO();
     }
 }

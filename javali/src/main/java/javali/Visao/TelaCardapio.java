@@ -2,6 +2,7 @@ package javali.Visao;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import javali.Controle.ControleCardapio;
@@ -9,7 +10,7 @@ import javali.Modelo.Cardapio;
 
 public class TelaCardapio {
 
-    public static void telaInicialCardapio() throws IOException{
+    public static void telaInicialCardapio() throws IOException, ClassNotFoundException, SQLException{
         Scanner scan = new Scanner(System.in);
         boolean loop = true;
         do{
@@ -57,7 +58,7 @@ public class TelaCardapio {
         
     }
 
-    public static void telaMostrarCardapioBebidas() throws IOException{
+    public static void telaMostrarCardapioBebidas() throws IOException, ClassNotFoundException, SQLException{
       ControleCardapio  controleCardapio = new ControleCardapio(); 
       controleCardapio.controleCardapioBebidas();
   }

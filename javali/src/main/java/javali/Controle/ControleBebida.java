@@ -14,10 +14,10 @@ public class ControleBebida{
         dao = new BebidaDAO();
     }
 
-    public void controleCadastrarBebida (String nome, String descricao, int quantidade, double precoMedio, double precoGrande) throws IOException, SQLException, ClassNotFoundException{
+    public void controleCadastrarBebida (String nome, String descricao, int quantidade, double precoMedio, double precoGrande)
+    throws IOException, SQLException, ClassNotFoundException{
         Bebida bebida = new Bebida(nome, descricao, quantidade, precoMedio, precoGrande);
-        dao.escreverArquivoBebida(bebida);
-        
+        dao.cadastrarBebidaDAO(bebida);   
     }
 
     public void controleMostrarCardapio () throws IOException{

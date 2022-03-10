@@ -1,13 +1,14 @@
 package javali.Visao;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import javali.Controle.ControleLivro;
 
 public class TelaLivraria {
 
-    public static void telaMenuInicial() throws IOException{
+    public static void telaMenuInicial() throws IOException, ClassNotFoundException, SQLException{
         Scanner scan = new Scanner(System.in);
         boolean loop = true;
         do{
@@ -27,10 +28,10 @@ public class TelaLivraria {
                         telaListarLivros();
                         break;
                     case 2:
-                        System.out.println("Em construção");
+                        telaListarLivrosCompra();
                         break;
                     case 3:
-                        System.out.println("Em construção");
+                        telaListarLivrosLeitura();
                         break;
                     case 4:
                     TelaCliente.paginaInicialCliente();
@@ -46,11 +47,22 @@ public class TelaLivraria {
         scan.close();
 
     }
-    public static void telaListarLivros() throws IOException{
-        System.out.println("=============================");
-        System.out.println("           Livros            ");
-        System.out.println("=============================");
+    public static void telaListarLivros() throws IOException, ClassNotFoundException, SQLException{
+      
         ControleLivro controleLivro = new ControleLivro();
         controleLivro.controleMostrarLivros();
     }
+
+    public static void telaListarLivrosCompra() throws IOException, ClassNotFoundException, SQLException{
+        
+        ControleLivro controleLivro = new ControleLivro();
+        controleLivro.controleMostrarLivrosCompra();
+    }
+
+    public static void telaListarLivrosLeitura() throws IOException, ClassNotFoundException, SQLException{
+        
+        ControleLivro controleLivro = new ControleLivro();
+        controleLivro.controleMostrarLivrosLeitura();
+    }
+
 }

@@ -14,13 +14,22 @@ public class ControleLivro {
     }
 
     public void controleCadastrarLivro (String titulo, String autor, int quantidade, boolean disponivel_venda, boolean disponivel_leitura) throws IOException, SQLException, ClassNotFoundException{
+        
         Livro livro = new Livro(titulo, autor, quantidade, disponivel_venda, disponivel_leitura);
-        dao.escreverArquivoLivro(livro);
+        dao.cadastrarLivroDAO(livro);
         
     }
 
-    public void controleMostrarLivros() throws IOException{
-        dao.lerArquivoLivros();
+    public void controleMostrarLivros() throws IOException, ClassNotFoundException, SQLException{
+        dao.pegarLivrosDAO();
+    }
+
+    public void controleMostrarLivrosCompra() throws IOException, ClassNotFoundException, SQLException{
+        dao.pegarLivrosCompraDAO();
+    }
+
+    public void controleMostrarLivrosLeitura() throws IOException, ClassNotFoundException, SQLException{
+        dao.pegarLivrosLeituraDAO();
     }
     
 }
