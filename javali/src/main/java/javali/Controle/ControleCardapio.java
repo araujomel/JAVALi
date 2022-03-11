@@ -16,8 +16,8 @@ public class ControleCardapio {
         comidaDAO = new ComidaDAO();
     }
 
-    public void controleCardapioComidas() throws IOException{
-        comidaDAO.lerArquivoComidas();
+    public void controleCardapioComidas() throws IOException, ClassNotFoundException, SQLException{
+        comidaDAO.mostrarComidasDAO();
     }
 
     public void controleCardapioBebidas() throws IOException, ClassNotFoundException, SQLException{

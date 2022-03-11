@@ -75,7 +75,7 @@ public class TelaFuncionario {
 
     public static void telaCadastrarBebida() throws IOException, SQLException, ClassNotFoundException{
         ControleBebida controleBebida = new ControleBebida();
-        Scanner scanFuncionario = new Scanner(System.in);   
+        Scanner scanFuncionario = new Scanner(System.in,"CP850");   
         
         try{
             System.out.println("Digite o nome da bebida");
@@ -99,7 +99,8 @@ public class TelaFuncionario {
     }
 
     public static void telaCadastrarComida() throws IOException, SQLException, ClassNotFoundException{
-        Scanner scanFunc = new Scanner(System.in);
+       
+        Scanner scanFunc = new Scanner(System.in,"CP850");
 
         ControleComida controleComida = new ControleComida();
         
@@ -109,11 +110,14 @@ public class TelaFuncionario {
             System.out.println("Digite a quantidade disponivel:");
             int quantidade = Integer.parseInt(scanFunc.next());
             System.out.println("Digite o preço unitario:");
-            double preco =  Double.parseDouble(scanFunc.next());
+            double preco = Double.valueOf(scanFunc.next().replace(",", "."));
             scanFunc.nextLine();
             System.out.println("Digite a descrição da comida:");
             String descricao = scanFunc.nextLine();
-            
+            System.out.println("______________________________");
+            System.out.println(nome);
+            System.out.println(descricao);
+           
         controleComida.controleCadastrarComida(nome, descricao, quantidade, preco);
         }catch(NumberFormatException e){
             System.err.println("Erro, digite um número! "+e);
@@ -121,12 +125,13 @@ public class TelaFuncionario {
         }
 
         scanFunc.close();
+        
 
         
     }
 
     public static void telaCadastrarLivro() throws IOException, SQLException, ClassNotFoundException{
-        Scanner scanFunci = new Scanner(System.in);
+        Scanner scanFunci = new Scanner(System.in,"CP850");
 
         ControleLivro controleLivro = new ControleLivro();
         try{
@@ -163,7 +168,7 @@ public class TelaFuncionario {
     }
 
     public static void telaCadastrarFuncionario() throws IOException{
-        Scanner scanFun = new Scanner(System.in);
+        Scanner scanFun = new Scanner(System.in,"CP850");
 
         System.out.println("Digite o nome do funcionário:");
         String nome = scanFun.nextLine();

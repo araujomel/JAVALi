@@ -20,10 +20,5 @@ public class ControleBebida{
         dao.cadastrarBebidaDAO(bebida);   
     }
 
-    public void controleMostrarCardapio () throws IOException{
-        
-        
-        
-    }
 
 }

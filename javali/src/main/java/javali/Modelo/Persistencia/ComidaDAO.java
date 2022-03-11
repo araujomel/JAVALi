@@ -1,15 +1,13 @@
 package javali.Modelo.Persistencia;
 
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.sql.ResultSet;
 
 import javali.Modelo.Comida;
 import javali.Visao.TelaFuncionario;
@@ -17,66 +15,65 @@ import javali.Visao.TelaFuncionario;
 
 public class ComidaDAO {
 
-  public void escreverArquivoComida(Comida comida) throws IOException, SQLException, ClassNotFoundException{
+  public void cadastrarComidaDAO(Comida comida) throws IOException, SQLException, ClassNotFoundException{
       
-      int cont = 0, idComida;
-      BufferedWriter buffWrite = null;
-      BufferedReader buffRead = null;
+        Connection con = BancoDeDados.getConexao();
+        PreparedStatement st = null;
 
-      try{
-
-            buffWrite = new BufferedWriter(new FileWriter("./src/main/java/javali/Modelo/Persistencia/Arquivos/Comidas.txt", true));
-            buffRead = new BufferedReader(new FileReader("./src/main/java/javali/Modelo/Persistencia/Arquivos/Comidas.txt"));
-            String linha = "";
-            
-
-            while(true){
-                linha = buffRead.readLine();
-                if (linha!=null)
-                    cont++;
-                else
-                    break;
-            }
-            
-            idComida = cont;
-            comida.setIdComida(idComida);
-
-            buffWrite.append(Integer.toString(comida.getIdComida()) + "/");
-            buffWrite.append(comida.getNome() + "/");
-            buffWrite.append(Integer.toString(comida.getQuantidade()) + "/");
-            buffWrite.append(Double.toString(comida.getPreco())+ "/");
-            buffWrite.append(comida.getDescricao() + "\n");
-            
+        try{
+           // coloquei de uma maneira diferente porque eu tava testando o banco, mas vou padronizar att Layon
+           st = con.prepareStatement("INSERT INTO Comida(nome, quantidade, descricao) VALUES(?,?,?)");
+           st.setString(1,comida.getNome());
+           st.setInt(2, comida.getQuantidade());
+           st.setString(3,comida.getDescricao());
            
-        }catch (FileNotFoundException e){
-            System.err.println("Erro ao acessar ou criar o arquivo "+ e);
-        }
-        finally{
-            try{
-                buffWrite.close();
-                buffRead.close();
-            }catch (FileNotFoundException e){
-                System.err.println("Erro ao tentar fechar o arquivo "+ e);
-        }
-            
-        }
-        System.out.println("Comida cadastrada com sucesso!");
-        TelaFuncionario.paginaInicialFuncionario();
-}
+           st.executeUpdate();
 
-public void lerArquivoComidas() throws IOException {
+           System.out.println("Comida cadastrada com sucesso!");
+
+           TelaFuncionario.paginaInicialFuncionario();
+          con.close();
+        }catch(SQLException sqlException){
+            System.err.println("Got an exception!");
+            System.err.println(sqlException.getMessage());
+        }finally{
+            con.close();
+            st.close();
+        }
+
+    }
+
+        
+    public void mostrarComidasDAO() throws ClassNotFoundException, SQLException, IOException{
     try{
-        File arquivo = new File("./src/main/java/javali/Modelo/Persistencia/Arquivos/Comidas.txt");
-        Scanner lerArquivo = new Scanner(arquivo);
-        while (lerArquivo.hasNext()) {
-            System.out.println(lerArquivo.nextLine());
+
+        ArrayList<Comida> comidas = pegarComidasDAO();
+
+        System.out.println("-------------- COMIDAS ----------------");
+
+        for(int i = 0; i < comidas.size(); i++){
+            System.out.println(comidas.get(i).getNome()+"        "+comidas.get(i).getDescricao()+"\nPreço: R$ "+ comidas.get(i).getPreco()
+            +"\n-----------------------------------------");
         }
-        lerArquivo.close();
-   }catch (FileNotFoundException e){
-    System.err.println("Erro ao tentar acesar o arquivo "+ e);
-}
-
-}
-
+    }catch (NullPointerException e){
+        System.err.println("Erro! "+ e);
+    }
   
+  }
+
+  public ArrayList<Comida> pegarComidasDAO() throws SQLException, ClassNotFoundException, IOException {
+    PreparedStatement ps = BancoDeDados.criarPreparedStatement("SELECT * FROM Comida");
+
+    ResultSet rs = ps.executeQuery();
+
+    ArrayList<Comida> comidas = new ArrayList<Comida>();
+    while (rs.next()) {
+        
+        Comida comida = new Comida(rs.getString(2), rs.getString(4), rs.getInt(3), 3.00); // o preço está 3 reais aqui pois no banco ainda nao tem essa coluna depois adicionamos
+        comidas.add(comida);
+    }
+    return comidas;
+}
+
+
 }

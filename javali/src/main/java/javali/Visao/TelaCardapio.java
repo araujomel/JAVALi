@@ -52,7 +52,7 @@ public class TelaCardapio {
       System.out.println("4 - Voltar");
     }
 
-    public static void telaMostrarCardapioComidas() throws IOException{
+    public static void telaMostrarCardapioComidas() throws IOException, ClassNotFoundException, SQLException{
         ControleCardapio  controleCardapio = new ControleCardapio(); 
         controleCardapio.controleCardapioComidas();
         
