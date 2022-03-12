@@ -6,13 +6,15 @@ public class Livro {
     private String autor;
     private int quantidade;
     private boolean disponivel_venda; // a ideia aqui é colocar um verificador de disponibilidade ao mostrar no cardápio
+    private float preco;
     private boolean disponivel_leitura;
 
-    public Livro(String titulo, String autor, int quantidade, boolean disponivel_venda, boolean disponivel_leitura){
+    public Livro(String titulo, String autor, int quantidade, boolean disponivel_venda, float preco, boolean disponivel_leitura){
         setTitulo(titulo);
         setAutor(autor);
         setQuantidade(quantidade);
         setDisponivel_venda(disponivel_venda);
+        setPreco(preco);
         setDisponivel_leitura(disponivel_leitura);
     }
     
@@ -30,6 +32,10 @@ public class Livro {
 
     public int getQuantidade(){
         return this.quantidade;
+    }
+
+    public float getPreco(){
+        return this.preco;
     }
 
     public boolean getDisponivel_venda(){
@@ -58,6 +64,10 @@ public class Livro {
 
     public void setDisponivel_venda(boolean disponivel_venda){
         this.disponivel_venda = disponivel_venda;
+    }
+
+    public void setPreco(float preco){
+        this.preco = preco;
     }
 
     public void setDisponivel_leitura(boolean disponivel_leitura){

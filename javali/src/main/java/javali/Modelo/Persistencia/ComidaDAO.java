@@ -21,18 +21,19 @@ public class ComidaDAO {
         PreparedStatement st = null;
 
         try{
-           // coloquei de uma maneira diferente porque eu tava testando o banco, mas vou padronizar att Layon
-           st = con.prepareStatement("INSERT INTO Comida(nome, quantidade, descricao) VALUES(?,?,?)");
+           // coloquei de uma maneira diferente porque eu tava testando o banco, mas vou padronizar att Layon KKKKKKKKKKKKKK ok att melissa
+           st = con.prepareStatement("INSERT INTO Comida(nome, quantidade, descricao, preco) VALUES(?,?,?,?)");
            st.setString(1,comida.getNome());
            st.setInt(2, comida.getQuantidade());
            st.setString(3,comida.getDescricao());
+           st.setDouble(4,comida.getPreco());
            
            st.executeUpdate();
 
            System.out.println("Comida cadastrada com sucesso!");
-
+           con.close();
            TelaFuncionario.paginaInicialFuncionario();
-          con.close();
+          
         }catch(SQLException sqlException){
             System.err.println("Got an exception!");
             System.err.println(sqlException.getMessage());
@@ -69,7 +70,7 @@ public class ComidaDAO {
     ArrayList<Comida> comidas = new ArrayList<Comida>();
     while (rs.next()) {
         
-        Comida comida = new Comida(rs.getString(2), rs.getString(4), rs.getInt(3), 3.00); // o preço está 3 reais aqui pois no banco ainda nao tem essa coluna depois adicionamos
+        Comida comida = new Comida(rs.getString(2), rs.getString(4), rs.getInt(3), rs.getFloat(5)); // o preço está 3 reais aqui pois no banco ainda nao tem essa coluna depois adicionamos
         comidas.add(comida);
     }
     return comidas;

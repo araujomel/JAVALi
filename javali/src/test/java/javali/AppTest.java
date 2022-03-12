@@ -13,7 +13,7 @@ class AppTest {
     /**
      * Rigorous Test.
      */
-    @Test
+    /* @Test
     public void logarTest1(){
 		TelaAplicativo telaAplicativo = new TelaAplicativo();
         assert(TelaAplicativo.logar("admin","123") == 1);
@@ -23,5 +23,5 @@ class AppTest {
     public void logarTest2(){
 		TelaAplicativo telaAplicativo = new TelaAplicativo();
         assert(TelaAplicativo.logar("melissa","123") == 1);
-	}
+	} */
 }

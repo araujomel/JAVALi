@@ -24,8 +24,9 @@ public class BebidaDAO{
           +"VALUES ('"+ bebida.getNome()+"', "+ bebida.getQuantidade()+", "
           + bebida.getPrecoMedio()+", "+ bebida.getPrecoGrande()+", '"+ bebida.getDescricao()+"')");
            System.out.println("Bebida cadastrada com sucesso!");
+           con.close();
            TelaFuncionario.paginaInicialFuncionario();
-          con.close();
+          
         }catch(SQLException sqlException){
             System.err.println("Got an exception!");
             System.err.println(sqlException.getMessage());
@@ -35,21 +36,21 @@ public class BebidaDAO{
       
     }
     
-public void lerBebidasDAO() throws ClassNotFoundException, SQLException{
-    try{
+    public void lerBebidasDAO() throws ClassNotFoundException, SQLException{
+        try{
 
-        ArrayList<Bebida> bebidas = pegarBebidasDAO();
+            ArrayList<Bebida> bebidas = pegarBebidasDAO();
 
-        System.out.println("-------------- BEBIDAS ----------------");
-        for(int i = 0; i < bebidas.size(); i++){
-            System.out.println(bebidas.get(i).getNome()+"        "+bebidas.get(i).getDescricao()+"\nMédio: R$ "+ bebidas.get(i).getPrecoMedio()
-            +"   Grande: R$ "+bebidas.get(i).getPrecoGrande()+"\n-----------------------------------------");
+            System.out.println("-------------- BEBIDAS ----------------");
+            for(int i = 0; i < bebidas.size(); i++){
+                System.out.println(bebidas.get(i).getNome()+"        "+bebidas.get(i).getDescricao()+"\nMédio: R$ "+ bebidas.get(i).getPrecoMedio()
+                +"   Grande: R$ "+bebidas.get(i).getPrecoGrande()+"\n-----------------------------------------");
+            }
+        }catch (NullPointerException e){
+        System.err.println("Erro! "+ e);
         }
-    }catch (NullPointerException e){
-    System.err.println("Erro! "+ e);
+    
     }
-  
-  }
 
   public ArrayList<Bebida> pegarBebidasDAO() throws SQLException, ClassNotFoundException {
     PreparedStatement ps = BancoDeDados.criarPreparedStatement("SELECT * FROM Bebida");

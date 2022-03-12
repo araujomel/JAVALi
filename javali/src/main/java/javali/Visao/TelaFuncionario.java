@@ -8,6 +8,7 @@ import javali.Controle.ControleBebida;
 import javali.Controle.ControleComida;
 import javali.Controle.ControleFuncionario;
 import javali.Controle.ControleLivro;
+import javali.Modelo.FuncaoFuncionario;
 
 public class TelaFuncionario {
 
@@ -110,7 +111,7 @@ public class TelaFuncionario {
             System.out.println("Digite a quantidade disponivel:");
             int quantidade = Integer.parseInt(scanFunc.next());
             System.out.println("Digite o preço unitario:");
-            double preco = Double.valueOf(scanFunc.next().replace(",", "."));
+            float preco = Float.valueOf(scanFunc.next().replace(",", "."));
             scanFunc.nextLine();
             System.out.println("Digite a descrição da comida:");
             String descricao = scanFunc.nextLine();
@@ -135,6 +136,7 @@ public class TelaFuncionario {
 
         ControleLivro controleLivro = new ControleLivro();
         try{
+            float preco = 0;
             System.out.println("Digite o título do livro:");
             String titulo = scanFunci.nextLine();
             System.out.println("Digite o autor do livro:");
@@ -145,8 +147,10 @@ public class TelaFuncionario {
             Boolean disponivel_venda = false;
             if(scanFunci.nextInt() == 1){
                 disponivel_venda = true;
+                System.out.println("Digite o preço do livro:");
+                preco = Float.valueOf(scanFunci.next().replace(",", "."));
             }
-            
+
             System.out.println("Digite 1 caso o livro esteja disponível para leitura, caso não, digite 0:");
             Boolean disponivel_leitura = false;
             if(scanFunci.nextInt() == 1){
@@ -154,7 +158,7 @@ public class TelaFuncionario {
             }
             scanFunci.nextLine();
             
-            controleLivro.controleCadastrarLivro(titulo, autor, quantidade, disponivel_venda, disponivel_leitura);
+            controleLivro.controleCadastrarLivro(titulo, autor, quantidade, disponivel_venda, preco, disponivel_leitura);
             
         }catch(NumberFormatException e){
             System.err.println("Erro, digite um número! "+e);
@@ -170,12 +174,30 @@ public class TelaFuncionario {
     public static void telaCadastrarFuncionario() throws IOException{
         Scanner scanFun = new Scanner(System.in,"CP850");
 
+        FuncaoFuncionario funcao;
+
         System.out.println("Digite o nome do funcionário:");
         String nome = scanFun.nextLine();
         System.out.println("Digite o login:");
         String login = scanFun.nextLine();
         System.out.println("Digite a senha");
         String senha = scanFun.nextLine();
+        System.out.println("Digite a função");
+        String f = scanFun.nextLine().toLowerCase();
+        switch(f){
+            case "barista":
+                funcao = FuncaoFuncionario.BARISTA;
+            case "atendente":
+                funcao = FuncaoFuncionario.ATENDENTE;
+            case "gerente":
+                funcao = FuncaoFuncionario.GERENTE;
+            case "confeiteiro":
+                funcao = FuncaoFuncionario.CONFEITEIRO;
+            default:
+                System.out.println("Essa função não existe, tente novamente.");
+                telaCadastrarFuncionario();
+            
+        }
         
         scanFun.nextLine();
 
@@ -190,7 +212,7 @@ public class TelaFuncionario {
         System.out.println("Se certifique de checar algum comprovante antes de repassar o código.");
         ControleFuncionario controleFuncionario = new ControleFuncionario();
         System.out.println(controleFuncionario.gerarCodigoEstudante());
-        paginaInicialFuncionario();
+        return;
     }
 
 }

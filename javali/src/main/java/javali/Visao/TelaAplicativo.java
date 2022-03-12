@@ -4,6 +4,9 @@ import java.util.Scanner;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javali.Modelo.FuncaoFuncionario;
+import javali.Modelo.Funcionario;
 import javali.Modelo.Persistencia.*;
 
 public class TelaAplicativo {
@@ -19,26 +22,26 @@ public class TelaAplicativo {
         System.out.println("Senha:");
         String senha = scan.next();
     
-        if(logar(login, senha) == 1)
-            telaEscolheTipoDeUsuario();
+        if(UsuarioDAO.logar(login, senha))
+            telaEscolheTipoDeUsuario(Funcionario.encontraFuncaoPorLogin(login));
         else
             telaInicial();
 
         scan.close();
   }
 
-    public static int logar(String login, String senha) {
+    public static boolean logar(String login, String senha) {
        
 
         if((login.equals("admin")) && (senha.equals("123"))){
-            return 1;
+            return true;
         } else{
             System.out.println("Usuário ou senha incorretos.");
-            return 0;
+            return false;
         }
     }
 
-      public static void telaEscolheTipoDeUsuario() throws IOException, SQLException, ClassNotFoundException{
+      public static void telaEscolheTipoDeUsuario(FuncaoFuncionario funcao) throws IOException, SQLException, ClassNotFoundException{
 
         Scanner scanTipoUsuario = new Scanner(System.in);
         boolean loop = true;
@@ -51,7 +54,6 @@ public class TelaAplicativo {
                 System.out.println("=============================");
                 System.out.println("1 - Cliente");
                 System.out.println("2 - Funcionário");
-                System.out.println("3 - Fasdsa");
                 op = Integer.parseInt(scanTipoUsuario.next());
 
                 switch(op){
@@ -62,12 +64,9 @@ public class TelaAplicativo {
                     case 2:
                         TelaFuncionario.paginaInicialFuncionario();
                         break;
-                    case 3:
-                        gacsf();
-                        break;
                     default:
                         System.out.println("Opção inválida!");
-                        telaEscolheTipoDeUsuario();
+                        telaEscolheTipoDeUsuario(funcao);
                 }
             loop = false;
             }catch(NumberFormatException e){
@@ -77,11 +76,6 @@ public class TelaAplicativo {
 
         scanTipoUsuario.close();
 
-    }
-
-    static public void gacsf() throws SQLException, ClassNotFoundException{
-        
-        
     }
     
 }

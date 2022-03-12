@@ -1,9 +1,9 @@
 package javali.Modelo;
 public enum FuncaoFuncionario {
-    BARISTA("barista"),
-    CONFEITEIRO("confeiteiro"),
-    GERENTE("gerente"),
-    ATENDENTE("atendente");
+    BARISTA("BARISTA"),
+    CONFEITEIRO("CONFEITEIRO"),
+    GERENTE("GERENTE"),
+    ATENDENTE("ATENDENTE");
 
     
     private String cargo;

@@ -21,13 +21,21 @@ public class LivroDAO {
         Statement st = con.createStatement();
         
         try{
+            if(livro.getDisponivel_venda()){
+                st.executeUpdate("INSERT INTO Livro (titulo, autor, quantidade, disponivel_venda, preco, disponivel_leitura) "
+                                +"VALUES ('"+ livro.getTitulo()+"', '"+ livro.getAutor()+"', "
+                                + livro.getQuantidade()+", "+ livro.getDisponivel_venda()+","+livro.getPreco()+","
+                                + livro.getDisponivel_leitura()+")");
+            }else{
+                st.executeUpdate("INSERT INTO Livro (titulo, autor, quantidade, disponivel_venda, disponivel_leitura) "
+                                +"VALUES ('"+ livro.getTitulo()+"', '"+ livro.getAutor()+"', "
+                                + livro.getQuantidade()+", "+ livro.getDisponivel_venda()+", "
+                                + livro.getDisponivel_leitura()+")");
+            }
             
-            st.executeUpdate("INSERT INTO Livro (titulo, autor, quantidade, disponivel_venda, disponivel_leitura) "
-            +"VALUES ('"+ livro.getTitulo()+"', '"+ livro.getAutor()+"', "
-          + livro.getQuantidade()+", "+ livro.getDisponivel_venda()+", "+ livro.getDisponivel_leitura()+")");
             System.out.println("Livro cadastrado com sucesso!");
-            TelaFuncionario.paginaInicialFuncionario();
             con.close();
+            TelaFuncionario.paginaInicialFuncionario();
 
         }catch(SQLException sqlException){
             System.err.println("Got an exception!");
@@ -41,14 +49,22 @@ public class LivroDAO {
         try{
             System.out.println("-------------- LIVROS --------------------");
             for(int i = 0; i < livros.size(); i++){
-                System.out.println(livros.get(i).getTitulo()+"        "+livros.get(i).getAutor()+
-               "\n------------------------------------------");
+                if(livros.get(i).getDisponivel_venda()){
+                    System.out.println(livros.get(i).getTitulo()+"        "+livros.get(i).getAutor()+
+                    "            R$ "+ livros.get(i).getPreco() +
+                    "\n------------------------------------------");
+                } else{
+                    System.out.println(livros.get(i).getTitulo()+"        "+livros.get(i).getAutor()+
+                    "\n------------------------------------------");
+                }
             }
         }catch (NullPointerException e){
         System.err.println("Erro! "+ e);
         }
       
       }
+
+      
 
       public void pegarLivrosDAO() throws SQLException, ClassNotFoundException, IOException {
 
@@ -57,7 +73,7 @@ public class LivroDAO {
 
         ArrayList<Livro> livros = new ArrayList<Livro>();
         while (rs.next()) {
-            Livro livro = new Livro(rs.getString(2), rs.getString(3), rs.getInt(4), rs.getBoolean(5), !rs.getBoolean(6));
+            Livro livro = new Livro(rs.getString(2), rs.getString(3), rs.getInt(4), rs.getBoolean(5), rs.getFloat(7), !rs.getBoolean(6));
             livros.add(livro);
         }
         mostrarLivrosDAO(livros);
@@ -70,7 +86,7 @@ public class LivroDAO {
     
         ArrayList<Livro> livros = new ArrayList<Livro>();
         while (rs.next()) {
-            Livro livro = new Livro(rs.getString(2), rs.getString(3), rs.getInt(4), rs.getBoolean(5), !rs.getBoolean(6));
+            Livro livro = new Livro(rs.getString(2), rs.getString(3), rs.getInt(4), rs.getBoolean(5), rs.getFloat(7), !rs.getBoolean(6));
             livros.add(livro);
         }
         mostrarLivrosDAO(livros);
@@ -83,7 +99,7 @@ public class LivroDAO {
     
         ArrayList<Livro> livros = new ArrayList<Livro>();
         while (rs.next()) {
-            Livro livro = new Livro(rs.getString(2), rs.getString(3), rs.getInt(4), rs.getBoolean(5), !rs.getBoolean(6));
+            Livro livro = new Livro(rs.getString(2), rs.getString(3), rs.getInt(4), rs.getBoolean(5), (float)0.0, !rs.getBoolean(6));
             livros.add(livro);
         }
         mostrarLivrosDAO(livros);

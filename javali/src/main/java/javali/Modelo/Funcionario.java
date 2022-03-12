@@ -1,9 +1,12 @@
 package javali.Modelo;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.IOException;
 import java.lang.Math;
 import java.lang.String;
 import java.lang.StringBuilder;
+import java.sql.SQLException;
+import javali.Modelo.Persistencia.FuncionarioDAO;
 
 
 public class Funcionario extends Usuario {
@@ -29,6 +32,16 @@ public class Funcionario extends Usuario {
 
     public void setFuncao(FuncaoFuncionario funcao){
         this.funcao = funcao;
+    }
+
+    public static FuncaoFuncionario encontraFuncaoPorLogin(String login) throws SQLException, ClassNotFoundException{
+        ArrayList<Funcionario> funcionarios = FuncionarioDAO.pegarFuncionariosDAO();
+        for(int i = 0; i < funcionarios.size(); i++){
+            if(login.equals(funcionarios.get(i).getLogin())){
+                return funcionarios.get(i).getFuncao();
+            }
+        }
+        return FuncaoFuncionario.ATENDENTE;
     }
 
     /*

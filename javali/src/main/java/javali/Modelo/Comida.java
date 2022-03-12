@@ -10,10 +10,10 @@ public class Comida {
     private int idComida;
     private String nome;
     private int quantidade;
-    private double preco;
+    private float preco;
     private String descricao;
 
-    public Comida(String nome, String descricao, int quantidade, double preco)throws IOException{
+    public Comida(String nome, String descricao, int quantidade, float preco)throws IOException{
         
         setNome(nome);
         setDescricao(descricao);
@@ -37,7 +37,7 @@ public class Comida {
         return this.quantidade;
     }
 
-    public double getPreco(){
+    public float getPreco(){
         return this.preco;
     }
 
@@ -57,7 +57,7 @@ public class Comida {
         this.quantidade = quantidade;
     }
 
-    public void setPreco (double preco){
+    public void setPreco (float preco){
         this.preco = preco;
     }
     
