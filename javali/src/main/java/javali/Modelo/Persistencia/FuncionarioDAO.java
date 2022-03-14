@@ -46,15 +46,32 @@ public class FuncionarioDAO {
 
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
+        ResultSet rs = null;
+        int idFuncionario = 0; 
+
+
         try{
-           
+
+            // insere um funcionario com uma função
             st.executeUpdate("INSERT INTO Funcionario (funcaoFuncionario) "
-          +"VALUES ('"+ funcionario.getFuncao().getCargo()+"')");
-            st.executeUpdate("INSERT INTO Usuario (funcaoFuncionario) "
             +"VALUES ('"+ funcionario.getFuncao().getCargo()+"')");
-           System.out.println("Funcionário cadastrado com sucesso!");
-          con.close();
-          TelaFuncionario.paginaInicialFuncionario();
+
+            // Seleciona o ultido id inserido pela mesma conexão que foi usada pelo insert,
+            //por isso nao usei o PreparedStatement para o select como nos outros métodos
+
+            rs = st.executeQuery("SELECT LAST_INSERT_ID()");
+            while(rs.next()){ 
+                idFuncionario = rs.getInt(1);
+            }
+
+            //adiciona o usuario com o id do ultimo funcionario em questão
+            st.executeUpdate("INSERT INTO Usuario (login, nome, senha, idFuncionario) " 
+            + "VALUES ('"+ funcionario.getLogin()+"', '"+ funcionario.getNome()+"', '"
+            + funcionario.getSenha()+"', "+ idFuncionario+")");
+            
+            System.out.println("Funcionário cadastrado com sucesso!");
+            con.close();
+            TelaFuncionario.paginaInicialFuncionario();
         }catch(SQLException sqlException){
             System.err.println("Got an exception!");
             System.err.println(sqlException.getMessage());

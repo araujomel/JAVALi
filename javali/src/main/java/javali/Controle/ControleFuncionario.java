@@ -18,12 +18,18 @@ public class ControleFuncionario {
     
     private FuncionarioDAO dao;
 
+    
+    public ControleFuncionario(){
+      dao = new FuncionarioDAO();
+  }
+
     public String gerarCodigoEstudante(){
         return RandomStringUtils.randomAlphanumeric(15).toUpperCase();
     }
 
     public void controleCadastrarFuncionario(String nome, String login, String senha, FuncaoFuncionario funcao)
     throws IOException, SQLException, ClassNotFoundException{
+
       Funcionario funcionario = new Funcionario(nome, funcao, login, senha);
       dao.cadastrarFuncionarioDAO(funcionario);
     }

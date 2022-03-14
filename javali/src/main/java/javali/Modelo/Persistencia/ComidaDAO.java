@@ -70,7 +70,7 @@ public class ComidaDAO {
     ArrayList<Comida> comidas = new ArrayList<Comida>();
     while (rs.next()) {
         
-        Comida comida = new Comida(rs.getString(2), rs.getString(4), rs.getInt(3), rs.getFloat(5)); // o preço está 3 reais aqui pois no banco ainda nao tem essa coluna depois adicionamos
+        Comida comida = new Comida(rs.getString(2), rs.getString(4), rs.getInt(3), rs.getFloat(5));
         comidas.add(comida);
     }
     return comidas;

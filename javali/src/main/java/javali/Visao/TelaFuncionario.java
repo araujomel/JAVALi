@@ -12,10 +12,6 @@ import javali.Modelo.FuncaoFuncionario;
 
 public class TelaFuncionario {
 
-    public TelaFuncionario(){
-        ControleFuncionario controleFuncionario = new ControleFuncionario();
-       
-    }
 
     public static void paginaInicialFuncionario() throws IOException, SQLException, ClassNotFoundException{
         Scanner scanf = new Scanner(System.in); 
@@ -52,8 +48,9 @@ public class TelaFuncionario {
                         telaGerarCodigoEstudante();
                         break;
                     case 4:
-                        System.out.println("Em construção!");
-                        paginaInicialFuncionario();
+                        telaCadastrarFuncionario();
+                        //System.out.println("Em construção!");
+                        //paginaInicialFuncionario();
                         break;
                     default:
                         paginaInicialFuncionario();
@@ -171,20 +168,41 @@ public class TelaFuncionario {
         
     }
 
-    public static void telaCadastrarFuncionario() throws IOException{
+    public static void telaCadastrarFuncionario() throws IOException, ClassNotFoundException, SQLException{
         Scanner scanFun = new Scanner(System.in,"CP850");
+        ControleFuncionario controleFuncionario = new ControleFuncionario();
 
-        FuncaoFuncionario funcao;
+        FuncaoFuncionario funcao = null;
 
         System.out.println("Digite o nome do funcionário:");
         String nome = scanFun.nextLine();
         System.out.println("Digite o login:");
         String login = scanFun.nextLine();
-        System.out.println("Digite a senha");
+        System.out.println("Digite a senha:");
         String senha = scanFun.nextLine();
-        System.out.println("Digite a função");
+        System.out.println("Digite a função:");
         String f = scanFun.nextLine().toLowerCase();
-        switch(f){
+        System.out.println(f);
+
+        
+        if(f.equals("barista")){
+            funcao = FuncaoFuncionario.BARISTA;
+            System.out.println(FuncaoFuncionario.BARISTA);
+        }
+        else if (f.equals("atendente"))
+            funcao = FuncaoFuncionario.ATENDENTE;
+        else if (f.equals("gerente"))
+            funcao = FuncaoFuncionario.GERENTE;
+        else if (f.equals("confeiteiro"))
+            funcao = FuncaoFuncionario.CONFEITEIRO;
+        else{
+            System.out.println("Essa função não existe, tente novamente.");
+            telaCadastrarFuncionario();
+
+        } 
+
+        
+        /*    switch(f){
             case "barista":
                 funcao = FuncaoFuncionario.BARISTA;
             case "atendente":
@@ -197,9 +215,10 @@ public class TelaFuncionario {
                 System.out.println("Essa função não existe, tente novamente.");
                 telaCadastrarFuncionario();
             
-        }
-        
-        scanFun.nextLine();
+        }*/
+
+        controleFuncionario.controleCadastrarFuncionario(nome, login, senha, funcao);
+
 
 
         scanFun.close();
