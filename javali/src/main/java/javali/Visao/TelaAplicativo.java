@@ -24,11 +24,12 @@ public class TelaAplicativo {
         System.out.println("Senha:");
         String senha = scan.next();
     
-        if(controleUsuario.logar(login, senha))
+        if(controleUsuario.controleRealizarLogin(login, senha))
             telaEscolheTipoDeUsuario(Funcionario.encontraFuncaoPorLogin(login));
-        else
+        else{
+            System.out.println("Usuário ou senha incorretos.");
             telaInicial();
-
+        }
         scan.close();
   }
 

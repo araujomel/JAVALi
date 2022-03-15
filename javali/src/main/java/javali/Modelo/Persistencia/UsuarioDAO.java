@@ -22,5 +22,26 @@ public class UsuarioDAO {
         return usuarios;
     }
 
+    public boolean validarUsuarioDAO(String login, String senha) throws ClassNotFoundException, SQLException{
+        Connection con = BancoDeDados.getConexao();
+        Statement st = con.createStatement();
+        ResultSet rs = null;
+        int cont = 0;
+        try{
+            //login é chave primária em usuário, o cont(0) retorna 1 se existir um dado no banco de dados que satisfaça meu select
+            rs = st.executeQuery("SELECT COUNT(0) FROM Usuario NATURAL JOIN Funcionario WHERE login = '"+login+"' && senha = '"+senha+"'");
+            while(rs.next()){ 
+                 cont = rs.getInt(1);
+            }
+            if(cont == 1)  
+                return true;
+        }catch(SQLException sqlException){
+            System.err.println("Got an exception!");
+            System.err.println(sqlException.getMessage());
+        }
+        return false;
+
+    }
+
     
 }

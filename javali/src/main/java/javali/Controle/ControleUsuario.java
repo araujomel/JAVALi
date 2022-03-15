@@ -34,4 +34,14 @@ public boolean logar(String login, String senha) throws SQLException, ClassNotFo
       return false;
   }
 }
+
+public boolean controleRealizarLogin(String login, String senha) throws ClassNotFoundException, SQLException{
+   
+    if(dao.validarUsuarioDAO(login, senha))
+        return true;
+    else
+        return false;
+
+
+}
 }
