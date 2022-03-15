@@ -182,13 +182,10 @@ public class TelaFuncionario {
         String senha = scanFun.nextLine();
         System.out.println("Digite a função:");
         String f = scanFun.nextLine().toLowerCase();
-        System.out.println(f);
 
         
-        if(f.equals("barista")){
+        if(f.equals("barista"))
             funcao = FuncaoFuncionario.BARISTA;
-            System.out.println(FuncaoFuncionario.BARISTA);
-        }
         else if (f.equals("atendente"))
             funcao = FuncaoFuncionario.ATENDENTE;
         else if (f.equals("gerente"))
@@ -201,21 +198,6 @@ public class TelaFuncionario {
 
         } 
 
-        
-        /*    switch(f){
-            case "barista":
-                funcao = FuncaoFuncionario.BARISTA;
-            case "atendente":
-                funcao = FuncaoFuncionario.ATENDENTE;
-            case "gerente":
-                funcao = FuncaoFuncionario.GERENTE;
-            case "confeiteiro":
-                funcao = FuncaoFuncionario.CONFEITEIRO;
-            default:
-                System.out.println("Essa função não existe, tente novamente.");
-                telaCadastrarFuncionario();
-            
-        }*/
 
         controleFuncionario.controleCadastrarFuncionario(nome, login, senha, funcao);
 

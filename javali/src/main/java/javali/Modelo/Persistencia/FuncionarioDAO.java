@@ -18,12 +18,14 @@ import java.sql.Statement;
 public class FuncionarioDAO {
 
     public static ArrayList<Funcionario> pegarFuncionariosDAO() throws SQLException, ClassNotFoundException {
+
         PreparedStatement ps = BancoDeDados.criarPreparedStatement("SELECT * FROM Usuario NATURAL JOIN Funcionario");
 
         ResultSet rs = ps.executeQuery();
         FuncaoFuncionario funcao = null;
 
         ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
+
         while (rs.next()) {
             if(rs.getString(5).equalsIgnoreCase("GERENTE"))
                 funcao = FuncaoFuncionario.GERENTE;
@@ -35,7 +37,8 @@ public class FuncionarioDAO {
                 funcao = FuncaoFuncionario.CONFEITEIRO;
             else
                 System.out.println("Essa função não existe, tente novamente.");
-            
+
+            // nome, função, login, senha
             Funcionario funcionario = new Funcionario(rs.getString(3), funcao, rs.getString(2), rs.getString(4));
             funcionarios.add(funcionario);
         }
@@ -56,8 +59,8 @@ public class FuncionarioDAO {
             st.executeUpdate("INSERT INTO Funcionario (funcaoFuncionario) "
             +"VALUES ('"+ funcionario.getFuncao().getCargo()+"')");
 
-            // Seleciona o ultido id inserido pela mesma conexão que foi usada pelo insert,
-            //por isso nao usei o PreparedStatement para o select como nos outros métodos
+            // Seleciona o ultimo id inserido pela mesma conexão que foi usada pelo insert,
+            // por isso nao usei o PreparedStatement para o select como nos outros métodos
 
             rs = st.executeQuery("SELECT LAST_INSERT_ID()");
             while(rs.next()){ 
@@ -77,7 +80,43 @@ public class FuncionarioDAO {
             System.err.println(sqlException.getMessage());
         }
 
+
+     }
+
+     public boolean verificarGerenteDAO(Funcionario funcionario) throws ClassNotFoundException, SQLException{
+        
+        Connection con = BancoDeDados.getConexao();
+        Statement st = con.createStatement();
+        ResultSet rs = null;
+        String funcaoFuncionario = null;
+
+        try{
+            
+            //login é chave primária em usuário
+            rs = st.executeQuery("SELECT funcaoFuncionario FROM Usuario NATURAL JOIN Funcionario WHERE login = "+funcionario.getLogin());
+
     
-      
-    }
-}
+            while(rs.next()){ 
+                 funcaoFuncionario = rs.getString(1);
+            }
+
+            if(funcaoFuncionario.equals("GERENTE"))  
+                return true;
+            
+        }catch(SQLException sqlException){
+            System.err.println("Got an exception!");
+            System.err.println(sqlException.getMessage());
+        }
+
+        return false;
+
+
+
+     }
+
+
+
+
+
+
+        }

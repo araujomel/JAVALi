@@ -9,7 +9,7 @@ import javali.Modelo.Usuario;
 
 public class UsuarioDAO {
 
-    public static ArrayList<Usuario> pegarUsuariosDAO() throws SQLException, ClassNotFoundException {
+    public  ArrayList<Usuario> pegarUsuariosDAO() throws SQLException, ClassNotFoundException {
         PreparedStatement ps = BancoDeDados.criarPreparedStatement("SELECT * FROM Usuario");
 
         ResultSet rs = ps.executeQuery();
@@ -22,23 +22,5 @@ public class UsuarioDAO {
         return usuarios;
     }
 
-    public static boolean logar(String login, String senha) throws SQLException, ClassNotFoundException {
-
-        try{
-
-            ArrayList<Usuario> usuarios = pegarUsuariosDAO();
-
-            for(int i = 0; i < usuarios.size(); i++){
-                if((login.equals(usuarios.get(i).getLogin())) && (senha.equals(usuarios.get(i).getSenha()))){
-                    return true;
-                }    
-            }
-
-            System.out.println("Usuário ou senha incorretos.");
-            return false;
-        }catch (NullPointerException e){
-            System.err.println("Erro! "+ e);
-            return false;
-        }
-    }
+    
 }

@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javali.Controle.ControleUsuario;
 import javali.Modelo.FuncaoFuncionario;
 import javali.Modelo.Funcionario;
 import javali.Modelo.Persistencia.*;
@@ -13,6 +14,7 @@ public class TelaAplicativo {
     
     public static void telaInicial() throws IOException, SQLException, ClassNotFoundException{
 
+        ControleUsuario controleUsuario = new ControleUsuario();
         
         System.out.println("           JAVA Li           ");
         System.out.println("=============================");
@@ -22,7 +24,7 @@ public class TelaAplicativo {
         System.out.println("Senha:");
         String senha = scan.next();
     
-        if(UsuarioDAO.logar(login, senha))
+        if(controleUsuario.logar(login, senha))
             telaEscolheTipoDeUsuario(Funcionario.encontraFuncaoPorLogin(login));
         else
             telaInicial();
