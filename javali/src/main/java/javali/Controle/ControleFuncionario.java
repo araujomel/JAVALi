@@ -33,5 +33,12 @@ public class ControleFuncionario {
       Funcionario funcionario = new Funcionario(nome, funcao, login, senha);
       dao.cadastrarFuncionarioDAO(funcionario);
     }
+
+    public boolean controleValidarGerente(String login, String senha) throws ClassNotFoundException, SQLException{
+        if(dao.verificarGerenteDAO(login, senha))
+          return true;
+        else
+          return false;
+    }
    
 }

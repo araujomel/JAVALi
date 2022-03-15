@@ -49,8 +49,6 @@ public class TelaFuncionario {
                         break;
                     case 4:
                         telaCadastrarFuncionario();
-                        //System.out.println("Em construção!");
-                        //paginaInicialFuncionario();
                         break;
                     default:
                         paginaInicialFuncionario();
@@ -169,38 +167,48 @@ public class TelaFuncionario {
     }
 
     public static void telaCadastrarFuncionario() throws IOException, ClassNotFoundException, SQLException{
+        
         Scanner scanFun = new Scanner(System.in,"CP850");
         ControleFuncionario controleFuncionario = new ControleFuncionario();
-
+        
         FuncaoFuncionario funcao = null;
 
-        System.out.println("Digite o nome do funcionário:");
-        String nome = scanFun.nextLine();
-        System.out.println("Digite o login:");
-        String login = scanFun.nextLine();
-        System.out.println("Digite a senha:");
-        String senha = scanFun.nextLine();
-        System.out.println("Digite a função:");
-        String f = scanFun.nextLine().toLowerCase();
+        System.out.println("Por favor confirme que você é um gerente: ");
+        System.out.println("Login:");
+        String loginGerente = scanFun.nextLine();
+        System.out.println("Senha:");
+        String senhaGerente = scanFun.nextLine();
 
-        
-        if(f.equals("barista"))
-            funcao = FuncaoFuncionario.BARISTA;
-        else if (f.equals("atendente"))
-            funcao = FuncaoFuncionario.ATENDENTE;
-        else if (f.equals("gerente"))
-            funcao = FuncaoFuncionario.GERENTE;
-        else if (f.equals("confeiteiro"))
-            funcao = FuncaoFuncionario.CONFEITEIRO;
-        else{
-            System.out.println("Essa função não existe, tente novamente.");
-            telaCadastrarFuncionario();
+        if(controleFuncionario.controleValidarGerente(loginGerente, senhaGerente)){
+            System.out.println("Digite o nome do funcionário:");
+            String nome = scanFun.nextLine();
+            System.out.println("Digite o login:");
+            String login = scanFun.nextLine();
+            System.out.println("Digite a senha:");
+            String senha = scanFun.nextLine();
+            System.out.println("Digite a função:");
+            String f = scanFun.nextLine().toLowerCase();
 
-        } 
+            
+            if(f.equals("barista"))
+                funcao = FuncaoFuncionario.BARISTA;
+            else if (f.equals("atendente"))
+                funcao = FuncaoFuncionario.ATENDENTE;
+            else if (f.equals("gerente"))
+                funcao = FuncaoFuncionario.GERENTE;
+            else if (f.equals("confeiteiro"))
+                funcao = FuncaoFuncionario.CONFEITEIRO;
+            else{
+                System.out.println("Essa função não existe, tente novamente.");
+                telaCadastrarFuncionario();
+            } 
 
-
-        controleFuncionario.controleCadastrarFuncionario(nome, login, senha, funcao);
-
+            
+            controleFuncionario.controleCadastrarFuncionario(nome, login, senha, funcao);
+        }else{
+            System.out.println("Você não tem permissões para cadastrar um funcionário");
+            paginaInicialFuncionario();
+        }
 
 
         scanFun.close();

@@ -83,40 +83,27 @@ public class FuncionarioDAO {
 
      }
 
-     public boolean verificarGerenteDAO(Funcionario funcionario) throws ClassNotFoundException, SQLException{
-        
+     public boolean verificarGerenteDAO(String login, String senha) throws ClassNotFoundException, SQLException{
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
         ResultSet rs = null;
-        String funcaoFuncionario = null;
+        String funcao = null;
 
         try{
-            
-            //login é chave primária em usuário
-            rs = st.executeQuery("SELECT funcaoFuncionario FROM Usuario NATURAL JOIN Funcionario WHERE login = "+funcionario.getLogin());
-
-    
+            //login é chave primária em usuário, o cont(0) retorna 1 se existir um dado no banco de dados que satisfaça meu select
+            rs = st.executeQuery("SELECT funcaoFuncionario FROM Usuario NATURAL JOIN Funcionario WHERE login = '"+login+"' && senha = '"+senha+"'");
             while(rs.next()){ 
-                 funcaoFuncionario = rs.getString(1);
+                 funcao = rs.getString(1);
             }
-
-            if(funcaoFuncionario.equals("GERENTE"))  
+            if(funcao.equals("GERENTE"))  
                 return true;
-            
         }catch(SQLException sqlException){
             System.err.println("Got an exception!");
             System.err.println(sqlException.getMessage());
         }
-
         return false;
 
+    }
 
 
-     }
-
-
-
-
-
-
-        }
+       }
