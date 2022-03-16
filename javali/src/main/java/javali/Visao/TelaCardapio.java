@@ -7,8 +7,11 @@ import java.util.Scanner;
 
 import javali.Controle.ControleCardapio;
 import javali.Modelo.Cardapio;
+import javali.Modelo.Pedido;
 
 public class TelaCardapio {
+
+    static Pedido pedido = new Pedido(0, 0, 0, 0, 0, "");
 
     public static void telaInicialCardapio() throws IOException, ClassNotFoundException, SQLException{
         Scanner scan = new Scanner(System.in);
@@ -26,7 +29,7 @@ public class TelaCardapio {
                         telaMostrarCardapioComidas();
                         break;
                     case 3:
-                        System.out.println("Em construção");
+                        System.out.println("Em construção ");
                         break;
                     case 4: 
                         TelaCliente.paginaInicialCliente();
@@ -61,6 +64,30 @@ public class TelaCardapio {
     public static void telaMostrarCardapioBebidas() throws IOException, ClassNotFoundException, SQLException{
       ControleCardapio  controleCardapio = new ControleCardapio(); 
       controleCardapio.controleCardapioBebidas();
-  }
+    }
+
+    public static void telaSelecionarCardapio() throws IOException, ClassNotFoundException, SQLException{
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Deseja realizar um pedido?");
+        System.out.println("1 - SIM \n2 - NÃO");
+        try{
+            int op = Integer.parseInt(scanner.next());
+                    switch(op){
+
+                        case 1:
+                            TelaPedidos.telaFazerPedidoBebida(pedido);
+                            break;
+                        case 2:
+                            telaInicialCardapio();
+                            break;
+                        default:
+                            System.out.println("Opção inválida!");
+                            telaInicialCardapio();
+                    }
+            }catch (NumberFormatException e){
+                System.err.println("Erro, digite um número!"+e);
+            }
+        scanner.close();
+    }
     
 }

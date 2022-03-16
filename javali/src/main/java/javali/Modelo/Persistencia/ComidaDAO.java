@@ -32,7 +32,6 @@ public class ComidaDAO {
 
            System.out.println("Comida cadastrada com sucesso!");
            con.close();
-           TelaFuncionario.paginaInicialFuncionario();
           
         }catch(SQLException sqlException){
             System.err.println("Got an exception!");
@@ -53,7 +52,7 @@ public class ComidaDAO {
         System.out.println("-------------- COMIDAS ----------------");
 
         for(int i = 0; i < comidas.size(); i++){
-            System.out.println(comidas.get(i).getNome()+"        "+comidas.get(i).getDescricao()+"\nPreço: R$ "+ comidas.get(i).getPreco()
+            System.out.println(comidas.get(i).getIdComida() +" - " +comidas.get(i).getNome()+"        "+comidas.get(i).getDescricao()+"\nPreço: R$ "+ comidas.get(i).getPreco()
             +"\n-----------------------------------------");
         }
     }catch (NullPointerException e){
@@ -70,7 +69,7 @@ public class ComidaDAO {
     ArrayList<Comida> comidas = new ArrayList<Comida>();
     while (rs.next()) {
         
-        Comida comida = new Comida(rs.getString(2), rs.getString(4), rs.getInt(3), rs.getFloat(5));
+        Comida comida = new Comida(rs.getInt(1), rs.getString(2), rs.getString(4), rs.getInt(3), rs.getFloat(5));
         comidas.add(comida);
     }
     return comidas;

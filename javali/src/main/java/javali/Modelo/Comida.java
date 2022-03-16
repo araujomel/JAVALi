@@ -1,8 +1,5 @@
 package javali.Modelo;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+
 import java.io.IOException;
 
 public class Comida {
@@ -10,11 +7,12 @@ public class Comida {
     private int idComida;
     private String nome;
     private int quantidade;
-    private float preco;
+    private double preco;
     private String descricao;
 
-    public Comida(String nome, String descricao, int quantidade, float preco)throws IOException{
+    public Comida(int idComida, String nome, String descricao, int quantidade, double preco)throws IOException{
         
+        setIdComida(idComida);
         setNome(nome);
         setDescricao(descricao);
         setQuantidade(quantidade);
@@ -37,7 +35,7 @@ public class Comida {
         return this.quantidade;
     }
 
-    public float getPreco(){
+    public double getPreco(){
         return this.preco;
     }
 
@@ -57,7 +55,7 @@ public class Comida {
         this.quantidade = quantidade;
     }
 
-    public void setPreco (float preco){
+    public void setPreco (double preco){
         this.preco = preco;
     }
     

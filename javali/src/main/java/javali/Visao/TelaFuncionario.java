@@ -106,7 +106,7 @@ public class TelaFuncionario {
             System.out.println("Digite a quantidade disponivel:");
             int quantidade = Integer.parseInt(scanFunc.next());
             System.out.println("Digite o preço unitario:");
-            float preco = Float.valueOf(scanFunc.next().replace(",", "."));
+            double preco = Double.valueOf(scanFunc.next().replace(",", "."));
             scanFunc.nextLine();
             System.out.println("Digite a descrição da comida:");
             String descricao = scanFunc.nextLine();

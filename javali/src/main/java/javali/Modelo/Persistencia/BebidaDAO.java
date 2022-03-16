@@ -25,7 +25,6 @@ public class BebidaDAO{
           + bebida.getPrecoMedio()+", "+ bebida.getPrecoGrande()+", '"+ bebida.getDescricao()+"')");
            System.out.println("Bebida cadastrada com sucesso!");
            con.close();
-           TelaFuncionario.paginaInicialFuncionario();
           
         }catch(SQLException sqlException){
             System.err.println("Got an exception!");
@@ -43,7 +42,7 @@ public class BebidaDAO{
 
             System.out.println("-------------- BEBIDAS ----------------");
             for(int i = 0; i < bebidas.size(); i++){
-                System.out.println(bebidas.get(i).getNome()+"        "+bebidas.get(i).getDescricao()+"\nMédio: R$ "+ bebidas.get(i).getPrecoMedio()
+                System.out.println(bebidas.get(i).getIdBebida()+" - "+bebidas.get(i).getNome()+"        "+bebidas.get(i).getDescricao()+"\nMédio: R$ "+ bebidas.get(i).getPrecoMedio()
                 +"   Grande: R$ "+bebidas.get(i).getPrecoGrande()+"\n-----------------------------------------");
             }
         }catch (NullPointerException e){
@@ -59,7 +58,7 @@ public class BebidaDAO{
 
     ArrayList<Bebida> bebidas = new ArrayList<Bebida>();
     while (rs.next()) {
-        Bebida bebida = new Bebida(rs.getString(2), rs.getString(6), rs.getInt(3), rs.getFloat(4), rs.getFloat(5));
+        Bebida bebida = new Bebida(rs.getInt(1), rs.getString(2), rs.getString(6), rs.getInt(3), rs.getFloat(4), rs.getFloat(5));
         bebidas.add(bebida);
     }
     return bebidas;

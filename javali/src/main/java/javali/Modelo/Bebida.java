@@ -14,7 +14,8 @@ public class Bebida {
     private double precoGrande;
     private String descricao;
 
-    public Bebida(String nome, String descricao, int quantidade, double precoMedio, double precoGrande){
+    public Bebida(int idBebida, String nome, String descricao, int quantidade, double precoMedio, double precoGrande){
+        setIdBebida(idBebida);
         setNome(nome);
         setDescricao(descricao);
         setQuantidade(quantidade);
@@ -70,38 +71,6 @@ public class Bebida {
         this.precoGrande = preco;
     }
 
-   /* private void escreverArquivoBebida() throws IOException{
-        
-        BufferedWriter buffWrite = new BufferedWriter(new FileWriter("./Modelo/Arquivos/Bebidas.txt", true));
-        int cont = 0, idBebida;
-        BufferedReader buffRead = new BufferedReader(new FileReader("./Modelo/Arquivos/Bebidas.txt"));
-        String linha = "";
-
-        while (true) {
-            linha = buffRead.readLine();
-			if (linha != null) {
-                cont++;
-            } else
-                break;
-        }
-        
-        idBebida = cont;
-        setIdBebida(idBebida);
-
-        buffWrite.append(Integer.toString(this.idBebida) + "/");
-        buffWrite.append(this.getNome() + "/");
-        buffWrite.append(Integer.toString(this.getQuantidade()) + "/");
-        buffWrite.append(Double.toString(this.getPrecoMedio()) + "/");
-        buffWrite.append(Double.toString(this.getPrecoGrande()) + "/");
-        buffWrite.append(this.getDescricao() + "\n");
-
-        System.out.println("Bebida cadastrada com sucesso!");
-
-        buffWrite.close();
-        buffRead.close();
-      
-    }
-*/
 }
 
 	

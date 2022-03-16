@@ -16,7 +16,7 @@ public class ControleBebida{
 
     public void controleCadastrarBebida (String nome, String descricao, int quantidade, double precoMedio, double precoGrande)
     throws IOException, SQLException, ClassNotFoundException{
-        Bebida bebida = new Bebida(nome, descricao, quantidade, precoMedio, precoGrande);
+        Bebida bebida = new Bebida(0,nome, descricao, quantidade, precoMedio, precoGrande);
         dao.cadastrarBebidaDAO(bebida);   
     }
 

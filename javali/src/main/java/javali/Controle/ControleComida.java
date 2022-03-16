@@ -14,9 +14,9 @@ public class ControleComida {
         dao = new ComidaDAO();
     }
     
-    public void controleCadastrarComida(String nome, String descricao, int quantidade, float preco)
+    public void controleCadastrarComida(String nome, String descricao, int quantidade, double preco)
     throws IOException, SQLException, ClassNotFoundException{
-      Comida comida = new Comida(nome, descricao, quantidade, preco);
+      Comida comida = new Comida(0, nome, descricao, quantidade, preco);
       dao.cadastrarComidaDAO(comida);
     }
   }
