@@ -23,7 +23,6 @@ public class TelaFuncionario {
                 mostrarMenu();
                 int op = Integer.parseInt(scanf.next());
                 
-
                 switch(op){
 
                     case 1:

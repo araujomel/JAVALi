@@ -10,16 +10,22 @@ public class ControlePedidos {
 
     private PedidoDAO dao;
 
-    private Pedido pedido = new Pedido(0, 0, 0, 0, 0, "");
 
-    
-    
 
     public ControlePedidos(){
         dao = new PedidoDAO();
     } 
 
-    public void controleFazerPedido(Pedido pedido) throws ClassNotFoundException, SQLException, IOException{
-        dao.cadastrarPedidoDAO(pedido);
+    public void controleFazerPedidoComida(int idPedido, String descricao, int idComida, int mesaCliente) throws ClassNotFoundException, SQLException, IOException{
+        Pedido pedidoComida = new Pedido(idPedido, 0, idComida, 0, mesaCliente, descricao);
+        dao.cadastrarPedidoDAO(pedidoComida);
+    }
+
+    public void controleFazerPedidoBebida(int idPedido, String descricao, int idBebida, int mesaCliente) throws ClassNotFoundException, SQLException, IOException{
+        dao.cadastrarPedidoDAO(idPedido, descricao, idBebida, mesaCliente);
+    }
+
+    public void controleFazerPedidoLivro(int idPedido, int idLivro, int mesaCliente) throws ClassNotFoundException, SQLException, IOException{
+        dao.cadastrarPedidoDAO(idPedido, descricao, idLivro, mesaCliente);
     }
 }

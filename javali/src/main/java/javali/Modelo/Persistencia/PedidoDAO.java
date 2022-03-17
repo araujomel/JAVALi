@@ -56,4 +56,70 @@ public class PedidoDAO {
             System.err.println(sqlException.getMessage());
         }
     }
+    public void cadastrarPedidoComidaDAO(Pedido pedido) throws SQLException, ClassNotFoundException, IOException{
+        Connection con = BancoDeDados.getConexao();
+        PreparedStatement st = null;
+        try{
+            st = con.prepareStatement("INSERT INTO Pedido VALUES()");
+            st = con.prepareStatement("INSERT INTO PedidoComida(idPedido, idComida, mesaCliente, descricao) VALUES(LAST_INSERT_ID(),?,?,?)");
+            st.setInt(2,pedido.getIdComida());
+            st.setInt(3, pedido.getMesaCliente());
+            st.setString(4,pedido.getDescricao());
+           
+            
+            st.executeUpdate();
+           con.close();
+           st.close();
+          TelaCliente.paginaInicialCliente();
+          
+        }catch(SQLException sqlException){
+            System.err.println("Got an exception!");
+            System.err.println(sqlException.getMessage());
+        }
+    }
+
+    public void cadastrarPedidoBebidaDAO(Pedido pedido) throws SQLException, ClassNotFoundException, IOException{
+        Connection con = BancoDeDados.getConexao();
+        PreparedStatement st = null;
+        try{
+            st = con.prepareStatement("INSERT INTO Pedido");
+            st = con.prepareStatement("INSERT INTO PedidoBebida(idPedido, idBebida, mesaCliente, descricao) VALUES(?,?,?)");
+            st.setInt(1,pedido.getIdComida());
+            st.setInt(2, pedido.getMesaCliente());
+            st.setString(3,pedido.getDescricao());
+           
+            
+            st.executeUpdate();
+           con.close();
+           st.close();
+          TelaCliente.paginaInicialCliente();
+          
+        }catch(SQLException sqlException){
+            System.err.println("Got an exception!");
+            System.err.println(sqlException.getMessage());
+        }
+    }
+
+    public void cadastrarPedidoLivroDAO(Pedido pedido) throws SQLException, ClassNotFoundException, IOException{
+        Connection con = BancoDeDados.getConexao();
+        PreparedStatement st = null;
+        try{
+            st = con.prepareStatement("INSERT INTO Pedido");
+            st = con.prepareStatement("INSERT INTO PedidoLivro(idPedido, idLivro, mesaCliente, descricao) VALUES(?,?,?)");
+            st.setInt(1,pedido.getIdComida());
+            st.setInt(2, pedido.getMesaCliente());
+            st.setString(3,pedido.getDescricao());
+           
+            
+            st.executeUpdate();
+           con.close();
+           st.close();
+          TelaCliente.paginaInicialCliente();
+          
+        }catch(SQLException sqlException){
+            System.err.println("Got an exception!");
+            System.err.println(sqlException.getMessage());
+        }
+    }
+    
 }

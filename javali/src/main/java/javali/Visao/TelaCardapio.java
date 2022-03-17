@@ -13,20 +13,20 @@ public class TelaCardapio {
 
     
 
-    public static void telaInicialCardapio(Pedido pedido) throws IOException, ClassNotFoundException, SQLException{
+    public static void telaInicialCardapio() throws IOException, ClassNotFoundException, SQLException{
         Scanner scan = new Scanner(System.in);
         boolean loop = true;
         do{
             try{
                 telaMenuCardapio();
-                int op = Integer.parseInt(scan.next());
+                int op = scan.nextInt();
                 switch(op){
 
                     case 1:
-                        telaMostrarCardapioBebidas(pedido);
+                        telaMostrarCardapioBebidas();
                         break;
                     case 2:
-                        telaMostrarCardapioComidas(pedido);
+                        telaMostrarCardapioComidas();
                         break;
                     case 3:
                         System.out.println("Em construção ");
@@ -36,7 +36,7 @@ public class TelaCardapio {
                         break;
                     default:
                         System.out.println("Opção inválida!");
-                        telaInicialCardapio(pedido);
+                        telaInicialCardapio();
                 }
             }catch (NumberFormatException e){
                 System.err.println("Erro, digite um número!"+e);
@@ -55,38 +55,36 @@ public class TelaCardapio {
       System.out.println("4 - Voltar");
     }
 
-    public static void telaMostrarCardapioComidas(Pedido pedido) throws IOException, ClassNotFoundException, SQLException{
+    public static void telaMostrarCardapioComidas() throws IOException, ClassNotFoundException, SQLException{
         ControleCardapio  controleCardapio = new ControleCardapio(); 
         controleCardapio.controleCardapioComidas();
-        telaCardapioPedidoComida(pedido);
-        telaInicialCardapio(pedido);
+        telaCardapioPedidoComida();
         
     }
 
-    public static void telaMostrarCardapioBebidas(Pedido pedido) throws IOException, ClassNotFoundException, SQLException{
+    public static void telaMostrarCardapioBebidas() throws IOException, ClassNotFoundException, SQLException{
       ControleCardapio  controleCardapio = new ControleCardapio(); 
       controleCardapio.controleCardapioBebidas();
-      telaCardapioPedidoBebida(pedido);
-      telaInicialCardapio(pedido);
+      telaCardapioPedidoBebida();
     }
 
-    public static void telaCardapioPedidoBebida(Pedido pedido) throws IOException, ClassNotFoundException, SQLException{
-        Scanner scanner = new Scanner(System.in);
+    public static void telaCardapioPedidoBebida() throws IOException, ClassNotFoundException, SQLException{
+        Scanner scanner = new Scanner(System.in,"CP850");
         System.out.println("Deseja realizar um pedido?");
         System.out.println("1 - SIM \n2 - NÃO");
         try{
-            int op = Integer.parseInt(scanner.next());
+            int op = scanner.nextInt();
                     switch(op){
 
                         case 1:
-                            TelaPedidos.telaFazerPedidoBebida(pedido);
+                            TelaPedidos.telaFazerPedidoBebida();
                             break;
                         case 2:
-                            telaInicialCardapio(pedido);
+                            telaInicialCardapio();
                             break;
                         default:
                             System.out.println("Opção inválida!");
-                            telaInicialCardapio(pedido);
+                            telaInicialCardapio();
                     }
             }catch (NumberFormatException e){
                 System.err.println("Erro, digite um número!"+e);
@@ -94,7 +92,7 @@ public class TelaCardapio {
         scanner.close();
     }
 
-    public static void telaCardapioPedidoComida(Pedido pedido) throws IOException, ClassNotFoundException, SQLException{
+    public static void telaCardapioPedidoComida() throws IOException, ClassNotFoundException, SQLException{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Deseja realizar um pedido?");
         System.out.println("1 - SIM \n2 - NÃO");
@@ -103,14 +101,14 @@ public class TelaCardapio {
                     switch(op){
 
                         case 1:
-                            TelaPedidos.telaFazerPedidoComida(pedido);
+                            TelaPedidos.telaFazerPedidoComida();
                             break;
                         case 2:
-                            telaInicialCardapio(pedido);
+                            telaInicialCardapio();
                             break;
                         default:
                             System.out.println("Opção inválida!");
-                            telaInicialCardapio(pedido);
+                            telaInicialCardapio();
                     }
             }catch (NumberFormatException e){
                 System.err.println("Erro, digite um número!"+e);
