@@ -2,7 +2,11 @@ package javali.Visao;
 
 import java.util.Scanner;
 
+import javali.Controle.ControlePedidos;
 import javali.Modelo.Pedido;
+
+import java.io.IOException;
+import java.sql.SQLException;
 
 public class TelaPedidos {
     public static void telaFazerPedidoComida(Pedido pedido){ 
@@ -53,6 +57,7 @@ public class TelaPedidos {
                     switch(op){
                         case 1:
                             pedido.setDescricao(pedido.getDescricao().concat(scanner.next()));
+                            scanner.nextLine();
                             break;
                         case 2:
                             break;
@@ -81,5 +86,15 @@ public class TelaPedidos {
             System.err.println("Erro, digite um número!"+e);
         }
         scanner.close();
+    }
+
+    public static void mostrarCarrinho(Pedido pedido) throws ClassNotFoundException, SQLException, IOException{
+        System.out.println("Bebida: " + pedido.getIdBebida());
+        System.out.println("Comida: " + pedido.getIdComida());
+        System.out.println("Livro: " + pedido.getIdLivro());
+        System.out.println("Mesa: " + pedido.getMesaCliente());
+        System.out.println("Descricao: " + pedido.getDescricao());
+        ControlePedidos controlePedidos = new ControlePedidos();
+        controlePedidos.controleFazerPedido(pedido);
     }
 }

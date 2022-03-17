@@ -6,9 +6,11 @@ import java.util.Scanner;
 
 import javali.Controle.ControleLivro;
 
+import javali.Modelo.Pedido;
+
 public class TelaLivraria {
 
-    public static void telaMenuInicial() throws IOException, ClassNotFoundException, SQLException{
+    public static void telaMenuInicial(Pedido pedido) throws IOException, ClassNotFoundException, SQLException{
         Scanner scan = new Scanner(System.in);
         boolean loop = true;
         do{
@@ -28,7 +30,7 @@ public class TelaLivraria {
                         telaListarLivros();
                         break;
                     case 2:
-                        telaListarLivrosCompra();
+                        telaListarLivrosCompra(pedido);
                         break;
                     case 3:
                         telaListarLivrosLeitura();
@@ -38,7 +40,7 @@ public class TelaLivraria {
                     break;
                     default:
                         System.out.println("Opção inválida!");
-                        telaMenuInicial();
+                        telaMenuInicial(pedido);
                 }
             }catch (NumberFormatException e){
                 System.err.println("Erro, digite um número!"+e);
@@ -53,16 +55,41 @@ public class TelaLivraria {
         controleLivro.controleMostrarLivros();
     }
 
-    public static void telaListarLivrosCompra() throws IOException, ClassNotFoundException, SQLException{
+    public static void telaListarLivrosCompra(Pedido pedido) throws IOException, ClassNotFoundException, SQLException{
         
         ControleLivro controleLivro = new ControleLivro();
         controleLivro.controleMostrarLivrosCompra();
+        telaCardapioPedidoLivro(pedido);
     }
 
     public static void telaListarLivrosLeitura() throws IOException, ClassNotFoundException, SQLException{
         
         ControleLivro controleLivro = new ControleLivro();
         controleLivro.controleMostrarLivrosLeitura();
+    }
+
+    public static void telaCardapioPedidoLivro(Pedido pedido) throws IOException, ClassNotFoundException, SQLException{
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Deseja realizar um pedido?");
+        System.out.println("1 - SIM \n2 - NÃO");
+        try{
+            int op = Integer.parseInt(scanner.next());
+                    switch(op){
+
+                        case 1:
+                            TelaPedidos.telaFazerPedidoLivro(pedido);
+                            break;
+                        case 2:
+                            telaMenuInicial(pedido);
+                            break;
+                        default:
+                            System.out.println("Opção inválida!");
+                            telaMenuInicial(pedido);
+                    }
+            }catch (NumberFormatException e){
+                System.err.println("Erro, digite um número!"+e);
+            }
+        scanner.close();
     }
 
 }

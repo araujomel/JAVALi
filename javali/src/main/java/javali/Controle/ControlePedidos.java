@@ -19,8 +19,7 @@ public class ControlePedidos {
         dao = new PedidoDAO();
     } 
 
-    public void controleFazerPedido(int idPedido, int idBebida, int idComida, int idLivro, int mesaCliente, String descricao) throws ClassNotFoundException, SQLException, IOException{
-        Pedido pedido = new Pedido(idPedido, idBebida, idComida, idLivro, mesaCliente, descricao);
+    public void controleFazerPedido(Pedido pedido) throws ClassNotFoundException, SQLException, IOException{
         dao.cadastrarPedidoDAO(pedido);
     }
 }

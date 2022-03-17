@@ -11,9 +11,9 @@ import javali.Modelo.Pedido;
 
 public class TelaCardapio {
 
-    static Pedido pedido = new Pedido(0, 0, 0, 0, 0, "");
+    
 
-    public static void telaInicialCardapio() throws IOException, ClassNotFoundException, SQLException{
+    public static void telaInicialCardapio(Pedido pedido) throws IOException, ClassNotFoundException, SQLException{
         Scanner scan = new Scanner(System.in);
         boolean loop = true;
         do{
@@ -23,10 +23,10 @@ public class TelaCardapio {
                 switch(op){
 
                     case 1:
-                        telaMostrarCardapioBebidas();
+                        telaMostrarCardapioBebidas(pedido);
                         break;
                     case 2:
-                        telaMostrarCardapioComidas();
+                        telaMostrarCardapioComidas(pedido);
                         break;
                     case 3:
                         System.out.println("Em construção ");
@@ -36,7 +36,7 @@ public class TelaCardapio {
                         break;
                     default:
                         System.out.println("Opção inválida!");
-                        telaInicialCardapio();
+                        telaInicialCardapio(pedido);
                 }
             }catch (NumberFormatException e){
                 System.err.println("Erro, digite um número!"+e);
@@ -55,18 +55,22 @@ public class TelaCardapio {
       System.out.println("4 - Voltar");
     }
 
-    public static void telaMostrarCardapioComidas() throws IOException, ClassNotFoundException, SQLException{
+    public static void telaMostrarCardapioComidas(Pedido pedido) throws IOException, ClassNotFoundException, SQLException{
         ControleCardapio  controleCardapio = new ControleCardapio(); 
         controleCardapio.controleCardapioComidas();
+        telaCardapioPedidoComida(pedido);
+        telaInicialCardapio(pedido);
         
     }
 
-    public static void telaMostrarCardapioBebidas() throws IOException, ClassNotFoundException, SQLException{
+    public static void telaMostrarCardapioBebidas(Pedido pedido) throws IOException, ClassNotFoundException, SQLException{
       ControleCardapio  controleCardapio = new ControleCardapio(); 
       controleCardapio.controleCardapioBebidas();
+      telaCardapioPedidoBebida(pedido);
+      telaInicialCardapio(pedido);
     }
 
-    public static void telaSelecionarCardapio() throws IOException, ClassNotFoundException, SQLException{
+    public static void telaCardapioPedidoBebida(Pedido pedido) throws IOException, ClassNotFoundException, SQLException{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Deseja realizar um pedido?");
         System.out.println("1 - SIM \n2 - NÃO");
@@ -78,11 +82,35 @@ public class TelaCardapio {
                             TelaPedidos.telaFazerPedidoBebida(pedido);
                             break;
                         case 2:
-                            telaInicialCardapio();
+                            telaInicialCardapio(pedido);
                             break;
                         default:
                             System.out.println("Opção inválida!");
-                            telaInicialCardapio();
+                            telaInicialCardapio(pedido);
+                    }
+            }catch (NumberFormatException e){
+                System.err.println("Erro, digite um número!"+e);
+            }
+        scanner.close();
+    }
+
+    public static void telaCardapioPedidoComida(Pedido pedido) throws IOException, ClassNotFoundException, SQLException{
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Deseja realizar um pedido?");
+        System.out.println("1 - SIM \n2 - NÃO");
+        try{
+            int op = Integer.parseInt(scanner.next());
+                    switch(op){
+
+                        case 1:
+                            TelaPedidos.telaFazerPedidoComida(pedido);
+                            break;
+                        case 2:
+                            telaInicialCardapio(pedido);
+                            break;
+                        default:
+                            System.out.println("Opção inválida!");
+                            telaInicialCardapio(pedido);
                     }
             }catch (NumberFormatException e){
                 System.err.println("Erro, digite um número!"+e);

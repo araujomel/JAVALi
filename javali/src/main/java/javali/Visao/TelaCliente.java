@@ -3,10 +3,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import javali.Modelo.Pedido;
+
 import javali.Controle.ControleCliente;
 
 public class TelaCliente {
     
+    static Pedido pedido = new Pedido(0, 0, 0, 0, 0, "");
 
     public static void paginaInicialCliente() throws IOException, ClassNotFoundException, SQLException{
         
@@ -22,12 +25,15 @@ public class TelaCliente {
                 switch(op){
 
                     case 1:
-                        TelaCardapio.telaInicialCardapio();
+                        TelaCardapio.telaInicialCardapio(pedido);
                         break;
                     case 2:
-                        TelaLivraria.telaMenuInicial();
+                        TelaLivraria.telaMenuInicial(pedido);
                         break;
                     case 3:
+                        telaInserirCodigo();
+                        break;
+                    case 4:
                         telaInserirCodigo();
                         break;
                     default:
@@ -47,7 +53,8 @@ public class TelaCliente {
         System.out.println("O que deseja fazer?");
         System.out.println("1 - Cardápio");
         System.out.println("2 - Livraria");
-        System.out.println("3 - Inserir código de estudante");
+        System.out.println("3 - Carrinho");
+        System.out.println("4 - Inserir código de estudante");
     }
 
     public static void telaInserirCodigo() throws IOException{
