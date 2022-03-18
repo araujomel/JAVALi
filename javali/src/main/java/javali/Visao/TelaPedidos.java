@@ -3,8 +3,6 @@ package javali.Visao;
 import java.util.Scanner;
 
 import javali.Controle.ControlePedidos;
-import javali.Modelo.Pedido;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -14,25 +12,27 @@ public class TelaPedidos {
         ControlePedidos controlePedidos = new ControlePedidos();
         try{
             System.out.println("Selecione o ID da Comida:");
-            int idComida = Integer.parseInt(scanner.next());
+            int idComida = Integer.parseInt(scanner.nextLine());
             System.out.println("Digite o número da sua mesa:");
-            int mesaCliente = Integer.parseInt(scanner.next());
+            int mesaCliente = Integer.parseInt(scanner.nextLine());
             System.out.println("Deseja personalizar seu pedido?");
             System.out.println("1 - SIM \n2 - NÃO");
+            int op = Integer.parseInt(scanner.nextLine());
+           
             String descricao = "";
-            int op = Integer.parseInt(scanner.next());
-                        switch(op){ 
-                            case 1:
-                                descricao = scanner.nextLine();
-                                break;
-                            case 2:
-                                System.out.println("Entrou no 2");
-                                break;
-                            default:
-                                System.out.println("Opção inválida!");
-                                telaFazerPedidoComida();
-                        }
-            controlePedidos.controleFazerPedidoComida(0, descricao, idComida, mesaCliente);
+
+            switch(op){ 
+                case 1:
+                    System.out.println("Descreva como quer seu pedido:");
+                    descricao = scanner.nextLine();
+                    break;
+                case 2:
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+                    telaFazerPedidoComida();
+            }
+            controlePedidos.controleFazerPedidoComida( idComida, mesaCliente, descricao);
         }catch (NumberFormatException e){
             System.err.println("Erro, digite um número!"+e);
         }
@@ -46,25 +46,28 @@ public class TelaPedidos {
         try{
 
         System.out.println("Selecione o ID da Bebida:");
-        int idBebida = Integer.parseInt(scanner.next());
+        int idBebida = Integer.parseInt(scanner.nextLine());
         System.out.println("Digite o número da sua mesa:");
-        int mesaCliente = Integer.parseInt(scanner.next());
+        int mesaCliente = Integer.parseInt(scanner.nextLine());
         System.out.println("Deseja personalizar seu pedido? ");
         System.out.println("1 - SIM \n2 - NÃO");
+        int op = Integer.parseInt(scanner.nextLine());
+
         String descricao = "";
 
-            int op = Integer.parseInt(scanner.next());
-                    switch(op){
-                        case 1:
-                            descricao = scanner.nextLine();
-                            break;
-                        case 2:
-                            break;
-                        default:
-                            System.out.println("Opção inválida!");
-                            telaFazerPedidoBebida();
-                    }
-            controlePedidos.controleFazerPedidoBebida(0, descricao, idBebida, mesaCliente);
+        switch(op){ 
+            case 1:
+                System.out.println("Descreva como quer seu pedido:");
+                descricao = scanner.nextLine();
+                break;
+            case 2:
+                break;
+            default:
+                System.out.println("Opção inválida!");
+                telaFazerPedidoComida();
+        }
+
+            controlePedidos.controleFazerPedidoBebida(idBebida, mesaCliente, descricao);
             }catch (NumberFormatException e){
                 System.err.println("Erro, digite um número!"+e);
             }
@@ -77,10 +80,10 @@ public class TelaPedidos {
          ControlePedidos controlePedidos = new ControlePedidos();
         try{
             System.out.println("Selecione o ID do Livro:");
-            int idLivro = Integer.parseInt(scanner.next());
+            int idLivro = Integer.parseInt(scanner.nextLine());
             System.out.println("Digite o número da sua mesa:");
-            int mesaCliente = Integer.parseInt(scanner.next());
-            controlePedidos.controleFazerPedidoLivro(0, idLivro, mesaCliente);
+            int mesaCliente = Integer.parseInt(scanner.nextLine());
+            controlePedidos.controleFazerPedidoLivro(idLivro, mesaCliente);
         }
         catch (NumberFormatException e){
             System.err.println("Erro, digite um número!"+e);

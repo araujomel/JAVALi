@@ -9,7 +9,8 @@ public class Livro {
     private float preco;
     private boolean disponivel_leitura;
 
-    public Livro(String titulo, String autor, int quantidade, boolean disponivel_venda, float preco, boolean disponivel_leitura){
+    public Livro(int idLivro, String titulo, String autor, int quantidade, boolean disponivel_venda, float preco, boolean disponivel_leitura){
+        setIdLivro(idLivro);
         setTitulo(titulo);
         setAutor(autor);
         setQuantidade(quantidade);

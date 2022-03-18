@@ -15,7 +15,7 @@ public class ControleLivro {
 
     public void controleCadastrarLivro (String titulo, String autor, int quantidade, boolean disponivel_venda, float preco, boolean disponivel_leitura) throws IOException, SQLException, ClassNotFoundException{
         
-        Livro livro = new Livro(titulo, autor, quantidade, disponivel_venda, preco, disponivel_leitura);
+        Livro livro = new Livro(0,titulo, autor, quantidade, disponivel_venda, preco, disponivel_leitura);
         dao.cadastrarLivroDAO(livro);
         
     }

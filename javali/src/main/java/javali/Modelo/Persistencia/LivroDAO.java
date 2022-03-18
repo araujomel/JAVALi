@@ -50,11 +50,11 @@ public class LivroDAO {
             System.out.println("-------------- LIVROS --------------------");
             for(int i = 0; i < livros.size(); i++){
                 if(livros.get(i).getDisponivel_venda()){
-                    System.out.println(livros.get(i).getTitulo()+"        "+livros.get(i).getAutor()+
+                    System.out.println(livros.get(i).getIdLivro()+" - "+livros.get(i).getTitulo()+"        "+livros.get(i).getAutor()+
                     "            R$ "+ livros.get(i).getPreco() +
                     "\n------------------------------------------");
                 } else{
-                    System.out.println(livros.get(i).getTitulo()+"        "+livros.get(i).getAutor()+
+                    System.out.println(livros.get(i).getIdLivro()+" - "+livros.get(i).getTitulo()+"        "+livros.get(i).getAutor()+
                     "\n------------------------------------------");
                 }
             }
@@ -73,7 +73,7 @@ public class LivroDAO {
 
         ArrayList<Livro> livros = new ArrayList<Livro>();
         while (rs.next()) {
-            Livro livro = new Livro(rs.getString(2), rs.getString(3), rs.getInt(4), rs.getBoolean(5), rs.getFloat(7), !rs.getBoolean(6));
+            Livro livro = new Livro(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4), rs.getBoolean(5), rs.getFloat(7), !rs.getBoolean(6));
             livros.add(livro);
         }
         mostrarLivrosDAO(livros);
@@ -86,7 +86,7 @@ public class LivroDAO {
     
         ArrayList<Livro> livros = new ArrayList<Livro>();
         while (rs.next()) {
-            Livro livro = new Livro(rs.getString(2), rs.getString(3), rs.getInt(4), rs.getBoolean(5), rs.getFloat(7), !rs.getBoolean(6));
+            Livro livro = new Livro(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getBoolean(5), rs.getFloat(7), !rs.getBoolean(6));
             livros.add(livro);
         }
         mostrarLivrosDAO(livros);
@@ -99,7 +99,7 @@ public class LivroDAO {
     
         ArrayList<Livro> livros = new ArrayList<Livro>();
         while (rs.next()) {
-            Livro livro = new Livro(rs.getString(2), rs.getString(3), rs.getInt(4), rs.getBoolean(5), (float)0.0, !rs.getBoolean(6));
+            Livro livro = new Livro(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4), rs.getBoolean(5), (float)0.0, !rs.getBoolean(6));
             livros.add(livro);
         }
         mostrarLivrosDAO(livros);

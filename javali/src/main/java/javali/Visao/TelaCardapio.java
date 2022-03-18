@@ -6,8 +6,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import javali.Controle.ControleCardapio;
-import javali.Modelo.Cardapio;
-import javali.Modelo.Pedido;
+
 
 public class TelaCardapio {
 

@@ -25,10 +25,10 @@ public class TelaCliente {
                 switch(op){
 
                     case 1:
-                        TelaCardapio.telaInicialCardapio(pedido);
+                        TelaCardapio.telaInicialCardapio();
                         break;
                     case 2:
-                        TelaLivraria.telaMenuInicial(pedido);
+                        TelaLivraria.telaMenuInicial();
                         break;
                     case 3:
                         telaInserirCodigo();
