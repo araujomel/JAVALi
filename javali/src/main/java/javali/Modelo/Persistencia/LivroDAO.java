@@ -64,7 +64,27 @@ public class LivroDAO {
       
       }
 
-      
+      public boolean verificarDisponibilidadeCompraDAO(int idLivro) throws SQLException, ClassNotFoundException{
+            PreparedStatement ps = BancoDeDados.criarPreparedStatement("SELECT disponivel_venda FROM Livro WHERE idLivro ="+idLivro);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                if(rs.getBoolean(1))
+                return true;
+            }
+         return false;
+      }
+
+      public boolean verificarDisponibilidadeLeituraDAO(int idLivro) throws SQLException, ClassNotFoundException{
+        PreparedStatement ps = BancoDeDados.criarPreparedStatement("SELECT disponivel_leitura FROM Livro WHERE idLivro ="+idLivro);
+        ResultSet rs = ps.executeQuery();
+
+        while(rs.next()){
+            if(rs.getBoolean(1))
+            return true;
+        }
+     return false;
+  }
 
       public void pegarLivrosDAO() throws SQLException, ClassNotFoundException, IOException {
 

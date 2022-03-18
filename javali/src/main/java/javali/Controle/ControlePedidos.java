@@ -9,6 +9,7 @@ import javali.Modelo.Persistencia.PedidoDAO;
 public class ControlePedidos {
 
     private PedidoDAO dao;
+    
 
 
 
@@ -26,9 +27,20 @@ public class ControlePedidos {
         dao.cadastrarPedidoBebidaDAO(pedidoBebida);
     }
 
-    public void controleFazerPedidoLivro(int idLivro, int mesaCliente) throws ClassNotFoundException, SQLException, IOException{
+    public void controleFazerPedidoLivro(int idLivro, int mesaCliente, boolean flagLeituraCompra) throws ClassNotFoundException, SQLException, IOException{
         Pedido pedidoLivro = new Pedido(0,0,0,idLivro, mesaCliente,"");
-        dao.cadastrarPedidoLivroDAO(pedidoLivro);
+        dao.cadastrarPedidoLivroDAO(pedidoLivro, flagLeituraCompra);
+    }
+
+
+    public void controlePegarFilaDePedidos(int codigo) throws ClassNotFoundException, SQLException, IOException{
+        if(codigo==1)
+            dao.mostrarFilaBebidasDAO();
+        else if (codigo == 2)
+            dao.mostrarFilaComidasDAO();
+        else
+            dao.mostrarFilaLivroDAO();;
+
     }
     
 }

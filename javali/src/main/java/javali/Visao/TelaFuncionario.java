@@ -8,6 +8,7 @@ import javali.Controle.ControleBebida;
 import javali.Controle.ControleComida;
 import javali.Controle.ControleFuncionario;
 import javali.Controle.ControleLivro;
+import javali.Controle.ControlePedidos;
 import javali.Modelo.FuncaoFuncionario;
 
 public class TelaFuncionario {
@@ -40,8 +41,8 @@ public class TelaFuncionario {
                             paginaInicialFuncionario();}
                         break;
                     case 2:
-                        System.out.println("Em construção!");
-                         paginaInicialFuncionario();
+                        telaAbrirFilaDePedidos();
+                        paginaInicialFuncionario();
                         break;
                     case 3:
                         telaGerarCodigoEstudante();
@@ -223,4 +224,31 @@ public class TelaFuncionario {
         return;
     }
 
+
+    public static void telaAbrirFilaDePedidos() throws IOException, SQLException, ClassNotFoundException{
+        Scanner scanf = new Scanner(System.in); 
+        ControlePedidos controlePedidos = new ControlePedidos();
+        System.out.println("-----FILA DE PEDIDOS-----");
+        System.out.println("Informe o código correspondente:");
+        System.out.println("1 - Bebida \n2 - Comida\n3 - Livro");
+        try{
+        int codigo = Integer.parseInt(scanf.nextLine());
+        switch(codigo){
+            case 1:
+                controlePedidos.controlePegarFilaDePedidos(codigo);
+            break;
+            case 2:
+                controlePedidos.controlePegarFilaDePedidos(codigo);
+            break;
+            case 3:
+                controlePedidos.controlePegarFilaDePedidos(codigo);
+            break;
+        }
+
+        }catch(NumberFormatException e){
+            System.err.println("Erro, digite um número! "+e);
+            paginaInicialFuncionario();
+        }
+
+    }
 }

@@ -31,5 +31,19 @@ public class ControleLivro {
     public void controleMostrarLivrosLeitura() throws IOException, ClassNotFoundException, SQLException{
         dao.pegarLivrosLeituraDAO();
     }
+
+    public boolean controleLivroDisponivelCompra(int idLivro) throws ClassNotFoundException, SQLException{
+        if(dao.verificarDisponibilidadeCompraDAO(idLivro))
+            return true;
+        else   
+            return false;
+    }
+
+    public boolean controleLivroDisponivelLeitura(int idLivro) throws ClassNotFoundException, SQLException{
+        if(dao.verificarDisponibilidadeLeituraDAO(idLivro))
+            return true;
+        else   
+            return false;
+    }
     
 }
