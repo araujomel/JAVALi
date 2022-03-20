@@ -117,6 +117,61 @@ public class TelaPedidos {
         }
         scanner.close();
     }
+
+    public static void telaEsconderPedidoBebida() throws ClassNotFoundException, SQLException, IOException{ 
+        
+        Scanner scanner = new Scanner(System.in,"CP850");
+        ControlePedidos controlePedidos = new ControlePedidos();
+        try{
+
+        System.out.println("Selecione o ID do pedido:");
+        int idPedido = Integer.parseInt(scanner.nextLine());
+
+        controlePedidos.controleEsconderPedidoBebida(idPedido);
+
+        }catch (NumberFormatException e){
+            System.err.println("Erro, digite um número!"+e);
+        }
+        scanner.close();
+        
+    }
+
+    public static void telaEsconderPedidoComida() throws ClassNotFoundException, SQLException, IOException{ 
+        
+        Scanner scanner = new Scanner(System.in,"CP850");
+        ControlePedidos controlePedidos = new ControlePedidos();
+        try{
+
+        System.out.println("Selecione o ID do pedido:");
+        int idPedido = Integer.parseInt(scanner.nextLine());
+
+        controlePedidos.controleEsconderPedidoComida(idPedido);
+
+        }catch (NumberFormatException e){
+            System.err.println("Erro, digite um número!"+e);
+        }
+        scanner.close();
+        
+    }
+
+    public static void telaEsconderPedidoLivro() throws ClassNotFoundException, SQLException, IOException{ 
+        
+        Scanner scanner = new Scanner(System.in,"CP850");
+        ControlePedidos controlePedidos = new ControlePedidos();
+        try{
+
+        System.out.println("Selecione o ID do pedido:");
+        int idPedido = Integer.parseInt(scanner.nextLine());
+
+        controlePedidos.controleEsconderPedidoLivro(idPedido);
+
+        }catch (NumberFormatException e){
+            System.err.println("Erro, digite um número!"+e);
+        }
+        scanner.close();
+        
+    }
+        
     /*
     public static void mostrarCarrinho(Pedido pedido) throws ClassNotFoundException, SQLException, IOException{
         System.out.println("Bebida: " + pedido.getIdBebida());

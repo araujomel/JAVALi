@@ -9,7 +9,7 @@ import javali.Controle.ControleCliente;
 
 public class TelaCliente {
     
-    static Pedido pedido = new Pedido(0, 0, 0, 0, 0, "");
+    static Pedido pedido = new Pedido(0, 0, 0, 0, 0, "", true);
 
     public static void paginaInicialCliente() throws IOException, ClassNotFoundException, SQLException{
         

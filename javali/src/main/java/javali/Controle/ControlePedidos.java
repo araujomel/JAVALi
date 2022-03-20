@@ -18,18 +18,28 @@ public class ControlePedidos {
     } 
 
     public void controleFazerPedidoComida(int idComida, int mesaCliente, String descricao) throws ClassNotFoundException, SQLException, IOException{
-        Pedido pedidoComida = new Pedido(0,0, idComida, 0, mesaCliente, descricao);
+        Pedido pedidoComida = new Pedido(0,0, idComida, 0, mesaCliente, descricao, true);
         dao.cadastrarPedidoComidaDAO(pedidoComida);
     }
      
     public void controleFazerPedidoBebida(int idBebida, int mesaCliente, String descricao) throws ClassNotFoundException, SQLException, IOException{
-        Pedido pedidoBebida = new Pedido(0,idBebida,0,0, mesaCliente, descricao);
+        Pedido pedidoBebida = new Pedido(0,idBebida,0,0, mesaCliente, descricao, true);
         dao.cadastrarPedidoBebidaDAO(pedidoBebida);
     }
 
     public void controleFazerPedidoLivro(int idLivro, int mesaCliente, boolean flagLeituraCompra) throws ClassNotFoundException, SQLException, IOException{
-        Pedido pedidoLivro = new Pedido(0,0,0,idLivro, mesaCliente,"");
+        Pedido pedidoLivro = new Pedido(0,0,0,idLivro, mesaCliente,"", true);
         dao.cadastrarPedidoLivroDAO(pedidoLivro, flagLeituraCompra);
+    }
+
+    public void controleEsconderPedidoBebida(int idPedido) throws ClassNotFoundException, SQLException, IOException{
+        dao.esconderPedidoBebidaDAO(idPedido);
+    }
+    public void controleEsconderPedidoComida(int idPedido) throws ClassNotFoundException, SQLException, IOException{
+        dao.esconderPedidoComidaDAO(idPedido);
+    }
+    public void controleEsconderPedidoLivro(int idPedido) throws ClassNotFoundException, SQLException, IOException{
+        dao.esconderPedidoLivroDAO(idPedido);
     }
 
 

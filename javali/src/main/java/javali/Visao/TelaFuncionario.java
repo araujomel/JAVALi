@@ -10,6 +10,7 @@ import javali.Controle.ControleFuncionario;
 import javali.Controle.ControleLivro;
 import javali.Controle.ControlePedidos;
 import javali.Modelo.FuncaoFuncionario;
+import javali.Visao.TelaAplicativo;
 
 public class TelaFuncionario {
 
@@ -50,6 +51,23 @@ public class TelaFuncionario {
                     case 4:
                         telaCadastrarFuncionario();
                         break;
+                    case 5:
+                        System.out.println("O que deseja atualizar?");
+                        System.out.println("1 - Bebida \n2 - Comida\n3 - Livro");
+                        op = Integer.parseInt(scanf.next());
+                        if (op==1)
+                        telaAtualizarEstoqueBebida();
+                        else if(op==2)
+                            telaCadastrarComida();
+                        else if(op==3)
+                            telaCadastrarLivro();
+                        else{
+                            System.out.println("Opção inválida! Tente novamente.");
+                            paginaInicialFuncionario();}
+                        break;
+                    case 0:
+                        TelaAplicativo.telaInicial();
+                        break;
                     default:
                         paginaInicialFuncionario();
                 }
@@ -67,6 +85,8 @@ public class TelaFuncionario {
         System.out.println("2 - Fila de Pedidos");
         System.out.println("3 - Gerar código para estudante");
         System.out.println("4 - Cadastrar Funcionário");
+        System.out.println("5 - Atualizar estoque");
+        System.out.println("0 - Sair");
     }
 
     public static void telaCadastrarBebida() throws IOException, SQLException, ClassNotFoundException{
@@ -236,12 +256,15 @@ public class TelaFuncionario {
         switch(codigo){
             case 1:
                 controlePedidos.controlePegarFilaDePedidos(codigo);
+                esconderPedidoBebida();
             break;
             case 2:
                 controlePedidos.controlePegarFilaDePedidos(codigo);
+                esconderPedidoComida();
             break;
             case 3:
                 controlePedidos.controlePegarFilaDePedidos(codigo);
+                esconderPedidoLivro();
             break;
         }
 
@@ -250,5 +273,99 @@ public class TelaFuncionario {
             paginaInicialFuncionario();
         }
 
+
     }
+
+    public static void esconderPedidoBebida() throws ClassNotFoundException, SQLException, IOException{
+        Scanner scanf = new Scanner(System.in);
+        System.out.println("Deseja esconder algum pedido?");
+        System.out.println("1 - SIM \n2 - NÃO\n");
+        try{
+        int codigo = Integer.parseInt(scanf.nextLine());
+        switch(codigo){
+            case 1:
+                TelaPedidos.telaEsconderPedidoBebida();
+            break;
+            case 2:
+            break;
+        }
+
+        }catch(NumberFormatException e){
+            System.err.println("Erro, digite um número! "+e);
+            paginaInicialFuncionario();
+        }
+    }
+
+    public static void esconderPedidoComida() throws ClassNotFoundException, SQLException, IOException{
+        Scanner scanf = new Scanner(System.in);
+        System.out.println("Deseja esconder algum pedido?");
+        System.out.println("1 - SIM \n2 - NÃO\n");
+        try{
+        int codigo = Integer.parseInt(scanf.nextLine());
+        switch(codigo){
+            case 1:
+                TelaPedidos.telaEsconderPedidoComida();
+            break;
+            case 2:
+            break;
+        }
+
+        }catch(NumberFormatException e){
+            System.err.println("Erro, digite um número! "+e);
+            paginaInicialFuncionario();
+        }
+    }
+
+    public static void esconderPedidoLivro() throws ClassNotFoundException, SQLException, IOException{
+        Scanner scanf = new Scanner(System.in);
+        System.out.println("Deseja esconder algum pedido?");
+        System.out.println("1 - SIM \n2 - NÃO\n");
+        try{
+        int codigo = Integer.parseInt(scanf.nextLine());
+        switch(codigo){
+            case 1:
+                TelaPedidos.telaEsconderPedidoLivro();
+            break;
+            case 2:
+            break;
+        }
+
+        }catch(NumberFormatException e){
+            System.err.println("Erro, digite um número! "+e);
+            paginaInicialFuncionario();
+        }
+    }
+
+    public static void telaAtualizarEstoqueBebida() throws IOException, SQLException, ClassNotFoundException{
+        Scanner scanFunci = new Scanner(System.in,"CP850");
+
+        ControleBebida controleBebida = new ControleBebida();
+      
+        try{
+
+            
+
+            controleBebida.controleMostrarBebidas();
+            
+            System.out.println("\nDigite o id da bebida:");
+            int idBebida = Integer.parseInt(scanFunci.next());
+            System.out.println("Digite quanto incrementar à quantidade:");
+            int quantidade = Integer.parseInt(scanFunci.next());
+           
+            scanFunci.nextLine();
+            
+            controleBebida.controleAtualizarEstoqueBebidas(idBebida, quantidade);
+            
+        }catch(NumberFormatException e){
+            System.err.println("Erro, digite um número! "+e);
+            telaCadastrarLivro();
+    }
+
+
+        scanFunci.close();
+
+        
+    }
+
+    
 }

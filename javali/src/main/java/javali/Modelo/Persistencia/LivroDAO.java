@@ -35,6 +35,7 @@ public class LivroDAO {
             
             System.out.println("Livro cadastrado com sucesso!");
             con.close();
+            st.close();
             TelaFuncionario.paginaInicialFuncionario();
 
         }catch(SQLException sqlException){
@@ -123,6 +124,16 @@ public class LivroDAO {
             livros.add(livro);
         }
         mostrarLivrosDAO(livros);
+    }
+
+    public void atualizarEstoqueLivrosDAO(int idLivro, int quantidade) throws ClassNotFoundException, SQLException, IOException{
+        try{
+            Connection con = BancoDeDados.getConexao();
+            Statement st = con.createStatement(); 
+            st.executeUpdate("UPDATE Livro SET quantidade = quantidade +"+quantidade+" WHERE idLivro ="+ idLivro);
+        }catch (NullPointerException e){
+            System.err.println("Erro! "+ e);
+        }
     }
     
 }

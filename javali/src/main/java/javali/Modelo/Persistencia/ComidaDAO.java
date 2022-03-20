@@ -32,6 +32,8 @@ public class ComidaDAO {
 
            System.out.println("Comida cadastrada com sucesso!");
            con.close();
+           st.close();
+           TelaFuncionario.paginaInicialFuncionario();
           
         }catch(SQLException sqlException){
             System.err.println("Got an exception!");
@@ -39,6 +41,7 @@ public class ComidaDAO {
         }finally{
             con.close();
             st.close();
+            
         }
 
     }
@@ -74,6 +77,16 @@ public class ComidaDAO {
     }
     return comidas;
 }
+    public void atualizarEstoqueComidasDAO(int idComida, int quantidade) throws ClassNotFoundException, SQLException, IOException{
+        try{
+            Connection con = BancoDeDados.getConexao();
+            Statement st = con.createStatement();
+            st.executeUpdate("UPDATE Comida SET quantidade = quantidade +"+quantidade+" WHERE idComida ="+ idComida);
+
+        }catch (NullPointerException e){
+            System.err.println("Erro! "+ e);
+        }
+    }
 
 
 }

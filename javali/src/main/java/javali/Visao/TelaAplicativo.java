@@ -24,9 +24,9 @@ public class TelaAplicativo {
         System.out.println("Senha:");
         String senha = scan.next();
     
-        if(controleUsuario.controleRealizarLogin(login, senha))
-            telaEscolheTipoDeUsuario(Funcionario.encontraFuncaoPorLogin(login));
-        else{
+        if(controleUsuario.controleRealizarLogin(login, senha)){
+            telaEscolheTipoDeUsuario();
+        }else{
             System.out.println("Usuário ou senha incorretos.");
             telaInicial();
         }
@@ -44,7 +44,7 @@ public class TelaAplicativo {
         }
     }
 
-      public static void telaEscolheTipoDeUsuario(FuncaoFuncionario funcao) throws IOException, SQLException, ClassNotFoundException{
+      public static void telaEscolheTipoDeUsuario() throws IOException, SQLException, ClassNotFoundException{
 
         Scanner scanTipoUsuario = new Scanner(System.in);
         boolean loop = true;
@@ -69,7 +69,7 @@ public class TelaAplicativo {
                         break;
                     default:
                         System.out.println("Opção inválida!");
-                        telaEscolheTipoDeUsuario(funcao);
+                        telaEscolheTipoDeUsuario();
                 }
             loop = false;
             }catch(NumberFormatException e){

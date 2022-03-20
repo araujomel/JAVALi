@@ -9,6 +9,7 @@ import org.apache.commons.lang3.ObjectUtils.Null;
 
 import javali.Modelo.Pedido;
 import javali.Visao.TelaCliente;
+import javali.Visao.TelaFuncionario;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -25,6 +26,7 @@ public class PedidoDAO {
             st.executeUpdate("INSERT INTO Pedido VALUES()");
             st.executeUpdate("INSERT INTO PedidoComida(idPedido, idComida, mesaCliente, descricao) VALUES(LAST_INSERT_ID(),"
             +pedido.getIdComida()+","+pedido.getMesaCliente()+",'"+ pedido.getDescricao()+"')");
+            st.executeUpdate("UPDATE Comida SET quantidade = quantidade - 1 WHERE idComida ="+pedido.getIdComida());
             System.out.println("Pedido realizado com sucesso!");
             con.close();
             st.close();
@@ -44,6 +46,7 @@ public class PedidoDAO {
             st.executeUpdate("INSERT INTO Pedido VALUES()");
             st.executeUpdate("INSERT INTO PedidoBebida(idPedido, idBebida, mesaCliente, descricao) VALUES(LAST_INSERT_ID(),"
             +pedido.getIdBebida()+","+pedido.getMesaCliente()+",'"+ pedido.getDescricao()+"')");
+            st.executeUpdate("UPDATE Bebida SET quantidade = quantidade - 1 WHERE idBebida ="+pedido.getIdBebida());
             System.out.println("Pedido realizado com sucesso!");
             con.close();
             st.close();
@@ -62,6 +65,10 @@ public class PedidoDAO {
             st.executeUpdate("INSERT INTO Pedido VALUES()");
             st.executeUpdate("INSERT INTO PedidoLivro(idPedido, idLivro, mesaCliente, descricao, flagLeituraCompra) VALUES(LAST_INSERT_ID(),"
             +pedido.getIdLivro()+","+pedido.getMesaCliente()+",'"+ "-"+"',"+flagLeituraCompra+")");
+            if(flagLeituraCompra){
+                st.executeUpdate("UPDATE Livro SET quantidade = quantidade - 1 WHERE idLivro ="+pedido.getIdLivro());
+            }
+            
             System.out.println("Pedido realizado com sucesso!");
             con.close();
             st.close();
@@ -80,9 +87,12 @@ public class PedidoDAO {
             System.out.println("                      Fila de Pedidos Bebidas                        ");
             System.out.println("---------------------------------------------------------------------");
             for(int i = 0; i < pedidoBebidas.size(); i++){
-                System.out.println("ID Pedido: "+pedidoBebidas.get(i).getIdPedido() +" - ID Bebida: " +pedidoBebidas.get(i).getIdBebida()+" - Descrição: "
+                if(pedidoBebidas.get(i).getFlagVisivel()){
+                    System.out.println("ID Pedido: "+pedidoBebidas.get(i).getIdPedido() +" - ID Bebida: " +pedidoBebidas.get(i).getIdBebida()+" - Descrição: "
                 +pedidoBebidas.get(i).getDescricao()+" - Mesa: "+pedidoBebidas.get(i).getMesaCliente()
                 +"\n---------------------------------------------------------------------");
+                }
+                
                    
             }
         }catch (NullPointerException e){
@@ -95,9 +105,11 @@ public class PedidoDAO {
             System.out.println("                      Fila de Pedidos Comidas                        ");
             System.out.println("---------------------------------------------------------------------");
             for(int i = 0; i < pedidoComidas.size(); i++){
+                if(pedidoComidas.get(i).getFlagVisivel()){
                 System.out.println("ID Pedido: "+pedidoComidas.get(i).getIdPedido() +" - ID Comida: " +pedidoComidas.get(i).getIdComida()+" - Descrição: "
                 +pedidoComidas.get(i).getDescricao()+" - Mesa: "+pedidoComidas.get(i).getMesaCliente()
                 +"\n---------------------------------------------------------------------");
+                }
             }
         }catch (NullPointerException e){
             System.err.println("Erro! "+ e);
@@ -110,9 +122,11 @@ public class PedidoDAO {
             System.out.println("               Fila de Pedidos Livros                  ");
             System.out.println("-------------------------------------------------------");
             for(int i = 0; i < pedidoLivros.size(); i++){
+                if(pedidoLivros.get(i).getFlagVisivel()){
                 System.out.println("ID Pedido: "+pedidoLivros.get(i).getIdPedido() +" - ID Livro: " +pedidoLivros.get(i).getIdLivro()
                 +" - Modo: "+pedidoLivros.get(i).getDescricao()+" - Mesa: "+pedidoLivros.get(i).getMesaCliente()
                 +"\n-------------------------------------------------------");
+                }
             }
         }catch (NullPointerException e){
             System.err.println("Erro! "+ e);
@@ -127,7 +141,7 @@ public class PedidoDAO {
             ps = BancoDeDados.criarPreparedStatement("SELECT * From pedidoBebida");
             rs = ps.executeQuery();
             while (rs.next()) {
-                Pedido pedidoBebida = new Pedido(rs.getInt(1),rs.getInt(2), 0, 0, rs.getInt(3), rs.getString(4));
+                Pedido pedidoBebida = new Pedido(rs.getInt(1),rs.getInt(2), 0, 0, rs.getInt(3), rs.getString(4), rs.getBoolean(5));
                 pedidoBebidas.add(pedidoBebida);
             }
         }catch(SQLException sqlException){
@@ -145,10 +159,10 @@ public class PedidoDAO {
         ResultSet rs = null;
         ArrayList<Pedido> pedidoComidas = new ArrayList<Pedido>();
         try{
-            ps = BancoDeDados.criarPreparedStatement("SELECT * From pedidocomida");
+            ps = BancoDeDados.criarPreparedStatement("SELECT * From pedidoComida");
             rs = ps.executeQuery();
             while (rs.next()) {
-                Pedido pedidoComida = new Pedido(rs.getInt(1), 0, rs.getInt(2), 0, rs.getInt(3), rs.getString(4));
+                Pedido pedidoComida = new Pedido(rs.getInt(1), 0, rs.getInt(2), 0, rs.getInt(3), rs.getString(4), rs.getBoolean(5));
                 pedidoComidas.add(pedidoComida);
             }
         }catch(SQLException sqlException){
@@ -173,7 +187,7 @@ public class PedidoDAO {
                 else
                     descricao = "Leitura";
 
-                Pedido pedidoLivro = new Pedido(rs.getInt(1), 0, 0, rs.getInt(2), rs.getInt(3), descricao);
+                Pedido pedidoLivro = new Pedido(rs.getInt(1), 0, 0, rs.getInt(2), rs.getInt(3), descricao, rs.getBoolean(6));
                 pedidoLivros.add(pedidoLivro);
             }
         }catch(SQLException sqlException){
@@ -182,6 +196,64 @@ public class PedidoDAO {
         }
         return pedidoLivros;
     }
+
+    public void esconderPedidoBebidaDAO(int idPedido) throws SQLException, ClassNotFoundException, IOException{
+        Connection con = BancoDeDados.getConexao();
+        Statement st = con.createStatement();
+        try{
+            
+            st.executeUpdate("UPDATE PedidoBebida SET flagVisivel = 0 WHERE idPedido="+ idPedido);
+            System.out.println("Pedido escondido com sucesso!");
+            con.close();
+            st.close();
+
+            TelaFuncionario.paginaInicialFuncionario();
+          
+        }catch(SQLException sqlException){
+            System.err.println("Got an exception!");
+            System.err.println(sqlException.getMessage());
+        }
+    }
+
+    public void esconderPedidoComidaDAO(int idPedido) throws SQLException, ClassNotFoundException, IOException{
+        Connection con = BancoDeDados.getConexao();
+        Statement st = con.createStatement();
+        try{
+            
+            st.executeUpdate("UPDATE PedidoComida SET flagVisivel = 0 WHERE idPedido="+ idPedido);
+            System.out.println("Pedido escondido com sucesso!");
+            con.close();
+            st.close();
+
+            TelaFuncionario.paginaInicialFuncionario();
+          
+        }catch(SQLException sqlException){
+            System.err.println("Got an exception!");
+            System.err.println(sqlException.getMessage());
+        }
+    }
+
+    public void esconderPedidoLivroDAO(int idPedido) throws SQLException, ClassNotFoundException, IOException{
+        Connection con = BancoDeDados.getConexao();
+        Statement st = con.createStatement();
+        try{
+            
+            st.executeUpdate("UPDATE PedidoLivro SET flagVisivel = 0 WHERE idPedido="+ idPedido);
+            System.out.println("Pedido escondido com sucesso!");
+            con.close();
+            st.close();
+
+            TelaFuncionario.paginaInicialFuncionario();
+          
+        }catch(SQLException sqlException){
+            System.err.println("Got an exception!");
+            System.err.println(sqlException.getMessage());
+        }
+    }
+
+    
+
+    
 
     
    

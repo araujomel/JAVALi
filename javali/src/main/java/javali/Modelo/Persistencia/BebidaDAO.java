@@ -25,13 +25,19 @@ public class BebidaDAO{
           + bebida.getPrecoMedio()+", "+ bebida.getPrecoGrande()+", '"+ bebida.getDescricao()+"')");
            System.out.println("Bebida cadastrada com sucesso!");
            con.close();
-          
+           st.close();
+           TelaFuncionario.paginaInicialFuncionario();
+
         }catch(SQLException sqlException){
             System.err.println("Got an exception!");
             System.err.println(sqlException.getMessage());
+        } finally{
+            con.close();
+            st.close();
+            
         }
 
-    
+        
       
     }
     
@@ -63,5 +69,17 @@ public class BebidaDAO{
     }
     return bebidas;
 }
+    public void atualizarEstoqueBebidasDAO(int idBebida, int quantidade) throws ClassNotFoundException, SQLException, IOException{
+        try{
+            Connection con = BancoDeDados.getConexao();
+            Statement st = con.createStatement();
+            st.executeUpdate("UPDATE Bebida SET quantidade = quantidade +"+quantidade+" WHERE idBebida ="+ idBebida);
+            System.out.println("Quantidade atualizada com sucesso!");
+            TelaFuncionario.paginaInicialFuncionario();
+            
+        }catch (NullPointerException e){
+            System.err.println("Erro! "+ e);
+        }
+    }
 
 }

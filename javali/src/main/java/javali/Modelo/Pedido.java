@@ -8,14 +8,16 @@ public class Pedido {
     private int idComida;
     private int idLivro;
     private int mesaCliente;
+    private boolean flagVisivel;
     
-    public Pedido(int idPedido, int idBebida, int idComida, int idLivro, int mesaCliente, String descricao){
+    public Pedido(int idPedido, int idBebida, int idComida, int idLivro, int mesaCliente, String descricao, boolean flagVisivel){
         setIdPedido(idPedido);
         setIdBebida(idBebida);
         setIdComida(idComida);
         setIdLivro(idLivro);
         setMesaCliente(mesaCliente);
         setDescricao(descricao);
+        setFlagVisivel(flagVisivel);
     }
 
 
@@ -42,6 +44,10 @@ public class Pedido {
         return this.descricao;
     }
 
+    public boolean getFlagVisivel(){
+        return this.flagVisivel;
+    }
+
     public void setIdComida(int idComida){
         this.idComida = idComida;
     }
@@ -66,6 +72,10 @@ public class Pedido {
     public void setDescricao(String descricao){
         this.descricao = descricao;
     }
+
+    public void setFlagVisivel(Boolean flagVisivel) {
+        this.flagVisivel = flagVisivel;
+	}
 
     
 

@@ -20,5 +20,15 @@ public class ControleBebida{
         dao.cadastrarBebidaDAO(bebida);   
     }
 
+    public void controleMostrarBebidas() throws IOException, SQLException, ClassNotFoundException{
+        dao.lerBebidasDAO();
+    }
+
+    public void controleAtualizarEstoqueBebidas(int idBebida, int quantidade) throws IOException, SQLException, ClassNotFoundException{
+        dao.atualizarEstoqueBebidasDAO(idBebida, quantidade);    
+    }
+
+
+
 
 }
