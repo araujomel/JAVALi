@@ -126,11 +126,12 @@ public class LivroDAO {
         mostrarLivrosDAO(livros);
     }
 
-    public void atualizarEstoqueLivrosDAO(int idLivro, int quantidade) throws ClassNotFoundException, SQLException, IOException{
+    public void atualizarEstoqueLivroDAO(int idLivro, int quantidade) throws ClassNotFoundException, SQLException, IOException{
         try{
             Connection con = BancoDeDados.getConexao();
             Statement st = con.createStatement(); 
             st.executeUpdate("UPDATE Livro SET quantidade = quantidade +"+quantidade+" WHERE idLivro ="+ idLivro);
+            TelaFuncionario.paginaInicialFuncionario();
         }catch (NullPointerException e){
             System.err.println("Erro! "+ e);
         }

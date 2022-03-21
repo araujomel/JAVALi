@@ -19,4 +19,12 @@ public class ControleComida {
       Comida comida = new Comida(0, nome, descricao, quantidade, preco);
       dao.cadastrarComidaDAO(comida);
     }
+
+    public void controleMostrarComidas() throws IOException, SQLException, ClassNotFoundException{
+      dao.mostrarComidasDAO();
+    }
+
+  public void controleAtualizarEstoqueComidas(int idComida, int quantidade) throws IOException, SQLException, ClassNotFoundException{
+      dao.atualizarEstoqueComidasDAO(idComida, quantidade);    
+  }
   }

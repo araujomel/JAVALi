@@ -45,5 +45,9 @@ public class ControleLivro {
         else   
             return false;
     }
+
+    public void controleAtualizarEstoqueLivro(int idComida, int quantidade) throws IOException, SQLException, ClassNotFoundException{
+        dao.atualizarEstoqueLivroDAO(idComida, quantidade);    
+    }
     
 }

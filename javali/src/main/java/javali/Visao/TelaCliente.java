@@ -57,11 +57,11 @@ public class TelaCliente {
         System.out.println("4 - Inserir código de estudante");
     }
 
-    public static void telaInserirCodigo() throws IOException{
+    public static void telaInserirCodigo() throws IOException, ClassNotFoundException, SQLException{
         System.out.println("Peça a algum funcionário o código de estudante e insira a seguir.");
         ControleCliente controleCliente = new ControleCliente();
         controleCliente.inserirCodigoEstudante();
-
+        paginaInicialCliente();
     }
 
     

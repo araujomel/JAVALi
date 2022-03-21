@@ -82,6 +82,7 @@ public class ComidaDAO {
             Connection con = BancoDeDados.getConexao();
             Statement st = con.createStatement();
             st.executeUpdate("UPDATE Comida SET quantidade = quantidade +"+quantidade+" WHERE idComida ="+ idComida);
+            TelaFuncionario.paginaInicialFuncionario();
 
         }catch (NullPointerException e){
             System.err.println("Erro! "+ e);

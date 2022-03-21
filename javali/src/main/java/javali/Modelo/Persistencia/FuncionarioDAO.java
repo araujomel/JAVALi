@@ -3,8 +3,6 @@ package javali.Modelo.Persistencia;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.google.protobuf.NullValue;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -103,6 +101,30 @@ public class FuncionarioDAO {
         }
         return false;
 
+    }
+
+    public void registrarCodigoDAO(String codigo) throws ClassNotFoundException, SQLException{
+
+        Connection con = BancoDeDados.getConexao();
+        Statement st = con.createStatement();
+        try{
+           
+            st.executeUpdate("INSERT INTO codigosEstudantes (codigoEstudante) "+"VALUES ('"+ codigo+"')");
+           System.out.println("Código registrado com sucesso!");
+           con.close();
+           st.close();
+
+        }catch(SQLException sqlException){
+            System.err.println("Got an exception!");
+            System.err.println(sqlException.getMessage());
+        } finally{
+            con.close();
+            st.close();
+            
+        }
+
+        
+      
     }
 
 

@@ -23,8 +23,10 @@ public class ControleFuncionario {
       dao = new FuncionarioDAO();
   }
 
-    public String gerarCodigoEstudante(){
-        return RandomStringUtils.randomAlphanumeric(15).toUpperCase();
+    public String gerarCodigoEstudante() throws ClassNotFoundException, SQLException{
+        String codigo = RandomStringUtils.randomAlphanumeric(15).toUpperCase();
+        dao.registrarCodigoDAO(codigo);
+        return codigo;
     }
 
     public void controleCadastrarFuncionario(String nome, String login, String senha, FuncaoFuncionario funcao)

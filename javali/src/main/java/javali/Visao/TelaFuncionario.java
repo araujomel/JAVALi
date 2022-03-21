@@ -56,11 +56,11 @@ public class TelaFuncionario {
                         System.out.println("1 - Bebida \n2 - Comida\n3 - Livro");
                         op = Integer.parseInt(scanf.next());
                         if (op==1)
-                        telaAtualizarEstoqueBebida();
+                            telaAtualizarEstoqueBebida();
                         else if(op==2)
-                            telaCadastrarComida();
+                            telaAtualizarEstoqueComida();
                         else if(op==3)
-                            telaCadastrarLivro();
+                            telaAtualizarEstoqueLivro();
                         else{
                             System.out.println("Opção inválida! Tente novamente.");
                             paginaInicialFuncionario();}
@@ -241,7 +241,8 @@ public class TelaFuncionario {
         System.out.println("Se certifique de checar algum comprovante antes de repassar o código.");
         ControleFuncionario controleFuncionario = new ControleFuncionario();
         System.out.println(controleFuncionario.gerarCodigoEstudante());
-        return;
+        paginaInicialFuncionario();
+
     }
 
 
@@ -355,6 +356,68 @@ public class TelaFuncionario {
             scanFunci.nextLine();
             
             controleBebida.controleAtualizarEstoqueBebidas(idBebida, quantidade);
+            
+        }catch(NumberFormatException e){
+            System.err.println("Erro, digite um número! "+e);
+            telaCadastrarLivro();
+    }
+
+
+        scanFunci.close();
+
+        
+    }
+
+    public static void telaAtualizarEstoqueComida() throws IOException, SQLException, ClassNotFoundException{
+        Scanner scanFunci = new Scanner(System.in,"CP850");
+
+        ControleComida controleComida = new ControleComida();
+      
+        try{
+
+            
+
+            controleComida.controleMostrarComidas();
+            
+            System.out.println("\nDigite o id da comida:");
+            int idComida = Integer.parseInt(scanFunci.next());
+            System.out.println("Digite quanto incrementar à quantidade:");
+            int quantidade = Integer.parseInt(scanFunci.next());
+           
+            scanFunci.nextLine();
+            
+            controleComida.controleAtualizarEstoqueComidas(idComida, quantidade);
+            
+        }catch(NumberFormatException e){
+            System.err.println("Erro, digite um número! "+e);
+            telaCadastrarLivro();
+    }
+
+
+        scanFunci.close();
+
+        
+    }
+
+    public static void telaAtualizarEstoqueLivro() throws IOException, SQLException, ClassNotFoundException{
+        Scanner scanFunci = new Scanner(System.in,"CP850");
+
+        ControleLivro controleLivro = new ControleLivro();
+      
+        try{
+
+            
+
+            controleLivro.controleMostrarLivros();
+            
+            System.out.println("\nDigite o id do livro:");
+            int idLivro = Integer.parseInt(scanFunci.next());
+            System.out.println("Digite quanto incrementar à quantidade:");
+            int quantidade = Integer.parseInt(scanFunci.next());
+           
+            scanFunci.nextLine();
+            
+            controleLivro.controleAtualizarEstoqueLivro(idLivro, quantidade);
             
         }catch(NumberFormatException e){
             System.err.println("Erro, digite um número! "+e);
