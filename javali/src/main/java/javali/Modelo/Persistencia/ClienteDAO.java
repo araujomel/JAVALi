@@ -11,8 +11,11 @@ import java.sql.ResultSet;
 import javali.Modelo.Cliente;
 import javali.Visao.TelaCliente;
 import java.sql.Statement;
+import org.apache.log4j.Logger;
 
 public class ClienteDAO {
+
+    private static final Logger LOGGER = Logger.getLogger("javali.Modelo.Persistencia");
 
     public boolean validarCodigo(String codigo) throws ClassNotFoundException, SQLException{
 
@@ -26,8 +29,8 @@ public class ClienteDAO {
 
             return false;
 
-        }catch (NullPointerException e){
-            System.err.println("Erro! "+ e);
+        }catch (SQLException sqlException){
+            LOGGER.error("Ocorreu um erro ao tentar recuperar os dados do código no banco de dados.\nDetalhes:" + sqlException.getMessage());
             return false;
         }
     }

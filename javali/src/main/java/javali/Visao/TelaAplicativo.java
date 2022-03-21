@@ -9,8 +9,11 @@ import javali.Controle.ControleUsuario;
 import javali.Modelo.FuncaoFuncionario;
 import javali.Modelo.Funcionario;
 import javali.Modelo.Persistencia.*;
+import org.apache.log4j.Logger;
 
 public class TelaAplicativo {
+
+    private static final Logger LOGGER = Logger.getLogger("javali.Visao");
     
     public static void telaInicial() throws IOException, SQLException, ClassNotFoundException{
 
@@ -27,23 +30,11 @@ public class TelaAplicativo {
         if(controleUsuario.controleRealizarLogin(login, senha)){
             telaEscolheTipoDeUsuario();
         }else{
-            System.out.println("Usuário ou senha incorretos.");
+            LOGGER.warn("Usuário ou senha incorretos.");
             telaInicial();
         }
         scan.close();
   }
-
-    public static boolean logar(String login, String senha) {
-       
-
-        if((login.equals("admin")) && (senha.equals("123"))){
-            return true;
-        } else{
-            System.out.println("Usuário ou senha incorretos.");
-            return false;
-        }
-    }
-
       public static void telaEscolheTipoDeUsuario() throws IOException, SQLException, ClassNotFoundException{
 
         Scanner scanTipoUsuario = new Scanner(System.in);
@@ -68,12 +59,12 @@ public class TelaAplicativo {
                         TelaFuncionario.paginaInicialFuncionario();
                         break;
                     default:
-                        System.out.println("Opção inválida!");
+                        LOGGER.warn("Opção inválida!");
                         telaEscolheTipoDeUsuario();
                 }
             loop = false;
             }catch(NumberFormatException e){
-                System.err.println("Erro, digite um número!"+e);
+                LOGGER.error("Erro, digite um número!\nDetalhes: "+e);
             }
         }while(loop);
 

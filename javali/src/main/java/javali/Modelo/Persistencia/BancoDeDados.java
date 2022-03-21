@@ -5,8 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.lang.ClassNotFoundException;
 import java.sql.PreparedStatement;
+import org.apache.log4j.Logger;
 
 public class BancoDeDados {
+
+    private static final Logger LOGGER = Logger.getLogger("javali.Modelo.Persistencia");
 
     public static Connection getConexao() throws ClassNotFoundException{
         Connection conexao = null;
@@ -17,7 +20,7 @@ public class BancoDeDados {
             "b4d39d2a4a36d8", "9ac48a14");
             return conexao;
         }catch(SQLException sqlException){
-           System.err.println("Erro ao conectar com o banco!"+sqlException);
+           LOGGER.error("Erro ao conectar com o banco!"+sqlException);
             
         }
 

@@ -5,8 +5,10 @@ import java.util.ArrayList;
 
 import javali.Modelo.Usuario;
 import javali.Modelo.Persistencia.UsuarioDAO;
+import org.apache.log4j.Logger;
 
 public class ControleUsuario {
+    private static final Logger LOGGER = Logger.getLogger("javali.Controle");
 
   private UsuarioDAO dao; 
 
@@ -16,7 +18,7 @@ public class ControleUsuario {
 }
 
 public boolean logar(String login, String senha) throws SQLException, ClassNotFoundException {
-
+    
   try{
 
       ArrayList<Usuario> usuarios = dao.pegarUsuariosDAO();
@@ -27,10 +29,10 @@ public boolean logar(String login, String senha) throws SQLException, ClassNotFo
           }    
       }
 
-      System.out.println("Usuário ou senha incorretos.");
+      LOGGER.warn("Usuário ou senha incorretos.");
       return false;
   }catch (NullPointerException e){
-      System.err.println("Erro! "+ e);
+      LOGGER.error("Erro! \nDetalhes:"+ e);
       return false;
   }
 }
