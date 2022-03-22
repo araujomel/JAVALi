@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import javali.Controle.ControleLivro;
 import javali.Controle.ControlePedidos;
+import javali.Modelo.Excecao.ExcecaoLivroIndisponivelVenda;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -92,13 +94,10 @@ public class TelaPedidos {
             boolean flagLeituraCompra = false;
             // verdadeiro significa compra e falso leitura
             if(resposta == 1){
-                if(controleLivro.controleLivroDisponivelCompra(idLivro))
-                    flagLeituraCompra = true;
-                else{
-                    System.out.println("Ops, este livro não está a venda!");
-                    telaFazerPedidoLivro();
-                }
-            }else if(resposta == 2){
+                flagLeituraCompra = controleLivro.controleLivroDisponivelCompra(idLivro);
+                
+            }   
+            else if(resposta == 2){
                 if(controleLivro.controleLivroDisponivelLeitura(idLivro))
                     flagLeituraCompra = false;
                 else{
@@ -111,10 +110,12 @@ public class TelaPedidos {
             }
             controlePedidos.controleFazerPedidoLivro(idLivro, mesaCliente, flagLeituraCompra);
             System.out.println("Pedido realizado com sucesso!");
-        }
-        catch (NumberFormatException e){
+        }catch (NumberFormatException e){
             System.err.println("Erro, digite um número!"+e);
+        }catch(ExcecaoLivroIndisponivelVenda eliv){
+            eliv.getMenssagem();
         }
+    
         scanner.close();
     }
 

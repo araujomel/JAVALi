@@ -1,6 +1,7 @@
 package javali.Controle;
 
 import javali.Modelo.Livro;
+import javali.Modelo.Excecao.ExcecaoLivroIndisponivelVenda;
 import javali.Modelo.Persistencia.LivroDAO;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -32,7 +33,7 @@ public class ControleLivro {
         dao.pegarLivrosLeituraDAO();
     }
 
-    public boolean controleLivroDisponivelCompra(int idLivro) throws ClassNotFoundException, SQLException{
+    public boolean controleLivroDisponivelCompra(int idLivro) throws ClassNotFoundException, SQLException, ExcecaoLivroIndisponivelVenda{
         if(dao.verificarDisponibilidadeCompraDAO(idLivro))
             return true;
         else   

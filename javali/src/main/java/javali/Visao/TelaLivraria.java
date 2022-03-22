@@ -45,7 +45,7 @@ public class TelaLivraria {
                 System.err.println("Erro, digite um número!"+e);
             }
         }while(loop);
-        scan.close();
+        //scan.close();
 
     }
     public static void telaListarLivros() throws IOException, ClassNotFoundException, SQLException{
@@ -89,7 +89,6 @@ public class TelaLivraria {
             }catch (NumberFormatException e){
                 System.err.println("Erro, digite um número!"+e);
             }
-        scanner.close();
     }
 
 }

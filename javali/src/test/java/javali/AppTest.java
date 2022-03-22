@@ -11,6 +11,7 @@ import javali.Controle.ControleCliente;
 import javali.Controle.ControleFuncionario;
 import javali.Controle.ControleLivro;
 import javali.Controle.ControleUsuario;
+import javali.Modelo.Excecao.ExcecaoLivroIndisponivelVenda;
 
 /**
  * Unit test for simple App.
@@ -85,16 +86,16 @@ class AppTest {
 	  } 
 
     @Test
-    public void disponivelCompraTest1() throws ClassNotFoundException, SQLException{
+    public void disponivelCompraTest1() throws ClassNotFoundException, SQLException, ExcecaoLivroIndisponivelVenda{
       // LIVRO DISPONÍVEL PARA COMPRA
       ControleLivro controleLivro = new ControleLivro();
-      assert(controleLivro.controleLivroDisponivelCompra(54) == true);
+      assert(controleLivro.controleLivroDisponivelCompra(44) == true);
 	  } 
 
     @Test
-    public void disponivelCompraTest2() throws ClassNotFoundException, SQLException{
+    public void disponivelCompraTest2() throws ClassNotFoundException, SQLException, ExcecaoLivroIndisponivelVenda{
       // LIVRO NÃO DISPONÍVEL PARA COMPRA
       ControleLivro controleLivro = new ControleLivro();
-      assert(controleLivro.controleLivroDisponivelCompra(4) == false);
+      assert(controleLivro.controleLivroDisponivelCompra(54) == false);
 	  } 
 }

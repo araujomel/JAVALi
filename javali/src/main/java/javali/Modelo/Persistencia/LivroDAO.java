@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import javali.Modelo.Livro;
+import javali.Modelo.Excecao.ExcecaoLivroIndisponivelVenda;
 import javali.Visao.TelaFuncionario;
 import java.sql.Statement;
 
@@ -65,15 +66,18 @@ public class LivroDAO {
       
       }
 
-      public boolean verificarDisponibilidadeCompraDAO(int idLivro) throws SQLException, ClassNotFoundException{
+      public boolean verificarDisponibilidadeCompraDAO(int idLivro) throws SQLException, ClassNotFoundException, ExcecaoLivroIndisponivelVenda{
             PreparedStatement ps = BancoDeDados.criarPreparedStatement("SELECT disponivel_venda FROM Livro WHERE idLivro ="+idLivro);
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
                 if(rs.getBoolean(1))
-                return true;
+                    return true;
+                    
             }
-         return false;
+
+            throw new ExcecaoLivroIndisponivelVenda();
+            
       }
 
       public boolean verificarDisponibilidadeLeituraDAO(int idLivro) throws SQLException, ClassNotFoundException{
