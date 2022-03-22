@@ -14,13 +14,8 @@ public class ControleCliente {
   }
 
 
-    public void inserirCodigoEstudante() throws ClassNotFoundException, SQLException{
-        Scanner scan = new Scanner(System.in); 
-
-        String codigo = scan.nextLine();
-        dao.validarCodigo(codigo);
-        System.out.println("Código lido.");
-
+    public boolean inserirCodigoEstudante(String codigo) throws ClassNotFoundException, SQLException{
+        return dao.validarCodigo(codigo);
     }
     
 }

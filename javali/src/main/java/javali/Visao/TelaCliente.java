@@ -59,8 +59,14 @@ public class TelaCliente {
 
     public static void telaInserirCodigo() throws IOException, ClassNotFoundException, SQLException{
         System.out.println("Peça a algum funcionário o código de estudante e insira a seguir.");
+        Scanner scan = new Scanner(System.in); 
+
+        String codigo = scan.nextLine();
         ControleCliente controleCliente = new ControleCliente();
-        controleCliente.inserirCodigoEstudante();
+        if(controleCliente.inserirCodigoEstudante(codigo)){
+            System.out.println("Código lido.");
+        }
+        
         paginaInicialCliente();
     }
 

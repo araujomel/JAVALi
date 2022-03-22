@@ -93,7 +93,9 @@ public class FuncionarioDAO {
             while(rs.next()){ 
                  funcao = rs.getString(1);
             }
-            if(funcao.equals("GERENTE"))  
+            if(funcao == null){
+                return false;
+            } else if(funcao.equals("GERENTE"))  
                 return true;
         }catch(SQLException sqlException){
             System.err.println("Got an exception!");
