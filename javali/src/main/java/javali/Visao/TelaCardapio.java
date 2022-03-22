@@ -27,10 +27,7 @@ public class TelaCardapio {
                     case 2:
                         telaMostrarCardapioComidas();
                         break;
-                    case 3:
-                        System.out.println("Em construção ");
-                        break;
-                    case 4: 
+                    case 3: 
                         TelaCliente.paginaInicialCliente();
                         break;
                     default:
@@ -50,8 +47,7 @@ public class TelaCardapio {
       System.out.println("=============================");
       System.out.println("1 - Bebidas");
       System.out.println("2 - Comidas");
-      System.out.println("3 - Fazer um pedido");
-      System.out.println("4 - Voltar");
+      System.out.println("3 - Voltar");
     }
 
     public static void telaMostrarCardapioComidas() throws IOException, ClassNotFoundException, SQLException{

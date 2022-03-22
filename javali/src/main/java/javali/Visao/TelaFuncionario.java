@@ -29,7 +29,7 @@ public class TelaFuncionario {
 
                     case 1:
                         System.out.println("O que deseja cadastrar?");
-                        System.out.println("1 - Bebida \n2 - Comida\n3 - Livro");
+                        System.out.println("1 - Bebida \n2 - Comida\n3 - Livro\n4 - Voltar");
                         op = Integer.parseInt(scanf.next());
                         if (op==1)
                         telaCadastrarBebida();
@@ -37,6 +37,8 @@ public class TelaFuncionario {
                             telaCadastrarComida();
                         else if(op==3)
                             telaCadastrarLivro();
+                        else if(op==4)
+                            paginaInicialFuncionario();
                         else{
                             System.out.println("Opção inválida! Tente novamente.");
                             paginaInicialFuncionario();}
@@ -53,7 +55,7 @@ public class TelaFuncionario {
                         break;
                     case 5:
                         System.out.println("O que deseja atualizar?");
-                        System.out.println("1 - Bebida \n2 - Comida\n3 - Livro");
+                        System.out.println("1 - Bebida \n2 - Comida\n3 - Livro\n4 - Voltar");
                         op = Integer.parseInt(scanf.next());
                         if (op==1)
                             telaAtualizarEstoqueBebida();
@@ -61,6 +63,8 @@ public class TelaFuncionario {
                             telaAtualizarEstoqueComida();
                         else if(op==3)
                             telaAtualizarEstoqueLivro();
+                        else if(op==4)
+                            paginaInicialFuncionario();
                         else{
                             System.out.println("Opção inválida! Tente novamente.");
                             paginaInicialFuncionario();}
@@ -251,7 +255,7 @@ public class TelaFuncionario {
         ControlePedidos controlePedidos = new ControlePedidos();
         System.out.println("-----FILA DE PEDIDOS-----");
         System.out.println("Informe o código correspondente:");
-        System.out.println("1 - Bebida \n2 - Comida\n3 - Livro");
+        System.out.println("1 - Bebida \n2 - Comida\n3 - Livro\n4 - Voltar");
         try{
         int codigo = Integer.parseInt(scanf.nextLine());
         switch(codigo){
@@ -267,6 +271,9 @@ public class TelaFuncionario {
                 controlePedidos.controlePegarFilaDePedidos(codigo);
                 esconderPedidoLivro();
             break;
+            case 4:
+                paginaInicialFuncionario();
+                break;
         }
 
         }catch(NumberFormatException e){
