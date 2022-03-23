@@ -84,6 +84,7 @@ public class TelaCardapio {
             }catch (NumberFormatException e){
                 System.err.println("Erro, digite um número!"+e);
             }
+        scanner.close();
     }
 
     public static void telaCardapioPedidoComida() throws IOException, ClassNotFoundException, SQLException{
@@ -107,6 +108,8 @@ public class TelaCardapio {
             }catch (NumberFormatException e){
                 System.err.println("Erro, digite um número!"+e);
             }
+        scanner.close();
     }
+
     
 }

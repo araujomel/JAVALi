@@ -124,6 +124,7 @@ public class TelaPedidos {
             System.out.println("Este livro está indisponivel para leitura!");
             
         }
+        scanner.close();
         
         
     }

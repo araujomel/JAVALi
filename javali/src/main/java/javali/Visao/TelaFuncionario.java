@@ -285,7 +285,7 @@ public class TelaFuncionario {
             paginaInicialFuncionario();
         }
 
-
+        scanf.close();
     }
 
     public static void esconderPedidoBebida() throws ClassNotFoundException, SQLException, IOException{
@@ -297,15 +297,17 @@ public class TelaFuncionario {
         switch(codigo){
             case 1:
                 TelaPedidos.telaEsconderPedidoBebida();
-            break;
+                break;
             case 2:
-            break;
+                telaAbrirFilaDePedidos();
+                break;
         }
 
         }catch(NumberFormatException e){
             System.err.println("Erro, digite um número! "+e);
             paginaInicialFuncionario();
         }
+        scanf.close();
     }
 
     public static void esconderPedidoComida() throws ClassNotFoundException, SQLException, IOException{
@@ -319,6 +321,7 @@ public class TelaFuncionario {
                 TelaPedidos.telaEsconderPedidoComida();
             break;
             case 2:
+                telaAbrirFilaDePedidos();
             break;
         }
 
@@ -326,6 +329,8 @@ public class TelaFuncionario {
             System.err.println("Erro, digite um número! "+e);
             paginaInicialFuncionario();
         }
+
+        scanf.close();
     }
 
     public static void esconderPedidoLivro() throws ClassNotFoundException, SQLException, IOException{
@@ -339,6 +344,7 @@ public class TelaFuncionario {
                 TelaPedidos.telaEsconderPedidoLivro();
             break;
             case 2:
+                telaAbrirFilaDePedidos();
             break;
         }
 
@@ -346,6 +352,8 @@ public class TelaFuncionario {
             System.err.println("Erro, digite um número! "+e);
             paginaInicialFuncionario();
         }
+
+        scanf.close();
     }
 
     public static void telaAtualizarEstoqueBebida() throws IOException, SQLException, ClassNotFoundException{

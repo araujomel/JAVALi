@@ -88,6 +88,7 @@ public class TelaLivraria {
             }catch (NumberFormatException e){
                 System.err.println("Erro, digite um número!"+e);
             }
+        scanner.close();
     }
 
 }
