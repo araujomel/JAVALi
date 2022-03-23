@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 
 import javali.Modelo.Livro;
 import javali.Modelo.Excecao.ExcecaoLivroIndisponivelVenda;
+import javali.Modelo.Excecao.ExecaoLivroIndisponivelLeitura;
 import javali.Visao.TelaFuncionario;
 import java.sql.Statement;
 
@@ -53,8 +54,8 @@ public class LivroDAO {
             for(int i = 0; i < livros.size(); i++){
                 if(livros.get(i).getDisponivel_venda()){
                     System.out.println(livros.get(i).getIdLivro()+" - "+livros.get(i).getTitulo()+"        "+livros.get(i).getAutor()+
-                    "            R$ "+ livros.get(i).getPreco() +
-                    "\n------------------------------------------");
+                    "\nPREÇO NORMAL: R$ "+ livros.get(i).getPreco() +"\nPREÇO ESTUDANTE: R$ "+(livros.get(i).getPreco())/2
+                    +"\n------------------------------------------");
                 } else{
                     System.out.println(livros.get(i).getIdLivro()+" - "+livros.get(i).getTitulo()+"        "+livros.get(i).getAutor()+
                     "\n------------------------------------------");
@@ -80,7 +81,7 @@ public class LivroDAO {
             
       }
 
-      public boolean verificarDisponibilidadeLeituraDAO(int idLivro) throws SQLException, ClassNotFoundException{
+      public boolean verificarDisponibilidadeLeituraDAO(int idLivro) throws SQLException, ClassNotFoundException, ExecaoLivroIndisponivelLeitura{
         PreparedStatement ps = BancoDeDados.criarPreparedStatement("SELECT disponivel_leitura FROM Livro WHERE idLivro ="+idLivro);
         ResultSet rs = ps.executeQuery();
 
@@ -88,7 +89,7 @@ public class LivroDAO {
             if(rs.getBoolean(1))
             return true;
         }
-     return false;
+        throw new ExecaoLivroIndisponivelLeitura();
   }
 
       public void pegarLivrosDAO() throws SQLException, ClassNotFoundException, IOException {

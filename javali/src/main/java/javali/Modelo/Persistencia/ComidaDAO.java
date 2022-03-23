@@ -55,8 +55,8 @@ public class ComidaDAO {
         System.out.println("-------------- COMIDAS ----------------");
 
         for(int i = 0; i < comidas.size(); i++){
-            System.out.println(comidas.get(i).getIdComida() +" - " +comidas.get(i).getNome()+"        "+comidas.get(i).getDescricao()+"\nPreço: R$ "+ comidas.get(i).getPreco()
-            +"\n-----------------------------------------");
+            System.out.println(comidas.get(i).getIdComida() +" - " +comidas.get(i).getNome()+"        "+comidas.get(i).getDescricao()+"\nPREÇO NORMAL: R$ "+ comidas.get(i).getPreco()
+            +"\nPREÇO ESTUDANTE: R$ "+(comidas.get(i).getPreco())/2+"\n-----------------------------------------");
         }
     }catch (NullPointerException e){
         System.err.println("Erro! "+ e);

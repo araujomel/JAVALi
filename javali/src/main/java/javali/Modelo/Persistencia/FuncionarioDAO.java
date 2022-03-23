@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import javali.Modelo.Funcionario;
+import javali.Modelo.Excecao.ExcecaoUsuarioInvalido;
 import javali.Modelo.FuncaoFuncionario;
 import javali.Visao.TelaFuncionario;
 import java.sql.Statement;
@@ -94,7 +95,7 @@ public class FuncionarioDAO {
                  funcao = rs.getString(1);
             }
             if(funcao == null){
-                return false;
+                return false; // adicionar um logger
             } else if(funcao.equals("GERENTE"))  
                 return true;
         }catch(SQLException sqlException){

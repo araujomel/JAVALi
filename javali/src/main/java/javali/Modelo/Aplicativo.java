@@ -1,7 +1,6 @@
 package javali.Modelo;
 
 
-import java.util.Scanner;
 
 import javali.Visao.TelaAplicativo;
 

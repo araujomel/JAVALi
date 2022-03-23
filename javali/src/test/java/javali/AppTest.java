@@ -12,6 +12,8 @@ import javali.Controle.ControleFuncionario;
 import javali.Controle.ControleLivro;
 import javali.Controle.ControleUsuario;
 import javali.Modelo.Excecao.ExcecaoLivroIndisponivelVenda;
+import javali.Modelo.Excecao.ExcecaoUsuarioInvalido;
+import javali.Modelo.Excecao.ExecaoLivroIndisponivelLeitura;
 
 /**
  * Unit test for simple App.
@@ -21,16 +23,17 @@ class AppTest {
      * Rigorous Test.
      * @throws SQLException
      * @throws ClassNotFoundException
+     * @throws ExcecaoUsuarioInvalido
      */
     @Test
-    public void logarTest1() throws ClassNotFoundException, SQLException{
+    public void logarTest1() throws ClassNotFoundException, SQLException, ExcecaoUsuarioInvalido{
         // LOGIN VÁLIDO
 		    ControleUsuario controleUsuario = new ControleUsuario();
         assert(controleUsuario.controleRealizarLogin("admin", "123") == true);
 	  }
 
     @Test
-    public void logarTest2() throws ClassNotFoundException, SQLException{
+    public void logarTest2() throws ClassNotFoundException, SQLException, ExcecaoUsuarioInvalido{
       // LOGIN INVÁLIDO
       ControleUsuario controleUsuario = new ControleUsuario();
       assert(controleUsuario.controleRealizarLogin("melissa", "123") == false);
@@ -72,14 +75,14 @@ class AppTest {
 	  } 
 
     @Test
-    public void disponivelLeituraTest1() throws ClassNotFoundException, SQLException{
+    public void disponivelLeituraTest1() throws ClassNotFoundException, SQLException, ExecaoLivroIndisponivelLeitura{
       // LIVRO DISPONÍVEL PARA LEITURA
       ControleLivro controleLivro = new ControleLivro();
       assert(controleLivro.controleLivroDisponivelLeitura(4) == true);
 	  } 
 
     @Test
-    public void disponivelLeituraTest2() throws ClassNotFoundException, SQLException{
+    public void disponivelLeituraTest2() throws ClassNotFoundException, SQLException, ExecaoLivroIndisponivelLeitura{
       // LIVRO NÃO DISPONÍVEL PARA LEITURA
       ControleLivro controleLivro = new ControleLivro();
       assert(controleLivro.controleLivroDisponivelLeitura(54) == false);

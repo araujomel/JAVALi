@@ -5,6 +5,7 @@ import java.util.Scanner;
 import javali.Controle.ControleLivro;
 import javali.Controle.ControlePedidos;
 import javali.Modelo.Excecao.ExcecaoLivroIndisponivelVenda;
+import javali.Modelo.Excecao.ExecaoLivroIndisponivelLeitura;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -105,12 +106,7 @@ public class TelaPedidos {
                     flagLeituraCompra = controleLivro.controleLivroDisponivelCompra(idLivro);
                 break;
                 case 2:
-                    if(controleLivro.controleLivroDisponivelLeitura(idLivro))
-                        flagLeituraCompra = false;
-                    else{
-                    System.out.println("Ops, este livro não está disponível para leitura!");
-                    telaFazerPedidoLivro();
-                    }
+                    flagLeituraCompra = controleLivro.controleLivroDisponivelLeitura(idLivro);
                 break;
                 default:
                     telaFazerPedidoLivro();
@@ -121,7 +117,12 @@ public class TelaPedidos {
         }catch (NumberFormatException e){
             System.err.println("Erro, digite um número!"+e);
         }catch(ExcecaoLivroIndisponivelVenda eliv){
-            LOGGER.error("Este livro está indisponível para venda\nDetalhes: "+eliv);
+            LOGGER.error("Erro!\nDetalhes: "+eliv);
+            System.out.println("Este livro está indisponivel para venda!");   
+        }catch(ExecaoLivroIndisponivelLeitura elil){
+            LOGGER.error("Erro!\nDetalhes: "+elil);
+            System.out.println("Este livro está indisponivel para leitura!");
+            
         }
         
         

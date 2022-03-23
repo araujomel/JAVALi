@@ -8,6 +8,7 @@ import java.sql.Statement;
 import javali.Controle.ControleUsuario;
 import javali.Modelo.FuncaoFuncionario;
 import javali.Modelo.Funcionario;
+import javali.Modelo.Excecao.ExcecaoUsuarioInvalido;
 import javali.Modelo.Persistencia.*;
 import org.apache.log4j.Logger;
 
@@ -18,23 +19,28 @@ public class TelaAplicativo {
     public static void telaInicial() throws IOException, SQLException, ClassNotFoundException{
 
         ControleUsuario controleUsuario = new ControleUsuario();
-        
+        Scanner scan = new Scanner(System.in);
+        boolean loop = true;
+        do{
         System.out.println("           JAVA Li           ");
         System.out.println("=============================");
-        Scanner scan = new Scanner(System.in);
         System.out.println("Login:");
         String login = scan.next();
         System.out.println("Senha:");
         String senha = scan.next();
-    
-        if(controleUsuario.controleRealizarLogin(login, senha)){
+        try{
+        if(controleUsuario.controleRealizarLogin(login, senha))
             telaEscolheTipoDeUsuario();
-        }else{
-            LOGGER.warn("Usuário ou senha incorretos.");
-            telaInicial();
+        }catch(ExcecaoUsuarioInvalido eui){
+            LOGGER.error("Erro!\nDetalhes: "+eui);
+            System.out.println("Usuário ou senha incorretos");
         }
-        scan.close();
-  }
+    }while(loop);
+    scan.close();
+}
+
+        
+  
       public static void telaEscolheTipoDeUsuario() throws IOException, SQLException, ClassNotFoundException{
 
         Scanner scanTipoUsuario = new Scanner(System.in);

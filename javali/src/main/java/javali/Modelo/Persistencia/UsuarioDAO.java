@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javali.Modelo.Usuario;
+import javali.Modelo.Excecao.ExcecaoUsuarioInvalido;
 
 public class UsuarioDAO {
 
@@ -24,7 +25,7 @@ public class UsuarioDAO {
 
 
     // alternativa de login 
-    public boolean validarUsuarioDAO(String login, String senha) throws ClassNotFoundException, SQLException{
+    public boolean validarUsuarioDAO(String login, String senha) throws ClassNotFoundException, SQLException, ExcecaoUsuarioInvalido{
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
         ResultSet rs = null;
@@ -42,7 +43,8 @@ public class UsuarioDAO {
             System.err.println("Got an exception!");
             System.err.println(sqlException.getMessage());
         }
-        return false;
+        throw new ExcecaoUsuarioInvalido();
+        
 
     }
 
