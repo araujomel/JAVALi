@@ -112,6 +112,7 @@ public class TelaFuncionario {
                 String descricao = scanFuncionario.nextLine();
 
                 controleBebida.controleCadastrarBebida(nome, descricao, quantidade, precoMedio, precoGrande);
+                TelaFuncionario.paginaInicialFuncionario();
             }catch(NumberFormatException e){
                 LOGGER.error("Erro!\nDetalhes: "+e);
                 System.out.println("Digite um número!");
@@ -136,11 +137,11 @@ public class TelaFuncionario {
                 scanFunc.nextLine();
                 System.out.println("Digite a descrição da comida:");
                 String descricao = scanFunc.nextLine();
-                System.out.println("______________________________");
-                System.out.println(nome);
-                System.out.println(descricao);
+            
             
             controleComida.controleCadastrarComida(nome, descricao, quantidade, preco);
+            TelaFuncionario.paginaInicialFuncionario();
+
             }catch(NumberFormatException e){
                 LOGGER.error("Erro!\nDetalhes: "+e);
                 System.out.println("Digite um número!");
@@ -183,6 +184,7 @@ public class TelaFuncionario {
                 scanFunci.nextLine();
                 
                 controleLivro.controleCadastrarLivro(titulo, autor, quantidade, disponivel_venda, preco, disponivel_leitura);
+                TelaFuncionario.paginaInicialFuncionario();
                 
             }catch(NumberFormatException e){
                 LOGGER.error("Erro!\nDetalhes: "+e);

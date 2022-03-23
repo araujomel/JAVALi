@@ -38,7 +38,7 @@ public class LivroDAO {
             LOGGER.info("Livro cadastrado com sucesso!");
             con.close();
             st.close();
-            TelaFuncionario.paginaInicialFuncionario();
+            
 
         }catch(SQLException sqlException){
             System.out.println("Ocorreu um erro ao adicionar o livro ao banco de dados.");

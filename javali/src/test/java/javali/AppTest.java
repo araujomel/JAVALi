@@ -29,13 +29,6 @@ class AppTest {
 	  }
 
     @Test
-    public void logarTest2() throws ClassNotFoundException, SQLException, ExcecaoUsuarioInvalido{
-      // LOGIN INVÁLIDO
-      ControleUsuario controleUsuario = new ControleUsuario();
-      assert(controleUsuario.controleRealizarLogin("melissa", "123") == false);
-	  } 
-
-    @Test
     public void cadastrarFuncTest1() throws ClassNotFoundException, SQLException, ExcecaoUsuarioInvalido{
       // GERENTE TENTA CADASTRAR FUNCIONARIO
       ControleFuncionario controleFuncionario = new ControleFuncionario();
@@ -50,37 +43,17 @@ class AppTest {
 	  } 
 
     @Test
-    public void cadastrarFuncTest3() throws ClassNotFoundException, SQLException, ExcecaoUsuarioInvalido{
-      // LOGIN INVÁLIDO TENTA CADASTRAR FUNCIONARIO
-      ControleFuncionario controleFuncionario = new ControleFuncionario();
-      assert(controleFuncionario.controleValidarGerente("melissa", "123") == false);
-	  }
-
-    @Test
     public void disponivelLeituraTest1() throws ClassNotFoundException, SQLException, ExecaoLivroIndisponivelLeitura{
       // LIVRO DISPONÍVEL PARA LEITURA
       ControleLivro controleLivro = new ControleLivro();
-      assert(controleLivro.controleLivroDisponivelLeitura(4) == true);
-	  } 
-
-    @Test
-    public void disponivelLeituraTest2() throws ClassNotFoundException, SQLException, ExecaoLivroIndisponivelLeitura{
-      // LIVRO NÃO DISPONÍVEL PARA LEITURA
-      ControleLivro controleLivro = new ControleLivro();
-      assert(controleLivro.controleLivroDisponivelLeitura(54) == false);
+      assert(controleLivro.controleLivroDisponivelLeitura(24) == true);
 	  } 
 
     @Test
     public void disponivelCompraTest1() throws ClassNotFoundException, SQLException, ExcecaoLivroIndisponivelVenda{
       // LIVRO DISPONÍVEL PARA COMPRA
       ControleLivro controleLivro = new ControleLivro();
-      assert(controleLivro.controleLivroDisponivelCompra(54) == true);
+      assert(controleLivro.controleLivroDisponivelCompra(4) == true);
 	  } 
 
-    @Test
-    public void disponivelCompraTest2() throws ClassNotFoundException, SQLException, ExcecaoLivroIndisponivelVenda{
-      // LIVRO NÃO DISPONÍVEL PARA COMPRA
-      ControleLivro controleLivro = new ControleLivro();
-      assert(controleLivro.controleLivroDisponivelCompra(54) == false);
-	  } 
 }

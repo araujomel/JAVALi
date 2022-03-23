@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 
 public class ComidaDAO implements ProdutoDAO {
 
-    private static final Logger LOGGER = Logger.getLogger("javali.Modelo.Persistencia");
+  private static final Logger LOGGER = Logger.getLogger("javali.Modelo.Persistencia");
 
   public void cadastrarComidaDAO(Comida comida) throws SQLException, ClassNotFoundException{
       
@@ -31,10 +31,10 @@ public class ComidaDAO implements ProdutoDAO {
            
            st.executeUpdate();
 
-           LOGGER.info("Comida cadastrada com sucesso!");
+           System.out.println("Comida cadastrada com sucesso!");
            con.close();
            st.close();
-           TelaFuncionario.paginaInicialFuncionario();
+           
           
         }catch(SQLException sqlException){
             System.out.println("Ocorreu um erro ao tentar adicionar a comida ao banco de dados.");

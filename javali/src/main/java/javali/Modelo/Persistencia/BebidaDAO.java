@@ -28,7 +28,7 @@ public class BebidaDAO implements ProdutoDAO{
            System.out.println("Bebida cadastrada com sucesso!");
            con.close();
            st.close();
-           TelaFuncionario.paginaInicialFuncionario();
+           
 
         }catch(SQLException sqlException){
             System.out.println("Ocorreu um erro ao tentar adicionar a bebida ao banco de dados.!");
