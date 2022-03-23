@@ -1,7 +1,5 @@
 package javali.Modelo.Persistencia;
 
-
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,7 +16,7 @@ public class BebidaDAO implements ProdutoDAO{
     private static final Logger LOGGER = Logger.getLogger("javali.Modelo.Persistencia");
 
     
-    public void cadastrarBebidaDAO(Bebida bebida) throws ClassNotFoundException, IOException, SQLException{
+    public void cadastrarBebidaDAO(Bebida bebida) throws ClassNotFoundException, SQLException{
         
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
@@ -33,7 +31,8 @@ public class BebidaDAO implements ProdutoDAO{
            TelaFuncionario.paginaInicialFuncionario();
 
         }catch(SQLException sqlException){
-            LOGGER.error("Ocorreu um erro ao tentar adicionar a bebida ao banco de dados.\nDetalhes:" + sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao tentar adicionar a bebida ao banco de dados.!");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         } finally{
             con.close();
             st.close();
@@ -57,7 +56,8 @@ public class BebidaDAO implements ProdutoDAO{
                 (bebidas.get(i).getPrecoMedio())/2 + "   Grande: R$ "+(bebidas.get(i).getPrecoGrande())/2+"\n-----------------------------------------");
             }
         }catch (SQLException sqlException){
-            LOGGER.error("Ocorreu um erro ao tentar recuperar os dados da bebida no banco de dados.\nDetalhes:" + sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao tentar recuperar os dados da bebida no banco de dados!");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }
     
     }
@@ -76,7 +76,7 @@ public class BebidaDAO implements ProdutoDAO{
 }
     
     @Override
-    public void atualizarEstoqueProdutosDAO(int idProduto, int quantidade) throws ClassNotFoundException, SQLException, IOException{
+    public void atualizarEstoqueProdutosDAO(int idProduto, int quantidade) throws ClassNotFoundException, SQLException{
         try{
             Connection con = BancoDeDados.getConexao();
             Statement st = con.createStatement();
@@ -85,7 +85,8 @@ public class BebidaDAO implements ProdutoDAO{
             TelaFuncionario.paginaInicialFuncionario();
             
         }catch (SQLException sqlException){
-            LOGGER.error("Ocorreu um erro ao tentar atualizar os dados da bebida no banco de dados.\nDetalhes:" + sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao tentar atualizar os dados da bebida no banco de dados.");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }
     }
 

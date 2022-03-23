@@ -1,9 +1,4 @@
 package javali.Controle;
-
-import java.io.IOException;
-import org.apache.commons.lang3.RandomStringUtils;
-
-
 import javali.Modelo.FuncaoFuncionario;
 import javali.Modelo.Funcionario;
 import javali.Modelo.Excecao.ExcecaoUsuarioInvalido;
@@ -21,14 +16,8 @@ public class ControleFuncionario {
       dao = new FuncionarioDAO();
   }
 
-    public String gerarCodigoEstudante() throws ClassNotFoundException, SQLException{
-        String codigo = RandomStringUtils.randomAlphanumeric(15).toUpperCase();
-        dao.registrarCodigoDAO(codigo);
-        return codigo;
-    }
-
     public void controleCadastrarFuncionario(String nome, String login, String senha, FuncaoFuncionario funcao)
-    throws IOException, SQLException, ClassNotFoundException{
+    throws SQLException, ClassNotFoundException{
 
       Funcionario funcionario = new Funcionario(nome, funcao, login, senha);
       dao.cadastrarFuncionarioDAO(funcionario);
@@ -39,6 +28,10 @@ public class ControleFuncionario {
           return true;
         else
           return false;
+    }
+
+    public void cadastrarMesaControle(int numMesa) throws ClassNotFoundException, SQLException{
+      dao.cadastrarMesaDAO(numMesa);
     }
    
 }

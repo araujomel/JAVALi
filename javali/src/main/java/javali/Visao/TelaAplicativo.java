@@ -1,5 +1,4 @@
 package javali.Visao;
-import java.io.IOException;
 import java.util.Scanner;
 import java.sql.SQLException;
 
@@ -11,7 +10,7 @@ public class TelaAplicativo {
 
     private static final Logger LOGGER = Logger.getLogger("javali.Visao");
     
-    public static void telaInicial() throws IOException, SQLException, ClassNotFoundException{
+    public static void telaInicial() throws SQLException, ClassNotFoundException{
 
         ControleUsuario controleUsuario = new ControleUsuario();
         Scanner scan = new Scanner(System.in);
@@ -27,8 +26,7 @@ public class TelaAplicativo {
         if(controleUsuario.controleRealizarLogin(login, senha))
             telaEscolheTipoDeUsuario();
         }catch(ExcecaoUsuarioInvalido eui){
-            LOGGER.error("Erro!\nDetalhes: "+eui);
-            System.out.println("Usuário ou senha incorretos");
+            LOGGER.error("Erro! Usuário ou senha incorretos. \nDetalhes: "+eui);
         }
     }while(loop);
     scan.close();
@@ -36,7 +34,7 @@ public class TelaAplicativo {
 
         
   
-      public static void telaEscolheTipoDeUsuario() throws IOException, SQLException, ClassNotFoundException{
+      public static void telaEscolheTipoDeUsuario() throws SQLException, ClassNotFoundException{
 
         Scanner scanTipoUsuario = new Scanner(System.in);
         boolean loop = true;
@@ -65,7 +63,8 @@ public class TelaAplicativo {
                 }
             loop = false;
             }catch(NumberFormatException e){
-                LOGGER.error("Erro, digite um número!\nDetalhes: "+e);
+                LOGGER.error("Erro!\nDetalhes: "+e);
+                System.out.println("Digite um número!");
             }
         }while(loop);
 

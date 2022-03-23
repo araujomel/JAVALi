@@ -1,7 +1,4 @@
 package javali.Modelo.Persistencia;
-
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 import java.sql.Connection;
@@ -20,7 +17,7 @@ public class LivroDAO {
 
     private static final Logger LOGGER = Logger.getLogger("javali.Modelo.Persistencia");
 
-    public void cadastrarLivroDAO(Livro livro) throws IOException, SQLException, ClassNotFoundException{
+    public void cadastrarLivroDAO(Livro livro) throws SQLException, ClassNotFoundException{
 
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
@@ -44,7 +41,8 @@ public class LivroDAO {
             TelaFuncionario.paginaInicialFuncionario();
 
         }catch(SQLException sqlException){
-            LOGGER.error("Ocorreu um erro ao adicionar o livro ao banco de dados.\nDetalhes: "+ sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao adicionar o livro ao banco de dados.");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }
         
       
@@ -65,6 +63,7 @@ public class LivroDAO {
                 }
             }
         }catch (NullPointerException e){
+            System.out.println("Ocorreu um erro no banco de dados!");
             LOGGER.error("Erro!\nDetalhes: "+ e);
         }
       
@@ -95,7 +94,7 @@ public class LivroDAO {
         throw new ExecaoLivroIndisponivelLeitura();
   }
 
-      public void pegarLivrosDAO() throws SQLException, ClassNotFoundException, IOException {
+      public void pegarLivrosDAO() throws SQLException, ClassNotFoundException {
 
         PreparedStatement ps = BancoDeDados.criarPreparedStatement("SELECT * FROM Livro");
         ResultSet rs = ps.executeQuery();
@@ -108,7 +107,7 @@ public class LivroDAO {
         mostrarLivrosDAO(livros);
     }
 
-    public void pegarLivrosCompraDAO() throws SQLException, ClassNotFoundException, IOException {
+    public void pegarLivrosCompraDAO() throws SQLException, ClassNotFoundException {
         PreparedStatement ps = BancoDeDados.criarPreparedStatement("SELECT * FROM Livro WHERE disponivel_venda = 1");
     
         ResultSet rs = ps.executeQuery();
@@ -121,7 +120,7 @@ public class LivroDAO {
         mostrarLivrosDAO(livros);
     }
 
-    public void pegarLivrosLeituraDAO() throws SQLException, ClassNotFoundException, IOException {
+    public void pegarLivrosLeituraDAO() throws SQLException, ClassNotFoundException {
         PreparedStatement ps = BancoDeDados.criarPreparedStatement("SELECT * FROM Livro WHERE disponivel_leitura = 1");
     
         ResultSet rs = ps.executeQuery();
@@ -134,14 +133,15 @@ public class LivroDAO {
         mostrarLivrosDAO(livros);
     }
 
-    public void atualizarEstoqueLivroDAO(int idLivro, int quantidade) throws ClassNotFoundException, SQLException, IOException{
+    public void atualizarEstoqueLivroDAO(int idLivro, int quantidade) throws ClassNotFoundException, SQLException{
         try{
             Connection con = BancoDeDados.getConexao();
             Statement st = con.createStatement(); 
             st.executeUpdate("UPDATE Livro SET quantidade = quantidade +"+quantidade+" WHERE idLivro ="+ idLivro);
             TelaFuncionario.paginaInicialFuncionario();
         }catch(SQLException sqlException){
-            LOGGER.error("Ocorreu um erro ao atualizar o estoque do livro no banco de dados.\nDetalhes: "+ sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao atualizar o estoque do livro no banco de dados.");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }
     }
     

@@ -4,7 +4,6 @@ import javali.Modelo.Livro;
 import javali.Modelo.Excecao.ExcecaoLivroIndisponivelVenda;
 import javali.Modelo.Excecao.ExecaoLivroIndisponivelLeitura;
 import javali.Modelo.Persistencia.LivroDAO;
-import java.io.IOException;
 import java.sql.SQLException;
 
 public class ControleLivro {
@@ -15,22 +14,22 @@ public class ControleLivro {
         dao = new LivroDAO();
     }
 
-    public void controleCadastrarLivro (String titulo, String autor, int quantidade, boolean disponivel_venda, float preco, boolean disponivel_leitura) throws IOException, SQLException, ClassNotFoundException{
+    public void controleCadastrarLivro (String titulo, String autor, int quantidade, boolean disponivel_venda, float preco, boolean disponivel_leitura) throws SQLException, ClassNotFoundException{
         
         Livro livro = new Livro(0,titulo, autor, quantidade, disponivel_venda, preco, disponivel_leitura);
         dao.cadastrarLivroDAO(livro);
         
     }
 
-    public void controleMostrarLivros() throws IOException, ClassNotFoundException, SQLException{
+    public void controleMostrarLivros() throws ClassNotFoundException, SQLException{
         dao.pegarLivrosDAO();
     }
 
-    public void controleMostrarLivrosCompra() throws IOException, ClassNotFoundException, SQLException{
+    public void controleMostrarLivrosCompra() throws ClassNotFoundException, SQLException{
         dao.pegarLivrosCompraDAO();
     }
 
-    public void controleMostrarLivrosLeitura() throws IOException, ClassNotFoundException, SQLException{
+    public void controleMostrarLivrosLeitura() throws  ClassNotFoundException, SQLException{
         dao.pegarLivrosLeituraDAO();
     }
 
@@ -48,7 +47,7 @@ public class ControleLivro {
             return false;
     }
 
-    public void controleAtualizarEstoqueLivro(int idComida, int quantidade) throws IOException, SQLException, ClassNotFoundException{
+    public void controleAtualizarEstoqueLivro(int idComida, int quantidade) throws SQLException, ClassNotFoundException{
         dao.atualizarEstoqueLivroDAO(idComida, quantidade);    
     }
     

@@ -7,8 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javali.Modelo.Usuario;
 import javali.Modelo.Excecao.ExcecaoUsuarioInvalido;
+import org.apache.log4j.Logger;
 
 public class UsuarioDAO {
+
+    private static final Logger LOGGER = Logger.getLogger("javali.Modelo.Persistencia");
 
     public  ArrayList<Usuario> pegarUsuariosDAO() throws SQLException, ClassNotFoundException {
         PreparedStatement ps = BancoDeDados.criarPreparedStatement("SELECT * FROM Usuario");
@@ -40,8 +43,8 @@ public class UsuarioDAO {
             if(cont == 1)  
                 return true;
         }catch(SQLException sqlException){
-            System.err.println("Got an exception!");
-            System.err.println(sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao atualizar o pedido no banco de dados.");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }
         throw new ExcecaoUsuarioInvalido();
         

@@ -1,7 +1,5 @@
 package javali.Modelo;
 
-
-
 import javali.Visao.TelaAplicativo;
 
 public class Aplicativo {   
@@ -11,7 +9,5 @@ public class Aplicativo {
         TelaAplicativo.telaInicial();   
 
     }
-
-   
    
 }

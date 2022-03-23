@@ -1,17 +1,15 @@
 package javali.Visao;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
+import org.apache.log4j.Logger;
 
-import javali.Modelo.Pedido;
 
-import javali.Controle.ControleCliente;
 
 public class TelaCliente {
-    
-    static Pedido pedido = new Pedido(0, 0, 0, 0, 0, "", true);
 
-    public static void paginaInicialCliente() throws IOException, ClassNotFoundException, SQLException{
+    private static final Logger LOGGER = Logger.getLogger("javali.Visao");
+
+    public static void paginaInicialCliente() throws  ClassNotFoundException, SQLException{
         
         Scanner scanc = new Scanner(System.in);
         boolean loop = true;
@@ -30,16 +28,14 @@ public class TelaCliente {
                     case 2:
                         TelaLivraria.telaMenuInicial();
                         break;
-                    case 3:
-                        telaInserirCodigo();
-                        break;
                     default:
                         System.out.println("Opção inválida!");
                         paginaInicialCliente();
                 }
                 loop = false;
             }catch (NumberFormatException e){
-                System.err.println("Erro, digite um número!"+e);
+                LOGGER.error("Erro!\nDetalhes: "+e);
+                System.out.println("Digite um número!");
             }
         
     }while(loop);
@@ -50,21 +46,8 @@ public class TelaCliente {
         System.out.println("O que deseja fazer?");
         System.out.println("1 - Cardápio");
         System.out.println("2 - Livraria");
-        System.out.println("3 - Inserir código de estudante");
     }
 
-    public static void telaInserirCodigo() throws IOException, ClassNotFoundException, SQLException{
-        System.out.println("Peça a algum funcionário o código de estudante e insira a seguir.");
-        Scanner scan = new Scanner(System.in); 
-
-        String codigo = scan.nextLine();
-        ControleCliente controleCliente = new ControleCliente();
-        if(controleCliente.inserirCodigoEstudante(codigo)){
-            System.out.println("Código lido.");
-        }
-        
-        paginaInicialCliente();
-    }
 
     
 }

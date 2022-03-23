@@ -4,7 +4,6 @@ import javali.Modelo.Comida;
 import javali.Modelo.Persistencia.ComidaDAO;
 import java.sql.SQLException;
 
-import java.io.IOException;
 
 public class ControleComida {
 
@@ -15,16 +14,16 @@ public class ControleComida {
     }
     
     public void controleCadastrarComida(String nome, String descricao, int quantidade, double preco)
-    throws IOException, SQLException, ClassNotFoundException{
+    throws  SQLException, ClassNotFoundException{
       Comida comida = new Comida(0, nome, descricao, quantidade, preco);
       dao.cadastrarComidaDAO(comida);
     }
 
-    public void controleMostrarComidas() throws IOException, SQLException, ClassNotFoundException{
+    public void controleMostrarComidas() throws SQLException, ClassNotFoundException{
       dao.lerProdutosDAO();
     }
 
-  public void controleAtualizarEstoqueComidas(int idComida, int quantidade) throws IOException, SQLException, ClassNotFoundException{
+  public void controleAtualizarEstoqueComidas(int idComida, int quantidade) throws SQLException, ClassNotFoundException{
       dao.atualizarEstoqueProdutosDAO(idComida, quantidade);    
   }
   }

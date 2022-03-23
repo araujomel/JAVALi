@@ -1,11 +1,8 @@
 package javali.Modelo.Persistencia;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import javali.Modelo.Pedido;
-import javali.Visao.TelaCliente;
 import javali.Visao.TelaFuncionario;
-
+import org.apache.log4j.Logger;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
@@ -13,8 +10,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class PedidoDAO {
+
+    private static final Logger LOGGER = Logger.getLogger("javali.Modelo.Persistencia");
     
-    public void cadastrarPedidoComidaDAO(Pedido pedido) throws SQLException, ClassNotFoundException, IOException{
+    public void cadastrarPedidoComidaDAO(Pedido pedido) throws SQLException, ClassNotFoundException{
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
         try{
@@ -22,19 +21,18 @@ public class PedidoDAO {
             st.executeUpdate("INSERT INTO PedidoComida(idPedido, idComida, mesaCliente, descricao) VALUES(LAST_INSERT_ID(),"
             +pedido.getIdComida()+","+pedido.getMesaCliente()+",'"+ pedido.getDescricao()+"')");
             st.executeUpdate("UPDATE Comida SET quantidade = quantidade - 1 WHERE idComida ="+pedido.getIdComida());
-            System.out.println("Pedido realizado com sucesso!");
             con.close();
             st.close();
 
-            TelaCliente.paginaInicialCliente();
+            
           
         }catch(SQLException sqlException){
-            System.err.println("Got an exception!");
-            System.err.println(sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao adicionar o pedido no banco de dados.");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }
     }
 
-    public void cadastrarPedidoBebidaDAO(Pedido pedido) throws SQLException, ClassNotFoundException, IOException{
+    public void cadastrarPedidoBebidaDAO(Pedido pedido) throws SQLException, ClassNotFoundException{
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
         try{
@@ -42,18 +40,17 @@ public class PedidoDAO {
             st.executeUpdate("INSERT INTO PedidoBebida(idPedido, idBebida, mesaCliente, descricao) VALUES(LAST_INSERT_ID(),"
             +pedido.getIdBebida()+","+pedido.getMesaCliente()+",'"+ pedido.getDescricao()+"')");
             st.executeUpdate("UPDATE Bebida SET quantidade = quantidade - 1 WHERE idBebida ="+pedido.getIdBebida());
-            System.out.println("Pedido realizado com sucesso!");
             con.close();
             st.close();
-            TelaCliente.paginaInicialCliente();
+            
           
         }catch(SQLException sqlException){
-            System.err.println("Got an exception!");
-            System.err.println(sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao adicionar o pedido no banco de dados.");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }
     }
 
-    public void cadastrarPedidoLivroDAO(Pedido pedido, boolean flagLeituraCompra) throws SQLException, ClassNotFoundException, IOException{
+    public void cadastrarPedidoLivroDAO(Pedido pedido, boolean flagLeituraCompra) throws SQLException, ClassNotFoundException{
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
         try{
@@ -63,20 +60,17 @@ public class PedidoDAO {
             if(flagLeituraCompra){
                 st.executeUpdate("UPDATE Livro SET quantidade = quantidade - 1 WHERE idLivro ="+pedido.getIdLivro());
             }
-            
-            System.out.println("Pedido realizado com sucesso!");
             con.close();
             st.close();
-            TelaCliente.paginaInicialCliente();
-          
+            
         }catch(SQLException sqlException){
-            System.err.println("Got an exception!");
-            System.err.println(sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao adicionar o pedido no banco de dados.");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }
     }
 
     
-    public void mostrarFilaBebidasDAO() throws ClassNotFoundException, SQLException, IOException{
+    public void mostrarFilaBebidasDAO() throws ClassNotFoundException, SQLException{
         try{
             ArrayList<Pedido> pedidoBebidas = pegarPedidoBebidaDAO();
             System.out.println("                      Fila de Pedidos Bebidas                        ");
@@ -91,10 +85,10 @@ public class PedidoDAO {
                    
             }
         }catch (NullPointerException e){
-            System.err.println("Erro! "+ e);
+            LOGGER.error("Erro!\nDetalhes: "+ e);
         }
     }
-    public void mostrarFilaComidasDAO() throws ClassNotFoundException, SQLException, IOException{
+    public void mostrarFilaComidasDAO() throws ClassNotFoundException, SQLException{
         try{
             ArrayList<Pedido> pedidoComidas = pegarPedidoComidaDAO();
             System.out.println("                      Fila de Pedidos Comidas                        ");
@@ -107,10 +101,10 @@ public class PedidoDAO {
                 }
             }
         }catch (NullPointerException e){
-            System.err.println("Erro! "+ e);
+            LOGGER.error("Erro!\nDetalhes: "+ e);
         }
     }
-    public void mostrarFilaLivroDAO() throws ClassNotFoundException, SQLException, IOException{
+    public void mostrarFilaLivroDAO() throws ClassNotFoundException, SQLException{
         try{
             
             ArrayList<Pedido> pedidoLivros = pegarPedidoLivroDAO();
@@ -124,11 +118,11 @@ public class PedidoDAO {
                 }
             }
         }catch (NullPointerException e){
-            System.err.println("Erro! "+ e);
+            LOGGER.error("Erro!\nDetalhes: "+ e);
         }
     }
     
-    public ArrayList<Pedido> pegarPedidoBebidaDAO() throws SQLException, ClassNotFoundException, IOException{
+    public ArrayList<Pedido> pegarPedidoBebidaDAO() throws SQLException, ClassNotFoundException{
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<Pedido> pedidoBebidas = new ArrayList<Pedido>();
@@ -140,8 +134,7 @@ public class PedidoDAO {
                 pedidoBebidas.add(pedidoBebida);
             }
         }catch(SQLException sqlException){
-            System.err.println("Got an exception!");
-            System.err.println(sqlException.getMessage());
+            LOGGER.error("Ocorreu um erro ao recuperar o pedido do banco de dados.\nDetalhes: "+ sqlException.getMessage());
         }
         
         return pedidoBebidas;
@@ -149,7 +142,7 @@ public class PedidoDAO {
 
     
 
-    public ArrayList<Pedido> pegarPedidoComidaDAO() throws SQLException, ClassNotFoundException, IOException{
+    public ArrayList<Pedido> pegarPedidoComidaDAO() throws SQLException, ClassNotFoundException{
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<Pedido> pedidoComidas = new ArrayList<Pedido>();
@@ -161,14 +154,14 @@ public class PedidoDAO {
                 pedidoComidas.add(pedidoComida);
             }
         }catch(SQLException sqlException){
-            System.err.println("Got an exception!");
-            System.err.println(sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao recuperar o pedido do banco de dados.");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }
     
         return pedidoComidas;
     }
 
-    public ArrayList<Pedido> pegarPedidoLivroDAO() throws SQLException, ClassNotFoundException, IOException{
+    public ArrayList<Pedido> pegarPedidoLivroDAO() throws SQLException, ClassNotFoundException{
         PreparedStatement ps = null;
         ResultSet rs = null;
         ArrayList<Pedido> pedidoLivros = new ArrayList<Pedido>();
@@ -186,13 +179,13 @@ public class PedidoDAO {
                 pedidoLivros.add(pedidoLivro);
             }
         }catch(SQLException sqlException){
-            System.err.println("Got an exception!");
-            System.err.println(sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao recuperar o pedido do banco de dados.");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }
         return pedidoLivros;
     }
 
-    public void esconderPedidoBebidaDAO(int idPedido) throws SQLException, ClassNotFoundException, IOException{
+    public void esconderPedidoBebidaDAO(int idPedido) throws SQLException, ClassNotFoundException{
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
         try{
@@ -205,12 +198,12 @@ public class PedidoDAO {
             TelaFuncionario.paginaInicialFuncionario();
           
         }catch(SQLException sqlException){
-            System.err.println("Got an exception!");
-            System.err.println(sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao atualizar o pedido no banco de dados.");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }
     }
 
-    public void esconderPedidoComidaDAO(int idPedido) throws SQLException, ClassNotFoundException, IOException{
+    public void esconderPedidoComidaDAO(int idPedido) throws SQLException, ClassNotFoundException{
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
         try{
@@ -223,12 +216,12 @@ public class PedidoDAO {
             TelaFuncionario.paginaInicialFuncionario();
           
         }catch(SQLException sqlException){
-            System.err.println("Got an exception!");
-            System.err.println(sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao atualizar o pedido no banco de dados.");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }
     }
 
-    public void esconderPedidoLivroDAO(int idPedido) throws SQLException, ClassNotFoundException, IOException{
+    public void esconderPedidoLivroDAO(int idPedido) throws SQLException, ClassNotFoundException{
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
         try{
@@ -241,8 +234,9 @@ public class PedidoDAO {
             TelaFuncionario.paginaInicialFuncionario();
           
         }catch(SQLException sqlException){
-            System.err.println("Got an exception!");
-            System.err.println(sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao atualizar o pedido no banco de dados.");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
+            LOGGER.error("\nDetalhes: "+ sqlException.getMessage());
         }
     }
 

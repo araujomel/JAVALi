@@ -1,18 +1,15 @@
 package javali.Visao;
-
-
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
-
+import org.apache.log4j.Logger;
 import javali.Controle.ControleCardapio;
 
 
 public class TelaCardapio {
 
-    
+    private static final Logger LOGGER = Logger.getLogger("javali.Visao");
 
-    public static void telaInicialCardapio() throws IOException, ClassNotFoundException, SQLException{
+    public static void telaInicialCardapio() throws ClassNotFoundException, SQLException{
         Scanner scan = new Scanner(System.in);
         boolean loop = true;
         do{
@@ -35,7 +32,8 @@ public class TelaCardapio {
                         telaInicialCardapio();
                 }
             }catch (NumberFormatException e){
-                System.err.println("Erro, digite um número!"+e);
+                LOGGER.error("Erro!\nDetalhes: "+e);
+                System.out.println("Digite um número!");
             }
             }while(loop);
         scan.close();
@@ -50,64 +48,72 @@ public class TelaCardapio {
       System.out.println("3 - Voltar");
     }
 
-    public static void telaMostrarCardapioComidas() throws IOException, ClassNotFoundException, SQLException{
+    public static void telaMostrarCardapioComidas() throws ClassNotFoundException, SQLException{
         ControleCardapio  controleCardapio = new ControleCardapio(); 
         controleCardapio.controleCardapioComidas();
         telaCardapioPedidoComida();
         
     }
 
-    public static void telaMostrarCardapioBebidas() throws IOException, ClassNotFoundException, SQLException{
+    public static void telaMostrarCardapioBebidas() throws ClassNotFoundException, SQLException{
       ControleCardapio  controleCardapio = new ControleCardapio(); 
       controleCardapio.controleCardapioBebidas();
       telaCardapioPedidoBebida();
     }
 
-    public static void telaCardapioPedidoBebida() throws IOException, ClassNotFoundException, SQLException{
+    public static void telaCardapioPedidoBebida() throws ClassNotFoundException, SQLException{
         Scanner scanner = new Scanner(System.in,"CP850");
-        System.out.println("Deseja realizar um pedido?");
-        System.out.println("1 - SIM \n2 - NÃO");
-        try{
-            int op = scanner.nextInt();
-                    switch(op){
+        boolean loop = true;
+        do{
+            System.out.println("Deseja realizar um pedido?");
+            System.out.println("1 - SIM \n2 - NÃO");
+            try{
+                int op = Integer.parseInt(scanner.nextLine());
+                        switch(op){
 
-                        case 1:
-                            TelaPedidos.telaFazerPedidoBebida();
-                            break;
-                        case 2:
-                            telaInicialCardapio();
-                            break;
-                        default:
-                            System.out.println("Opção inválida!");
-                            telaInicialCardapio();
-                    }
-            }catch (NumberFormatException e){
-                System.err.println("Erro, digite um número!"+e);
-            }
+                            case 1:
+                                TelaPedidos.telaFazerPedidoBebida();
+                                break;
+                            case 2:
+                                telaInicialCardapio();
+                                break;
+                            default:
+                                System.out.println("Opção inválida!");
+                                telaInicialCardapio();
+                        }
+                }catch (NumberFormatException e){
+                    LOGGER.error("Erro!\nDetalhes: "+e);
+                    System.out.println("Digite um número!");
+                }
+        }while(loop);
         scanner.close();
     }
 
-    public static void telaCardapioPedidoComida() throws IOException, ClassNotFoundException, SQLException{
+    public static void telaCardapioPedidoComida() throws ClassNotFoundException, SQLException{
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Deseja realizar um pedido?");
-        System.out.println("1 - SIM \n2 - NÃO");
-        try{
-            int op = Integer.parseInt(scanner.next());
-                    switch(op){
+        boolean loop = true;
+        do{
+            System.out.println("Deseja realizar um pedido?");
+            System.out.println("1 - SIM \n2 - NÃO");
+            try{
+                int op = Integer.parseInt(scanner.nextLine());
+                        switch(op){
 
-                        case 1:
-                            TelaPedidos.telaFazerPedidoComida();
-                            break;
-                        case 2:
-                            telaInicialCardapio();
-                            break;
-                        default:
-                            System.out.println("Opção inválida!");
-                            telaInicialCardapio();
-                    }
+                            case 1:
+                                TelaPedidos.telaFazerPedidoComida();
+                                break;
+                            case 2:
+                                telaInicialCardapio();
+                                break;
+                            default:
+                                System.out.println("Opção inválida!");
+                                telaInicialCardapio();
+                        }
             }catch (NumberFormatException e){
-                System.err.println("Erro, digite um número!"+e);
+                    LOGGER.error("Erro!\nDetalhes: "+e);
+                    System.out.println("Digite um número!");
             }
+        }while(loop);
         scanner.close();
     }
 

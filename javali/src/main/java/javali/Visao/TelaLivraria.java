@@ -1,14 +1,15 @@
 package javali.Visao;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
-
+import org.apache.log4j.Logger;
 import javali.Controle.ControleLivro;
 
 public class TelaLivraria {
 
-    public static void telaMenuInicial() throws IOException, ClassNotFoundException, SQLException{
+    private static final Logger LOGGER = Logger.getLogger("javali.Visao");
+
+    public static void telaMenuInicial() throws ClassNotFoundException, SQLException{
         Scanner scan = new Scanner(System.in);
         boolean loop = true;
         int op;
@@ -38,56 +39,61 @@ public class TelaLivraria {
                     TelaCliente.paginaInicialCliente();
                     break;
                     default:
-                        System.out.println("Opção inválida!");
+                        LOGGER.warn("Opção inválida!");
                 }
             }catch (NumberFormatException e){
-                System.err.println("Erro, digite um número!"+e);
+                LOGGER.error("Erro!\nDetalhes: "+e);
+                System.out.println("Digite um número!");
             }
         }while(loop);
         scan.close();
 
     }
-    public static void telaListarLivros() throws IOException, ClassNotFoundException, SQLException{
+    public static void telaListarLivros() throws ClassNotFoundException, SQLException{
       
         ControleLivro controleLivro = new ControleLivro();
         controleLivro.controleMostrarLivros();
         telaPedidoLivro();
     }
 
-    public static void telaListarLivrosCompra( ) throws IOException, ClassNotFoundException, SQLException{
+    public static void telaListarLivrosCompra( ) throws ClassNotFoundException, SQLException{
         
         ControleLivro controleLivro = new ControleLivro();
         controleLivro.controleMostrarLivrosCompra();
         telaPedidoLivro();
     }
 
-    public static void telaListarLivrosLeitura() throws IOException, ClassNotFoundException, SQLException{
+    public static void telaListarLivrosLeitura() throws ClassNotFoundException, SQLException{
         ControleLivro controleLivro = new ControleLivro();
         controleLivro.controleMostrarLivrosLeitura();
         telaPedidoLivro();
     }
 
-    public static void telaPedidoLivro() throws IOException, ClassNotFoundException, SQLException{
+    public static void telaPedidoLivro() throws ClassNotFoundException, SQLException{
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Deseja realizar um pedido?");
-        System.out.println("1 - SIM \n2 - NÃO");
-        try{
-            int op = Integer.parseInt(scanner.nextLine());
-                    switch(op){
+        boolean loop = true;
+        do{
+            System.out.println("Deseja realizar um pedido?");
+            System.out.println("1 - SIM \n2 - NÃO");
+            try{
+                int op = Integer.parseInt(scanner.nextLine());
+                        switch(op){
 
-                        case 1:
-                            TelaPedidos.telaFazerPedidoLivro();
-                            break;
-                        case 2:
-                            telaMenuInicial();
-                            break;
-                        default:
-                            System.out.println("Opção inválida!");
-                            telaMenuInicial();
-                    }
-            }catch (NumberFormatException e){
-                System.err.println("Erro, digite um número!"+e);
-            }
+                            case 1:
+                                TelaPedidos.telaFazerPedidoLivro();
+                                break;
+                            case 2:
+                                telaMenuInicial();
+                                break;
+                            default:
+                                LOGGER.warn("Opção inválida!");
+                                telaMenuInicial();
+                        }
+                }catch (NumberFormatException e){
+                    LOGGER.error("Erro!\nDetalhes: "+e);
+                    System.out.println("Digite um número!");
+                }
+        }while(loop);
         scanner.close();
     }
 

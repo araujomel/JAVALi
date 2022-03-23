@@ -20,7 +20,8 @@ public class BancoDeDados {
             "b4d39d2a4a36d8", "9ac48a14");
             return conexao;
         }catch(SQLException sqlException){
-           LOGGER.error("Erro ao conectar com o banco!\nDetalhes: "+sqlException);
+           LOGGER.error("Erro!\nDetalhes: "+sqlException);
+           System.out.println("Erro ao conectar com o banco!");
             
         }
 

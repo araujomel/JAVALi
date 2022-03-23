@@ -1,6 +1,4 @@
 package javali.Controle;
-
-import java.io.IOException;
 import java.sql.SQLException;
 
 import javali.Modelo.Persistencia.BebidaDAO;
@@ -16,11 +14,11 @@ public class ControleCardapio {
         comidaDAO = new ComidaDAO();
     }
 
-    public void controleCardapioComidas() throws IOException, ClassNotFoundException, SQLException{
+    public void controleCardapioComidas() throws ClassNotFoundException, SQLException{
         comidaDAO.lerProdutosDAO();
     }
 
-    public void controleCardapioBebidas() throws IOException, ClassNotFoundException, SQLException{
+    public void controleCardapioBebidas() throws ClassNotFoundException, SQLException{
         bebidaDAO.lerProdutosDAO();
     }
 

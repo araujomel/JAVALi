@@ -1,6 +1,4 @@
 package javali.Modelo.Persistencia;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 import java.sql.Connection;
@@ -47,7 +45,7 @@ public class FuncionarioDAO {
         return funcionarios;
     }
     
-    public void cadastrarFuncionarioDAO(Funcionario funcionario) throws ClassNotFoundException, IOException, SQLException{
+    public void cadastrarFuncionarioDAO(Funcionario funcionario) throws ClassNotFoundException, SQLException{
 
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
@@ -78,7 +76,8 @@ public class FuncionarioDAO {
             con.close();
             TelaFuncionario.paginaInicialFuncionario();
         }catch(SQLException sqlException){
-            LOGGER.error("Ocorreu um erro ao cadastrar o funcionário no banco de dados.\nDetalhes: " + sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao cadastrar o funcionário no banco de dados.");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }
 
 
@@ -102,34 +101,31 @@ public class FuncionarioDAO {
             } else if(funcao.equals("GERENTE"))  
                 return true;
         }catch(SQLException sqlException){
-            LOGGER.error("Erro ao encontrar o funicionário no banco de dados!"+ sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao encontrar o funicionário no banco de dados!");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }
         return false;
 
     }
 
-    public void registrarCodigoDAO(String codigo) throws ClassNotFoundException, SQLException{
+    public void cadastrarMesaDAO(int numMesa) throws ClassNotFoundException, SQLException{
 
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
         try{
            
-            st.executeUpdate("INSERT INTO codigosEstudantes (codigoEstudante) "+"VALUES ('"+ codigo+"')");
-           System.out.println("Código registrado com sucesso!");
-           con.close();
-           st.close();
+            st.executeUpdate("INSERT INTO Cliente (mesaCliente) VALUES ("+ numMesa+")");
+           System.out.println("Mesa registrada com sucesso!");
+           TelaFuncionario.paginaInicialFuncionario();
 
         }catch(SQLException sqlException){
-            LOGGER.error("Erro ao adicionar o código no banco de dados.\nDetalhes: "+ sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao adicionar a mesa no banco de dados.");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         } finally{
             con.close();
             st.close();
             
         }
-
-        
-      
     }
 
-
-       }
+}

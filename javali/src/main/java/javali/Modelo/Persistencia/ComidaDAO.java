@@ -1,7 +1,4 @@
 package javali.Modelo.Persistencia;
-
-import java.io.IOException;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -19,7 +16,7 @@ public class ComidaDAO implements ProdutoDAO {
 
     private static final Logger LOGGER = Logger.getLogger("javali.Modelo.Persistencia");
 
-  public void cadastrarComidaDAO(Comida comida) throws IOException, SQLException, ClassNotFoundException{
+  public void cadastrarComidaDAO(Comida comida) throws SQLException, ClassNotFoundException{
       
         Connection con = BancoDeDados.getConexao();
         PreparedStatement st = null;
@@ -40,7 +37,8 @@ public class ComidaDAO implements ProdutoDAO {
            TelaFuncionario.paginaInicialFuncionario();
           
         }catch(SQLException sqlException){
-            LOGGER.warn("Ocorreu um erro ao tentar adicionar a comida ao banco de dados.\nDetalhes: " + sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao tentar adicionar a comida ao banco de dados.");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }finally{
             con.close();
             st.close();
@@ -62,7 +60,8 @@ public class ComidaDAO implements ProdutoDAO {
             +"\nPREÇO ESTUDANTE: R$ "+(comidas.get(i).getPreco())/2+"\n-----------------------------------------");
         }
     }catch (NullPointerException e){
-        LOGGER.error("Ocorreu um erro ao tentar recuperar a comida do banco de dados.\n Detalhes: "+ e);
+        System.out.println("Ocorreu um erro ao tentar recuperar a comida do banco de dados.");
+        LOGGER.error("Erro!\nDetalhes: "+ e);
     }
   
   }
@@ -82,7 +81,7 @@ public class ComidaDAO implements ProdutoDAO {
     }
 
     @Override
-    public void atualizarEstoqueProdutosDAO(int idProduto, int quantidade) throws ClassNotFoundException, SQLException, IOException{
+    public void atualizarEstoqueProdutosDAO(int idProduto, int quantidade) throws ClassNotFoundException, SQLException{
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
         
@@ -92,7 +91,8 @@ public class ComidaDAO implements ProdutoDAO {
             TelaFuncionario.paginaInicialFuncionario();
 
         }catch(SQLException sqlException){
-            LOGGER.error("Ocorreu um erro ao tentar ataualizar o estoque no banco de dados.\nDetalhes: "+sqlException.getMessage());
+            System.out.println("Ocorreu um erro ao tentar atualizar o estoque no banco de dados.");
+            LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }finally{
             con.close();
             st.close();

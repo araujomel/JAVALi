@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 
-import javali.Controle.ControleCliente;
 import javali.Controle.ControleFuncionario;
 import javali.Controle.ControleLivro;
 import javali.Controle.ControleUsuario;
@@ -56,20 +55,6 @@ class AppTest {
       ControleFuncionario controleFuncionario = new ControleFuncionario();
       assert(controleFuncionario.controleValidarGerente("melissa", "123") == false);
 	  }
-
-    @Test
-    public void validarCodigoEstudanteTest1() throws ClassNotFoundException, SQLException{
-      // CÓDIGO VÁLIDO
-      ControleCliente controleCliente = new ControleCliente();
-      assert(controleCliente.inserirCodigoEstudante("CQ1LGQAGSGALBUM") == true);
-	  }
-
-    @Test
-    public void validarCodigoEstudanteTest2() throws ClassNotFoundException, SQLException{
-      // CÓDIGO INVÁLIDO
-      ControleCliente controleCliente = new ControleCliente();
-      assert(controleCliente.inserirCodigoEstudante("CA1LGQAASGAAAUM") == false);
-	  } 
 
     @Test
     public void disponivelLeituraTest1() throws ClassNotFoundException, SQLException, ExecaoLivroIndisponivelLeitura{
