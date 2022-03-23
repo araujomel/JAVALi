@@ -6,8 +6,6 @@ import java.util.Scanner;
 
 import javali.Controle.ControleLivro;
 
-import javali.Modelo.Pedido;
-
 public class TelaLivraria {
 
     public static void telaMenuInicial() throws IOException, ClassNotFoundException, SQLException{

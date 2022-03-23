@@ -33,9 +33,6 @@ public class TelaCliente {
                     case 3:
                         telaInserirCodigo();
                         break;
-                    case 4:
-                        telaInserirCodigo();
-                        break;
                     default:
                         System.out.println("Opção inválida!");
                         paginaInicialCliente();
@@ -53,8 +50,7 @@ public class TelaCliente {
         System.out.println("O que deseja fazer?");
         System.out.println("1 - Cardápio");
         System.out.println("2 - Livraria");
-        System.out.println("3 - Carrinho");
-        System.out.println("4 - Inserir código de estudante");
+        System.out.println("3 - Inserir código de estudante");
     }
 
     public static void telaInserirCodigo() throws IOException, ClassNotFoundException, SQLException{

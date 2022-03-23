@@ -1,7 +1,5 @@
 package javali.Modelo;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+
 
 public class Cliente extends Usuario {
 
@@ -11,25 +9,5 @@ public class Cliente extends Usuario {
         super(nome, login, senha);
     }
    
-    //set
-   /* private void setNome(String nome){
-        this.nome = nome;
-    }
-    private void setLogin(String login){
-        this.login = login;
-    }
-    private void setSenha(String senha){
-        this.senha = senha;
-    }
-    */
-
-/*     public boolean login(String login, String senha, Cliente cliente){
-
-    } */
-
-    
-
-    
-
 
 }

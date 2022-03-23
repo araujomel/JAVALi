@@ -1,8 +1,6 @@
 package javali.Modelo;
 
-import java.io.IOException;
-
-public class Comida {
+public class Comida implements Produto {
     
     private int idComida;
     private String nome;
@@ -10,16 +8,17 @@ public class Comida {
     private double preco;
     private String descricao;
 
-    public Comida(int idComida, String nome, String descricao, int quantidade, double preco)throws IOException{
+    public Comida(int idComida, String nome, String descricao, int quantidade, double preco){
         
-        setIdComida(idComida);
+        setIdProduto(idComida);
         setNome(nome);
         setDescricao(descricao);
         setQuantidade(quantidade);
         setPreco(preco);
     }
 
-    public int getIdComida(){
+    @Override
+    public int getIdProduto(){
         return this.idComida;
     }
 
@@ -38,9 +37,10 @@ public class Comida {
     public double getPreco(){
         return this.preco;
     }
-
-    public void setIdComida(int idComida){
-        this.idComida = idComida;
+    
+    @Override
+    public void setIdProduto(int idProduto){
+        this.idComida = idProduto;
     }
 
     public void setNome(String nome){

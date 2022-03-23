@@ -10,11 +10,12 @@ import javali.Controle.ControleFuncionario;
 import javali.Controle.ControleLivro;
 import javali.Controle.ControlePedidos;
 import javali.Modelo.FuncaoFuncionario;
-import javali.Visao.TelaAplicativo;
+import javali.Modelo.Excecao.ExcecaoUsuarioInvalido;
+import org.apache.log4j.Logger;
 
 public class TelaFuncionario {
 
-
+    private static final Logger LOGGER = Logger.getLogger("javali.Visao");
     public static void paginaInicialFuncionario() throws IOException, SQLException, ClassNotFoundException{
         Scanner scanf = new Scanner(System.in); 
         boolean loop = true;
@@ -194,47 +195,50 @@ public class TelaFuncionario {
         
         Scanner scanFun = new Scanner(System.in,"CP850");
         ControleFuncionario controleFuncionario = new ControleFuncionario();
-        
+        boolean loop = true;
         FuncaoFuncionario funcao = null;
+        do{
+            System.out.println("Por favor confirme que você é um gerente: ");
+            System.out.println("Login:");
+            String loginGerente = scanFun.nextLine();
+            System.out.println("Senha:");
+            String senhaGerente = scanFun.nextLine();
+            try{
+                if(controleFuncionario.controleValidarGerente(loginGerente, senhaGerente)){
+                    System.out.println("Digite o nome do funcionário:");
+                    String nome = scanFun.nextLine();
+                    System.out.println("Digite o login:");
+                    String login = scanFun.nextLine();
+                    System.out.println("Digite a senha:");
+                    String senha = scanFun.nextLine();
+                    System.out.println("Digite a função:");
+                    String f = scanFun.nextLine().toLowerCase();
 
-        System.out.println("Por favor confirme que você é um gerente: ");
-        System.out.println("Login:");
-        String loginGerente = scanFun.nextLine();
-        System.out.println("Senha:");
-        String senhaGerente = scanFun.nextLine();
+                    
+                    if(f.equals("barista"))
+                        funcao = FuncaoFuncionario.BARISTA;
+                    else if (f.equals("atendente"))
+                        funcao = FuncaoFuncionario.ATENDENTE;
+                    else if (f.equals("gerente"))
+                        funcao = FuncaoFuncionario.GERENTE;
+                    else if (f.equals("confeiteiro"))
+                        funcao = FuncaoFuncionario.CONFEITEIRO;
+                    else{
+                        System.out.println("Essa função não existe, tente novamente.");
+                        telaCadastrarFuncionario();
+                    } 
 
-        if(controleFuncionario.controleValidarGerente(loginGerente, senhaGerente)){
-            System.out.println("Digite o nome do funcionário:");
-            String nome = scanFun.nextLine();
-            System.out.println("Digite o login:");
-            String login = scanFun.nextLine();
-            System.out.println("Digite a senha:");
-            String senha = scanFun.nextLine();
-            System.out.println("Digite a função:");
-            String f = scanFun.nextLine().toLowerCase();
-
-            
-            if(f.equals("barista"))
-                funcao = FuncaoFuncionario.BARISTA;
-            else if (f.equals("atendente"))
-                funcao = FuncaoFuncionario.ATENDENTE;
-            else if (f.equals("gerente"))
-                funcao = FuncaoFuncionario.GERENTE;
-            else if (f.equals("confeiteiro"))
-                funcao = FuncaoFuncionario.CONFEITEIRO;
-            else{
-                System.out.println("Essa função não existe, tente novamente.");
-                telaCadastrarFuncionario();
-            } 
-
-            
-            controleFuncionario.controleCadastrarFuncionario(nome, login, senha, funcao);
-        }else{
-            System.out.println("Você não tem permissões para cadastrar um funcionário");
-            paginaInicialFuncionario();
-        }
-
-
+                    
+                    controleFuncionario.controleCadastrarFuncionario(nome, login, senha, funcao);
+                }else{
+                    System.out.println("Você não tem permissões para cadastrar um funcionário");
+                    paginaInicialFuncionario();
+                }
+                }catch(ExcecaoUsuarioInvalido eui){
+                    LOGGER.error("Erro!\nDetalhes: "+eui);
+                    System.out.println("Usuário ou senha incorretos");
+                }
+        }while(loop);
         scanFun.close();
 
         

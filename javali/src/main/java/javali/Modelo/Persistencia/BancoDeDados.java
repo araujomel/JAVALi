@@ -20,7 +20,7 @@ public class BancoDeDados {
             "b4d39d2a4a36d8", "9ac48a14");
             return conexao;
         }catch(SQLException sqlException){
-           LOGGER.error("Erro ao conectar com o banco!"+sqlException);
+           LOGGER.error("Erro ao conectar com o banco!\nDetalhes: "+sqlException);
             
         }
 
@@ -31,9 +31,5 @@ public class BancoDeDados {
         return getConexao().prepareStatement(sql);
     }
 
-
-    // jdbc:mysql://us-cdbr-east-05.cleardb.net:3306/heroku_16b6b58624fc4f3
-    // b4d39d2a4a36d8
-    // 9ac48a14
 
 }

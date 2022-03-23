@@ -2,11 +2,6 @@ package javali.Modelo.Persistencia;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import com.mysql.cj.xdevapi.Result;
-
-import org.apache.commons.lang3.ObjectUtils.Null;
-
 import javali.Modelo.Pedido;
 import javali.Visao.TelaCliente;
 import javali.Visao.TelaFuncionario;

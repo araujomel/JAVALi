@@ -12,8 +12,12 @@ import java.sql.ResultSet;
 import javali.Modelo.Comida;
 import javali.Visao.TelaFuncionario;
 
+import org.apache.log4j.Logger;
 
-public class ComidaDAO {
+
+public class ComidaDAO implements ProdutoDAO {
+
+    private static final Logger LOGGER = Logger.getLogger("javali.Modelo.Persistencia");
 
   public void cadastrarComidaDAO(Comida comida) throws IOException, SQLException, ClassNotFoundException{
       
@@ -30,14 +34,13 @@ public class ComidaDAO {
            
            st.executeUpdate();
 
-           System.out.println("Comida cadastrada com sucesso!");
+           LOGGER.info("Comida cadastrada com sucesso!");
            con.close();
            st.close();
            TelaFuncionario.paginaInicialFuncionario();
           
         }catch(SQLException sqlException){
-            System.err.println("Got an exception!");
-            System.err.println(sqlException.getMessage());
+            LOGGER.warn("Ocorreu um erro ao tentar adicionar a comida ao banco de dados.\nDetalhes: " + sqlException.getMessage());
         }finally{
             con.close();
             st.close();
@@ -46,8 +49,8 @@ public class ComidaDAO {
 
     }
 
-        
-    public void mostrarComidasDAO() throws ClassNotFoundException, SQLException, IOException{
+    @Override
+    public void lerProdutosDAO() throws ClassNotFoundException, SQLException{
     try{
 
         ArrayList<Comida> comidas = pegarComidasDAO();
@@ -55,37 +58,45 @@ public class ComidaDAO {
         System.out.println("-------------- COMIDAS ----------------");
 
         for(int i = 0; i < comidas.size(); i++){
-            System.out.println(comidas.get(i).getIdComida() +" - " +comidas.get(i).getNome()+"        "+comidas.get(i).getDescricao()+"\nPREÇO NORMAL: R$ "+ comidas.get(i).getPreco()
+            System.out.println(comidas.get(i).getIdProduto() +" - " +comidas.get(i).getNome()+"        "+comidas.get(i).getDescricao()+"\nPREÇO NORMAL: R$ "+ comidas.get(i).getPreco()
             +"\nPREÇO ESTUDANTE: R$ "+(comidas.get(i).getPreco())/2+"\n-----------------------------------------");
         }
     }catch (NullPointerException e){
-        System.err.println("Erro! "+ e);
+        LOGGER.error("Ocorreu um erro ao tentar recuperar a comida do banco de dados.\n Detalhes: "+ e);
     }
   
   }
 
-  public ArrayList<Comida> pegarComidasDAO() throws SQLException, ClassNotFoundException, IOException {
-    PreparedStatement ps = BancoDeDados.criarPreparedStatement("SELECT * FROM Comida");
+    public ArrayList<Comida> pegarComidasDAO() throws SQLException, ClassNotFoundException{
+        PreparedStatement ps = BancoDeDados.criarPreparedStatement("SELECT * FROM Comida");
 
-    ResultSet rs = ps.executeQuery();
+        ResultSet rs = ps.executeQuery();
 
-    ArrayList<Comida> comidas = new ArrayList<Comida>();
-    while (rs.next()) {
-        
-        Comida comida = new Comida(rs.getInt(1), rs.getString(2), rs.getString(4), rs.getInt(3), rs.getFloat(5));
-        comidas.add(comida);
+        ArrayList<Comida> comidas = new ArrayList<Comida>();
+        while (rs.next()) {
+            
+            Comida comida = new Comida(rs.getInt(1), rs.getString(2), rs.getString(4), rs.getInt(3), rs.getFloat(5));
+            comidas.add(comida);
+        }
+        return comidas;
     }
-    return comidas;
-}
-    public void atualizarEstoqueComidasDAO(int idComida, int quantidade) throws ClassNotFoundException, SQLException, IOException{
+
+    @Override
+    public void atualizarEstoqueProdutosDAO(int idProduto, int quantidade) throws ClassNotFoundException, SQLException, IOException{
+        Connection con = BancoDeDados.getConexao();
+        Statement st = con.createStatement();
+        
         try{
-            Connection con = BancoDeDados.getConexao();
-            Statement st = con.createStatement();
-            st.executeUpdate("UPDATE Comida SET quantidade = quantidade +"+quantidade+" WHERE idComida ="+ idComida);
+            
+            st.executeUpdate("UPDATE Comida SET quantidade = quantidade +"+quantidade+" WHERE idComida ="+ idProduto);
             TelaFuncionario.paginaInicialFuncionario();
 
-        }catch (NullPointerException e){
-            System.err.println("Erro! "+ e);
+        }catch(SQLException sqlException){
+            LOGGER.error("Ocorreu um erro ao tentar ataualizar o estoque no banco de dados.\nDetalhes: "+sqlException.getMessage());
+        }finally{
+            con.close();
+            st.close();
+            
         }
     }
 

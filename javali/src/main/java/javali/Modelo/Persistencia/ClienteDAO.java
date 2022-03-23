@@ -1,16 +1,11 @@
 package javali.Modelo.Persistencia;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import javali.Modelo.Cliente;
-import javali.Visao.TelaCliente;
-import java.sql.Statement;
 import org.apache.log4j.Logger;
 
 public class ClienteDAO {

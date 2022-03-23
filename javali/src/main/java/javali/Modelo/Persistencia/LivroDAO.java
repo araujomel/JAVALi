@@ -14,8 +14,11 @@ import javali.Modelo.Excecao.ExcecaoLivroIndisponivelVenda;
 import javali.Modelo.Excecao.ExecaoLivroIndisponivelLeitura;
 import javali.Visao.TelaFuncionario;
 import java.sql.Statement;
+import org.apache.log4j.Logger;
 
 public class LivroDAO {
+
+    private static final Logger LOGGER = Logger.getLogger("javali.Modelo.Persistencia");
 
     public void cadastrarLivroDAO(Livro livro) throws IOException, SQLException, ClassNotFoundException{
 
@@ -35,34 +38,34 @@ public class LivroDAO {
                                 + livro.getDisponivel_leitura()+")");
             }
             
-            System.out.println("Livro cadastrado com sucesso!");
+            LOGGER.info("Livro cadastrado com sucesso!");
             con.close();
             st.close();
             TelaFuncionario.paginaInicialFuncionario();
 
         }catch(SQLException sqlException){
-            System.err.println("Got an exception!");
-            System.err.println(sqlException.getMessage());
+            LOGGER.error("Ocorreu um erro ao adicionar o livro ao banco de dados.\nDetalhes: "+ sqlException.getMessage());
         }
         
       
     }
 
-    public void mostrarLivrosDAO(ArrayList<Livro> livros) throws IOException, ClassNotFoundException, SQLException {
+    
+    public void mostrarLivrosDAO(ArrayList<Livro> livros) throws ClassNotFoundException, SQLException {
         try{
             System.out.println("-------------- LIVROS --------------------");
             for(int i = 0; i < livros.size(); i++){
                 if(livros.get(i).getDisponivel_venda()){
-                    System.out.println(livros.get(i).getIdLivro()+" - "+livros.get(i).getTitulo()+"        "+livros.get(i).getAutor()+
+                    System.out.println(livros.get(i).getIdProduto()+" - "+livros.get(i).getTitulo()+"        "+livros.get(i).getAutor()+
                     "\nPREÇO NORMAL: R$ "+ livros.get(i).getPreco() +"\nPREÇO ESTUDANTE: R$ "+(livros.get(i).getPreco())/2
                     +"\n------------------------------------------");
                 } else{
-                    System.out.println(livros.get(i).getIdLivro()+" - "+livros.get(i).getTitulo()+"        "+livros.get(i).getAutor()+
+                    System.out.println(livros.get(i).getIdProduto()+" - "+livros.get(i).getTitulo()+"        "+livros.get(i).getAutor()+
                     "\n------------------------------------------");
                 }
             }
         }catch (NullPointerException e){
-        System.err.println("Erro! "+ e);
+            LOGGER.error("Erro!\nDetalhes: "+ e);
         }
       
       }
@@ -79,7 +82,7 @@ public class LivroDAO {
 
             throw new ExcecaoLivroIndisponivelVenda();
             
-      }
+    }
 
       public boolean verificarDisponibilidadeLeituraDAO(int idLivro) throws SQLException, ClassNotFoundException, ExecaoLivroIndisponivelLeitura{
         PreparedStatement ps = BancoDeDados.criarPreparedStatement("SELECT disponivel_leitura FROM Livro WHERE idLivro ="+idLivro);
@@ -137,8 +140,8 @@ public class LivroDAO {
             Statement st = con.createStatement(); 
             st.executeUpdate("UPDATE Livro SET quantidade = quantidade +"+quantidade+" WHERE idLivro ="+ idLivro);
             TelaFuncionario.paginaInicialFuncionario();
-        }catch (NullPointerException e){
-            System.err.println("Erro! "+ e);
+        }catch(SQLException sqlException){
+            LOGGER.error("Ocorreu um erro ao atualizar o estoque do livro no banco de dados.\nDetalhes: "+ sqlException.getMessage());
         }
     }
     

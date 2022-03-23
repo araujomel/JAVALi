@@ -1,6 +1,5 @@
 package javali.Controle;
 
-import java.util.Scanner;
 import javali.Modelo.Persistencia.ClienteDAO;
 import java.sql.SQLException;
 
@@ -11,7 +10,7 @@ public class ControleCliente {
     
     public ControleCliente(){
       dao = new ClienteDAO();
-  }
+    }
 
 
     public boolean inserirCodigoEstudante(String codigo) throws ClassNotFoundException, SQLException{

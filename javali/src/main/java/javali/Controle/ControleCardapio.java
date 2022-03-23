@@ -17,11 +17,11 @@ public class ControleCardapio {
     }
 
     public void controleCardapioComidas() throws IOException, ClassNotFoundException, SQLException{
-        comidaDAO.mostrarComidasDAO();
+        comidaDAO.lerProdutosDAO();
     }
 
     public void controleCardapioBebidas() throws IOException, ClassNotFoundException, SQLException{
-        bebidaDAO.lerBebidasDAO();
+        bebidaDAO.lerProdutosDAO();
     }
 
     

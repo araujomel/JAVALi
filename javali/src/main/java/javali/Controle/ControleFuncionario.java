@@ -1,18 +1,16 @@
 package javali.Controle;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import org.apache.commons.lang3.RandomStringUtils;
 
-import javali.Modelo.Bebida;
-import javali.Modelo.Comida;
+
 import javali.Modelo.FuncaoFuncionario;
 import javali.Modelo.Funcionario;
+import javali.Modelo.Excecao.ExcecaoUsuarioInvalido;
 
 import java.sql.SQLException;
 import javali.Modelo.Persistencia.FuncionarioDAO;
 
-//ArrayIndexOutOfBoundsException 
 
 public class ControleFuncionario {
     
@@ -36,7 +34,7 @@ public class ControleFuncionario {
       dao.cadastrarFuncionarioDAO(funcionario);
     }
 
-    public boolean controleValidarGerente(String login, String senha) throws ClassNotFoundException, SQLException{
+    public boolean controleValidarGerente(String login, String senha) throws ClassNotFoundException, SQLException, ExcecaoUsuarioInvalido{
         if(dao.verificarGerenteDAO(login, senha))
           return true;
         else

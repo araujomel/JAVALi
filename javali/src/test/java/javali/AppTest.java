@@ -2,11 +2,8 @@ package javali;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.sql.SQLException;
 
-import javali.Visao.TelaAplicativo;
 import javali.Controle.ControleCliente;
 import javali.Controle.ControleFuncionario;
 import javali.Controle.ControleLivro;
@@ -40,21 +37,21 @@ class AppTest {
 	  } 
 
     @Test
-    public void cadastrarFuncTest1() throws ClassNotFoundException, SQLException{
+    public void cadastrarFuncTest1() throws ClassNotFoundException, SQLException, ExcecaoUsuarioInvalido{
       // GERENTE TENTA CADASTRAR FUNCIONARIO
       ControleFuncionario controleFuncionario = new ControleFuncionario();
       assert(controleFuncionario.controleValidarGerente("admin", "123") == true);
 	  }
 
     @Test
-    public void cadastrarFuncTest2() throws ClassNotFoundException, SQLException{
+    public void cadastrarFuncTest2() throws ClassNotFoundException, SQLException, ExcecaoUsuarioInvalido{
       // FUNCIONARIO NÃO GERENTE TENTA CADASTRAR FUNCIONARIO
       ControleFuncionario controleFuncionario = new ControleFuncionario();
       assert(controleFuncionario.controleValidarGerente("abc", "123") == false);
 	  } 
 
     @Test
-    public void cadastrarFuncTest3() throws ClassNotFoundException, SQLException{
+    public void cadastrarFuncTest3() throws ClassNotFoundException, SQLException, ExcecaoUsuarioInvalido{
       // LOGIN INVÁLIDO TENTA CADASTRAR FUNCIONARIO
       ControleFuncionario controleFuncionario = new ControleFuncionario();
       assert(controleFuncionario.controleValidarGerente("melissa", "123") == false);

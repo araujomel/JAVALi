@@ -13,8 +13,11 @@ import javali.Modelo.Excecao.ExcecaoUsuarioInvalido;
 import javali.Modelo.FuncaoFuncionario;
 import javali.Visao.TelaFuncionario;
 import java.sql.Statement;
+import org.apache.log4j.Logger;
 
 public class FuncionarioDAO {
+
+    private static final Logger LOGGER = Logger.getLogger("javali.Modelo.Persistencia");
 
     public static ArrayList<Funcionario> pegarFuncionariosDAO() throws SQLException, ClassNotFoundException {
 
@@ -35,7 +38,7 @@ public class FuncionarioDAO {
             else if(rs.getString(5).equalsIgnoreCase("CONFEITEIRO"))
                 funcao = FuncaoFuncionario.CONFEITEIRO;
             else
-                System.out.println("Essa função não existe, tente novamente.");
+                LOGGER.warn("Essa função não existe, tente novamente.");
 
             // nome, função, login, senha
             Funcionario funcionario = new Funcionario(rs.getString(3), funcao, rs.getString(2), rs.getString(4));
@@ -71,18 +74,17 @@ public class FuncionarioDAO {
             + "VALUES ('"+ funcionario.getLogin()+"', '"+ funcionario.getNome()+"', '"
             + funcionario.getSenha()+"', "+ idFuncionario+")");
             
-            System.out.println("Funcionário cadastrado com sucesso!");
+            LOGGER.info("Funcionário cadastrado com sucesso!");
             con.close();
             TelaFuncionario.paginaInicialFuncionario();
         }catch(SQLException sqlException){
-            System.err.println("Got an exception!");
-            System.err.println(sqlException.getMessage());
+            LOGGER.error("Ocorreu um erro ao cadastrar o funcionário no banco de dados.\nDetalhes: " + sqlException.getMessage());
         }
 
 
      }
 
-     public boolean verificarGerenteDAO(String login, String senha) throws ClassNotFoundException, SQLException{
+     public boolean verificarGerenteDAO(String login, String senha) throws ClassNotFoundException, SQLException, ExcecaoUsuarioInvalido, ExcecaoUsuarioInvalido{
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
         ResultSet rs = null;
@@ -95,12 +97,12 @@ public class FuncionarioDAO {
                  funcao = rs.getString(1);
             }
             if(funcao == null){
-                return false; // adicionar um logger
+                LOGGER.error("Usuário inválido");
+                throw new ExcecaoUsuarioInvalido(); 
             } else if(funcao.equals("GERENTE"))  
                 return true;
         }catch(SQLException sqlException){
-            System.err.println("Got an exception!");
-            System.err.println(sqlException.getMessage());
+            LOGGER.error("Erro ao encontrar o funicionário no banco de dados!"+ sqlException.getMessage());
         }
         return false;
 
@@ -118,8 +120,7 @@ public class FuncionarioDAO {
            st.close();
 
         }catch(SQLException sqlException){
-            System.err.println("Got an exception!");
-            System.err.println(sqlException.getMessage());
+            LOGGER.error("Erro ao adicionar o código no banco de dados.\nDetalhes: "+ sqlException.getMessage());
         } finally{
             con.close();
             st.close();

@@ -13,9 +13,11 @@ import javali.Modelo.Bebida;
 import javali.Visao.TelaFuncionario;
 import org.apache.log4j.Logger;
 
-public class BebidaDAO{
+public class BebidaDAO implements ProdutoDAO{
+
     private static final Logger LOGGER = Logger.getLogger("javali.Modelo.Persistencia");
 
+    
     public void cadastrarBebidaDAO(Bebida bebida) throws ClassNotFoundException, IOException, SQLException{
         
         Connection con = BancoDeDados.getConexao();
@@ -42,14 +44,15 @@ public class BebidaDAO{
       
     }
     
-    public void lerBebidasDAO() throws ClassNotFoundException, SQLException{
+    @Override
+    public void lerProdutosDAO() throws ClassNotFoundException, SQLException{
         try{
 
             ArrayList<Bebida> bebidas = pegarBebidasDAO();
 
             System.out.println("-------------- BEBIDAS ----------------");
             for(int i = 0; i < bebidas.size(); i++){
-                System.out.println(bebidas.get(i).getIdBebida()+" - "+bebidas.get(i).getNome()+"        "+bebidas.get(i).getDescricao()+"\nPREÇO NORMAL\nMédio: R$ "+ bebidas.get(i).getPrecoMedio()
+                System.out.println(bebidas.get(i).getIdProduto()+" - "+bebidas.get(i).getNome()+"        "+bebidas.get(i).getDescricao()+"\nPREÇO NORMAL\nMédio: R$ "+ bebidas.get(i).getPrecoMedio()
                 +"   Grande: R$ "+bebidas.get(i).getPrecoGrande()+"\nPREÇO ESTUDANTE\nMédio: R$ "+ 
                 (bebidas.get(i).getPrecoMedio())/2 + "   Grande: R$ "+(bebidas.get(i).getPrecoGrande())/2+"\n-----------------------------------------");
             }
@@ -72,11 +75,12 @@ public class BebidaDAO{
     return bebidas;
 }
     
-    public void atualizarEstoqueBebidasDAO(int idBebida, int quantidade) throws ClassNotFoundException, SQLException, IOException{
+    @Override
+    public void atualizarEstoqueProdutosDAO(int idProduto, int quantidade) throws ClassNotFoundException, SQLException, IOException{
         try{
             Connection con = BancoDeDados.getConexao();
             Statement st = con.createStatement();
-            st.executeUpdate("UPDATE Bebida SET quantidade = quantidade +"+quantidade+" WHERE idBebida ="+ idBebida);
+            st.executeUpdate("UPDATE Bebida SET quantidade = quantidade +"+quantidade+" WHERE idBebida ="+ idProduto);
             System.out.println("Quantidade atualizada com sucesso!");
             TelaFuncionario.paginaInicialFuncionario();
             
@@ -84,5 +88,10 @@ public class BebidaDAO{
             LOGGER.error("Ocorreu um erro ao tentar atualizar os dados da bebida no banco de dados.\nDetalhes:" + sqlException.getMessage());
         }
     }
+
+    
+
+
+
 
 }

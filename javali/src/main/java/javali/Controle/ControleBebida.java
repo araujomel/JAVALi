@@ -21,11 +21,11 @@ public class ControleBebida{
     }
 
     public void controleMostrarBebidas() throws IOException, SQLException, ClassNotFoundException{
-        dao.lerBebidasDAO();
+        dao.lerProdutosDAO();
     }
 
     public void controleAtualizarEstoqueBebidas(int idBebida, int quantidade) throws IOException, SQLException, ClassNotFoundException{
-        dao.atualizarEstoqueBebidasDAO(idBebida, quantidade);    
+        dao.atualizarEstoqueProdutosDAO(idBebida, quantidade);    
     }
 
 

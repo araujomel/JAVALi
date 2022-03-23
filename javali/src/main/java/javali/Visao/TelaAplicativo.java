@@ -1,15 +1,10 @@
 package javali.Visao;
 import java.io.IOException;
 import java.util.Scanner;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javali.Controle.ControleUsuario;
-import javali.Modelo.FuncaoFuncionario;
-import javali.Modelo.Funcionario;
 import javali.Modelo.Excecao.ExcecaoUsuarioInvalido;
-import javali.Modelo.Persistencia.*;
 import org.apache.log4j.Logger;
 
 public class TelaAplicativo {

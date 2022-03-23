@@ -1,11 +1,7 @@
 package javali.Modelo;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 
-public class Bebida {
+
+public class Bebida implements Produto{
     
     private int idBebida;
     private String nome;
@@ -15,7 +11,7 @@ public class Bebida {
     private String descricao;
 
     public Bebida(int idBebida, String nome, String descricao, int quantidade, double precoMedio, double precoGrande){
-        setIdBebida(idBebida);
+        setIdProduto(idBebida);
         setNome(nome);
         setDescricao(descricao);
         setQuantidade(quantidade);
@@ -23,7 +19,8 @@ public class Bebida {
         setPrecoGrande(precoGrande);
     }
 
-    public int getIdBebida(){
+    @Override
+    public int getIdProduto(){
         return this.idBebida;
     }
 
@@ -47,8 +44,9 @@ public class Bebida {
         return this.precoGrande;
     }
 
-    public void setIdBebida(int idBebida){
-        this.idBebida = idBebida;
+    @Override
+    public void setIdProduto(int idProduto){
+        this.idBebida = idProduto;
     }
 
     public void setNome(String nome){

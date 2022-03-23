@@ -1,5 +1,5 @@
 package javali.Modelo;
-public class Livro {
+public class Livro implements Produto{
     
     private int idLivro;
     private String titulo;
@@ -10,7 +10,7 @@ public class Livro {
     private boolean disponivel_leitura;
 
     public Livro(int idLivro, String titulo, String autor, int quantidade, boolean disponivel_venda, float preco, boolean disponivel_leitura){
-        setIdLivro(idLivro);
+        setIdProduto(idLivro);
         setTitulo(titulo);
         setAutor(autor);
         setQuantidade(quantidade);
@@ -19,8 +19,9 @@ public class Livro {
         setDisponivel_leitura(disponivel_leitura);
     }
     
-    public void setIdLivro(int idLivro){
-        this.idLivro = idLivro;
+    @Override
+    public void setIdProduto(int idProduto){
+        this.idLivro = idProduto;
     }
 
     public String getTitulo(){
@@ -47,7 +48,8 @@ public class Livro {
         return this.disponivel_leitura;
     }
 
-    public int getIdLivro(){
+    @Override
+    public int getIdProduto(){
         return this.idLivro;
     }
 
