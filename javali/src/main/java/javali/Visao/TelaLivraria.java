@@ -13,6 +13,7 @@ public class TelaLivraria {
     public static void telaMenuInicial() throws IOException, ClassNotFoundException, SQLException{
         Scanner scan = new Scanner(System.in);
         boolean loop = true;
+        int op;
         do{
             try{
                 System.out.println("=============================");
@@ -23,7 +24,7 @@ public class TelaLivraria {
                 System.out.println("3 - Livros para ler");
                 System.out.println("4 - Voltar");
 
-                int op = Integer.parseInt(scan.nextLine());
+                 op = Integer.parseInt(scan.nextLine());
                 switch(op){
 
                     case 1:
@@ -45,7 +46,7 @@ public class TelaLivraria {
                 System.err.println("Erro, digite um número!"+e);
             }
         }while(loop);
-        //scan.close();
+        scan.close();
 
     }
     public static void telaListarLivros() throws IOException, ClassNotFoundException, SQLException{

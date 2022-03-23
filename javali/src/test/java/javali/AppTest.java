@@ -89,7 +89,7 @@ class AppTest {
     public void disponivelCompraTest1() throws ClassNotFoundException, SQLException, ExcecaoLivroIndisponivelVenda{
       // LIVRO DISPONÍVEL PARA COMPRA
       ControleLivro controleLivro = new ControleLivro();
-      assert(controleLivro.controleLivroDisponivelCompra(44) == true);
+      assert(controleLivro.controleLivroDisponivelCompra(54) == true);
 	  } 
 
     @Test

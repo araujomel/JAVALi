@@ -8,39 +8,45 @@ import javali.Modelo.Excecao.ExcecaoLivroIndisponivelVenda;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import org.apache.log4j.Logger;
 
 public class TelaPedidos {
+
+    private static final Logger LOGGER = Logger.getLogger("javali.Visao");
     public static void telaFazerPedidoComida() throws ClassNotFoundException, SQLException, IOException{ 
         Scanner scanner = new Scanner(System.in,"CP850");
         ControlePedidos controlePedidos = new ControlePedidos();
-        try{
-            System.out.println("Selecione o ID da Comida:");
-            int idComida = Integer.parseInt(scanner.nextLine());
-            System.out.println("Digite o número da sua mesa:");
-            int mesaCliente = Integer.parseInt(scanner.nextLine());
-            System.out.println("Deseja personalizar seu pedido?");
-            System.out.println("1 - SIM \n2 - NÃO");
-            int op = Integer.parseInt(scanner.nextLine());
-           
-            String descricao = "sem alterações";
-
-            switch(op){ 
-                case 1:
-                    System.out.println("Descreva como quer seu pedido:");
-                    descricao = scanner.nextLine();
-                    break;
-                case 2:
-                    break;
-                default:
-                    System.out.println("Opção inválida!");
-                    telaFazerPedidoComida();
-            }
-            controlePedidos.controleFazerPedidoComida( idComida, mesaCliente, descricao);
+        boolean loop = true;
+        do{
+            try{
+                System.out.println("Selecione o ID da Comida:");
+                int idComida = Integer.parseInt(scanner.nextLine());
+                System.out.println("Digite o número da sua mesa:");
+                int mesaCliente = Integer.parseInt(scanner.nextLine());
+                System.out.println("Deseja personalizar seu pedido?");
+                System.out.println("1 - SIM \n2 - NÃO");
+                int op = Integer.parseInt(scanner.nextLine());
             
-        }catch (NumberFormatException e){
-            System.err.println("Erro, digite um número!"+e);
-        }
-        scanner.close();
+                String descricao = "sem alterações";
+
+                switch(op){ 
+                    case 1:
+                        System.out.println("Descreva como quer seu pedido:");
+                        descricao = scanner.nextLine();
+                        break;
+                    case 2:
+                        break;
+                    default:
+                        System.out.println("Opção inválida!");
+                        telaFazerPedidoComida();
+                }
+                controlePedidos.controleFazerPedidoComida( idComida, mesaCliente, descricao);
+                
+            }catch (NumberFormatException e){
+                System.err.println("Erro, digite um número!"+e);
+            }
+        }while(loop);
+            scanner.close();
     }
 
     public static void telaFazerPedidoBebida() throws ClassNotFoundException, SQLException, IOException{ 
@@ -84,39 +90,41 @@ public class TelaPedidos {
         Scanner scanner = new Scanner(System.in,"CP850");
          ControlePedidos controlePedidos = new ControlePedidos();
          ControleLivro controleLivro = new ControleLivro();
+         int resposta;
         try{
             System.out.println("Selecione o ID do Livro:");
             int idLivro = Integer.parseInt(scanner.nextLine());
             System.out.println("Digite o número da sua mesa:");
             int mesaCliente = Integer.parseInt(scanner.nextLine());
             System.out.println("Você deseja comprar ou ler este livro?\n1 - Comprar\n2 - Ler aqui");
-            int resposta = Integer.parseInt(scanner.nextLine());
+            resposta = Integer.parseInt(scanner.nextLine());
             boolean flagLeituraCompra = false;
             // verdadeiro significa compra e falso leitura
-            if(resposta == 1){
-                flagLeituraCompra = controleLivro.controleLivroDisponivelCompra(idLivro);
-                
-            }   
-            else if(resposta == 2){
-                if(controleLivro.controleLivroDisponivelLeitura(idLivro))
-                    flagLeituraCompra = false;
-                else{
+            switch(resposta){
+                case 1:
+                    flagLeituraCompra = controleLivro.controleLivroDisponivelCompra(idLivro);
+                break;
+                case 2:
+                    if(controleLivro.controleLivroDisponivelLeitura(idLivro))
+                        flagLeituraCompra = false;
+                    else{
                     System.out.println("Ops, este livro não está disponível para leitura!");
                     telaFazerPedidoLivro();
-                }
-            }else{
-                System.out.println("Opção inválida!");
-                telaFazerPedidoLivro();
+                    }
+                break;
+                default:
+                    telaFazerPedidoLivro();
             }
+            
             controlePedidos.controleFazerPedidoLivro(idLivro, mesaCliente, flagLeituraCompra);
             System.out.println("Pedido realizado com sucesso!");
         }catch (NumberFormatException e){
             System.err.println("Erro, digite um número!"+e);
         }catch(ExcecaoLivroIndisponivelVenda eliv){
-            eliv.getMenssagem();
+            LOGGER.error("Este livro está indisponível para venda\nDetalhes: "+eliv);
         }
-    
-        scanner.close();
+        
+        
     }
 
     public static void telaEsconderPedidoBebida() throws ClassNotFoundException, SQLException, IOException{ 

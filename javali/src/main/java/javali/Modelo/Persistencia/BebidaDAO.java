@@ -49,8 +49,9 @@ public class BebidaDAO{
 
             System.out.println("-------------- BEBIDAS ----------------");
             for(int i = 0; i < bebidas.size(); i++){
-                System.out.println(bebidas.get(i).getIdBebida()+" - "+bebidas.get(i).getNome()+"        "+bebidas.get(i).getDescricao()+"\nMédio: R$ "+ bebidas.get(i).getPrecoMedio()
-                +"   Grande: R$ "+bebidas.get(i).getPrecoGrande()+"\n-----------------------------------------");
+                System.out.println(bebidas.get(i).getIdBebida()+" - "+bebidas.get(i).getNome()+"        "+bebidas.get(i).getDescricao()+"\nPREÇO NORMAL\nMédio: R$ "+ bebidas.get(i).getPrecoMedio()
+                +"   Grande: R$ "+bebidas.get(i).getPrecoGrande()+"\nPREÇO ESTUDANTE\nMédio: R$ "+ 
+                (bebidas.get(i).getPrecoMedio())/2 + "   Grande: R$ "+(bebidas.get(i).getPrecoGrande())/2+"\n-----------------------------------------");
             }
         }catch (SQLException sqlException){
             LOGGER.error("Ocorreu um erro ao tentar recuperar os dados da bebida no banco de dados.\nDetalhes:" + sqlException.getMessage());
