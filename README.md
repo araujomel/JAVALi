@@ -5,8 +5,9 @@
 ---
 
 Para executar o sistema, ter conexão com a internet e introduzir o comando:
-
-"java -jar javali-1.0-SNAPSHOT-jar-with-dependencies.jar"
+```
+java -jar javali-1.0-SNAPSHOT-jar-with-dependencies.jar
+```
 
 na pasta onde o arquivo javali-1.0-SNAPSHOT-jar-with-dependencies está armazenado.
 
