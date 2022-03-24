@@ -4,9 +4,8 @@
 
 ### Integrantes: Layon Martins - 4220, Melissa Araújo - 4244
 
-&nbsp
 ---
-&nbsp
+
 Para executar o sistema, ter conexão com a internet e introduzir o comando:
 
 "java -jar javali-1.0-SNAPSHOT-jar-with-dependencies.jar"
@@ -16,9 +15,8 @@ na pasta onde o arquivo javali-1.0-SNAPSHOT-jar-with-dependencies está armazena
 **LOGIN**: admin
 **SENHA**: 123
 
-&nbsp
 ---
-&nbsp
+
 
 Sistema para controle de pedidos e cardápio virtual para ser utilizado em uma cafeteria/livraria física. O sistema será dividido entre clientes e funcionários da loja, onde os clientes poderão fazer pedidos no cardápio e os funcionários realizarão o controle de pedidos. O sistema estará disponível em máquinas dispostas pela cafeteria/livraria.
 
