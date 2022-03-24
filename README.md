@@ -1,6 +1,4 @@
-# JAVA Li
-
-## Sistema de cardápio virtual para café e livraria.
+# JAVA Li - Sistema de cardápio virtual para café e livraria.
 
 ### Integrantes: Layon Martins - 4220, Melissa Araújo - 4244
 
