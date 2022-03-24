@@ -144,6 +144,7 @@ public class LivroDAO {
             Connection con = BancoDeDados.getConexao();
             Statement st = con.createStatement(); 
             st.executeUpdate("UPDATE Livro SET quantidade = quantidade +"+quantidade+" WHERE idLivro ="+ idLivro);
+            System.out.println("Quantidade atualizada com sucesso!");
             TelaFuncionario.paginaInicialFuncionario();
         }catch(SQLException sqlException){
             System.out.println("Ocorreu um erro ao atualizar o estoque do livro no banco de dados.");

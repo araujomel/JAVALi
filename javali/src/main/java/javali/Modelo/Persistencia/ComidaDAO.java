@@ -89,6 +89,7 @@ public class ComidaDAO implements ProdutoDAO {
         try{
             
             st.executeUpdate("UPDATE Comida SET quantidade = quantidade +"+quantidade+" WHERE idComida ="+ idProduto);
+            System.out.println("Quantidade atualizada com sucesso!");
             TelaFuncionario.paginaInicialFuncionario();
 
         }catch(SQLException sqlException){

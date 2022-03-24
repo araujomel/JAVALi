@@ -171,12 +171,12 @@ public class PedidoDAO {
             ps = BancoDeDados.criarPreparedStatement("SELECT * From pedidoLivro");
             rs = ps.executeQuery();
             while (rs.next()) {
-                if(rs.getBoolean(5))
+                if(rs.getBoolean(6))
                     descricao = "Compra";
                 else
                     descricao = "Leitura";
 
-                Pedido pedidoLivro = new Pedido(rs.getInt(1), 0, 0, rs.getInt(2), rs.getInt(3), descricao, rs.getBoolean(6));
+                Pedido pedidoLivro = new Pedido(rs.getInt(1), 0, 0, rs.getInt(2), rs.getInt(3), descricao, rs.getBoolean(5));
                 pedidoLivros.add(pedidoLivro);
             }
         }catch(SQLException sqlException){

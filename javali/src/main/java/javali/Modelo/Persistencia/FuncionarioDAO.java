@@ -50,31 +50,42 @@ public class FuncionarioDAO {
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
         ResultSet rs = null;
+        int num = 0;
         int idFuncionario = 0; 
 
 
         try{
-
-            // insere um funcionario com uma função
-            st.executeUpdate("INSERT INTO Funcionario (funcaoFuncionario) "
-            +"VALUES ('"+ funcionario.getFuncao().getCargo()+"')");
-
-            // Seleciona o ultimo id inserido pela mesma conexão que foi usada pelo insert,
-            // por isso nao usei o PreparedStatement para o select como nos outros métodos
-
-            rs = st.executeQuery("SELECT LAST_INSERT_ID()");
+            // pega o login que o usuario quer cadastrar e verifica se ele já existe
+            rs = st.executeQuery("SELECT count(0) from Usuario where login ='"+funcionario.getLogin()+"'");
+        
             while(rs.next()){ 
-                idFuncionario = rs.getInt(1);
+                num = rs.getInt(1);
             }
-
-            //adiciona o usuario com o id do ultimo funcionario em questão
-            st.executeUpdate("INSERT INTO Usuario (login, nome, senha, idFuncionario) " 
-            + "VALUES ('"+ funcionario.getLogin()+"', '"+ funcionario.getNome()+"', '"
-            + funcionario.getSenha()+"', "+ idFuncionario+")");
             
-            LOGGER.info("Funcionário cadastrado com sucesso!");
+            if(num==0){
+                // insere um funcionario com uma função
+                st.executeUpdate("INSERT INTO Funcionario (funcaoFuncionario) "
+                +"VALUES ('"+ funcionario.getFuncao().getCargo()+"')");
+
+                // Seleciona o ultimo id inserido pela mesma conexão que foi usada pelo insert,
+                // por isso nao usei o PreparedStatement para o select como nos outros métodos
+
+                rs = st.executeQuery("SELECT LAST_INSERT_ID()");
+                while(rs.next()){ 
+                    idFuncionario = rs.getInt(1);
+                }
+
+                //adiciona o usuario com o id do ultimo funcionario em questão
+                st.executeUpdate("INSERT INTO Usuario (login, nome, senha, idFuncionario) " 
+                + "VALUES ('"+ funcionario.getLogin()+"', '"+ funcionario.getNome()+"', '"
+                + funcionario.getSenha()+"', "+ idFuncionario+")");
+                
+                System.out.println("Funcionário cadastrado com sucesso!");
+                TelaFuncionario.paginaInicialFuncionario();
+            }else
+                System.out.println("Esse login já existe, por favor tente novamente\n");
+            
             con.close();
-            TelaFuncionario.paginaInicialFuncionario();
         }catch(SQLException sqlException){
             System.out.println("Ocorreu um erro ao cadastrar o funcionário no banco de dados.");
             LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
@@ -112,11 +123,22 @@ public class FuncionarioDAO {
 
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
+        int num = 0;
+        ResultSet rs = null;
+        
         try{
-           
-            st.executeUpdate("INSERT INTO Cliente (mesaCliente) VALUES ("+ numMesa+")");
-           System.out.println("Mesa registrada com sucesso!");
-           TelaFuncionario.paginaInicialFuncionario();
+            rs = st.executeQuery("SELECT count(0) from Cliente where mesaCliente ="+numMesa);
+        
+            while(rs.next()){ 
+                num = rs.getInt(1);
+            }
+
+            if(num==0){
+                st.executeUpdate("INSERT INTO Cliente (mesaCliente) VALUES ("+ numMesa+")");
+                System.out.println("Mesa registrada com sucesso!");
+                TelaFuncionario.paginaInicialFuncionario();
+            }else   
+                System.out.println("Essa mesa já está cadastrada!\n");
 
         }catch(SQLException sqlException){
             System.out.println("Ocorreu um erro ao adicionar a mesa no banco de dados.");

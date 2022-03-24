@@ -233,7 +233,7 @@ public class TelaFuncionario {
                     else if (f.equals("confeiteiro"))
                         funcao = FuncaoFuncionario.CONFEITEIRO;
                     else{
-                        LOGGER.warn("Essa função não existe!");
+                        System.out.println("Essa função não existe! Tente novamente!");
                         telaCadastrarFuncionario();
                     } 
 
