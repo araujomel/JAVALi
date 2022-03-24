@@ -51,6 +51,7 @@ public class TelaCardapio {
     public static void telaMostrarCardapioComidas() throws ClassNotFoundException, SQLException{
         ControleCardapio  controleCardapio = new ControleCardapio(); 
         controleCardapio.controleCardapioComidas();
+        // exibe a tela de pedido
         telaCardapioPedidoComida();
         
     }
@@ -58,6 +59,7 @@ public class TelaCardapio {
     public static void telaMostrarCardapioBebidas() throws ClassNotFoundException, SQLException{
       ControleCardapio  controleCardapio = new ControleCardapio(); 
       controleCardapio.controleCardapioBebidas();
+      // exibe a tela de pedido
       telaCardapioPedidoBebida();
     }
 

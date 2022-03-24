@@ -52,6 +52,7 @@ public class TelaLivraria {
     public static void telaListarLivros() throws ClassNotFoundException, SQLException{
       
         ControleLivro controleLivro = new ControleLivro();
+        //chama o controle para recuperar os dados do banco de dados
         controleLivro.controleMostrarLivros();
         telaPedidoLivro();
     }
@@ -59,12 +60,14 @@ public class TelaLivraria {
     public static void telaListarLivrosCompra( ) throws ClassNotFoundException, SQLException{
         
         ControleLivro controleLivro = new ControleLivro();
+        //chama o controle para recuperar os dados do banco de dados
         controleLivro.controleMostrarLivrosCompra();
         telaPedidoLivro();
     }
 
     public static void telaListarLivrosLeitura() throws ClassNotFoundException, SQLException{
         ControleLivro controleLivro = new ControleLivro();
+        //chama o controle para recuperar os dados do banco de dados
         controleLivro.controleMostrarLivrosLeitura();
         telaPedidoLivro();
     }

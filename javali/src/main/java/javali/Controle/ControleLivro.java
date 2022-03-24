@@ -34,6 +34,7 @@ public class ControleLivro {
     }
 
     public boolean controleLivroDisponivelCompra(int idLivro) throws ClassNotFoundException, SQLException, ExcecaoLivroIndisponivelVenda{
+        // retorna verdadeiro o livro está disponível para compra
         if(dao.verificarDisponibilidadeCompraDAO(idLivro))
             return true;
         else   
@@ -41,6 +42,7 @@ public class ControleLivro {
     }
 
     public boolean controleLivroDisponivelLeitura(int idLivro) throws ClassNotFoundException, SQLException, ExecaoLivroIndisponivelLeitura{
+        // retorna verdadeiro o livro está disponível para compra
         if(dao.verificarDisponibilidadeLeituraDAO(idLivro))
             return true;
         else   

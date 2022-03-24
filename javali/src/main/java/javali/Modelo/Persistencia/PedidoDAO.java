@@ -185,7 +185,7 @@ public class PedidoDAO {
         }
         return pedidoLivros;
     }
-
+    // atualiza a flag de visualização para 0
     public void esconderPedidoBebidaDAO(int idPedido) throws SQLException, ClassNotFoundException{
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
@@ -203,7 +203,7 @@ public class PedidoDAO {
             LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }
     }
-
+    // atualiza a flag de visualização para 0
     public void esconderPedidoComidaDAO(int idPedido) throws SQLException, ClassNotFoundException{
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();
@@ -221,7 +221,7 @@ public class PedidoDAO {
             LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }
     }
-
+    // atualiza a flag de visualização para 0
     public void esconderPedidoLivroDAO(int idPedido) throws SQLException, ClassNotFoundException{
         Connection con = BancoDeDados.getConexao();
         Statement st = con.createStatement();

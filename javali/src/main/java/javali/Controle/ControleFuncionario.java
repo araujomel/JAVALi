@@ -24,6 +24,7 @@ public class ControleFuncionario {
     }
 
     public boolean controleValidarGerente(String login, String senha) throws ClassNotFoundException, SQLException, ExcecaoUsuarioInvalido{
+        // retorna verdadeiro caso o usuário seja um gerente
         if(dao.verificarGerenteDAO(login, senha))
           return true;
         else

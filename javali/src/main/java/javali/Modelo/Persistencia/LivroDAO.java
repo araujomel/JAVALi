@@ -48,7 +48,8 @@ public class LivroDAO {
       
     }
 
-    
+    // recebe um array list de acordo com os dados que serão mostrados,
+    // podendo ser todos, disponiveis para compra e disponiveis para leitura
     public void mostrarLivrosDAO(ArrayList<Livro> livros) throws ClassNotFoundException, SQLException {
         try{
             System.out.println("---------------------------------- LIVROS ----------------------------------------");
@@ -106,6 +107,7 @@ public class LivroDAO {
             Livro livro = new Livro(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4), rs.getBoolean(5), rs.getFloat(7), !rs.getBoolean(6));
             livros.add(livro);
         }
+        // pega todos os livros e manda para exibição
         mostrarLivrosDAO(livros);
     }
 
@@ -119,6 +121,7 @@ public class LivroDAO {
             Livro livro = new Livro(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getBoolean(5), rs.getFloat(7), !rs.getBoolean(6));
             livros.add(livro);
         }
+        // pega todos os livros disponiveis para compra e manda para exibição
         mostrarLivrosDAO(livros);
     }
 
@@ -132,6 +135,7 @@ public class LivroDAO {
             Livro livro = new Livro(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4), rs.getBoolean(5), (float)0.0, !rs.getBoolean(6));
             livros.add(livro);
         }
+        // pega todos os livros disponiveis para leitura e manda para exibição
         mostrarLivrosDAO(livros);
     }
 

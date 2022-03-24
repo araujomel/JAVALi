@@ -16,6 +16,7 @@ public class ComidaDAO implements ProdutoDAO {
 
   private static final Logger LOGGER = Logger.getLogger("javali.Modelo.Persistencia");
 
+
   public void cadastrarComidaDAO(Comida comida) throws SQLException, ClassNotFoundException{
       
         Connection con = BancoDeDados.getConexao();
@@ -49,7 +50,7 @@ public class ComidaDAO implements ProdutoDAO {
     @Override
     public void lerProdutosDAO() throws ClassNotFoundException, SQLException{
     try{
-
+        // obtem um arraylist com os valores cadastrados na tabela
         ArrayList<Comida> comidas = pegarComidasDAO();
 
         System.out.println("--------------------------------------- COMIDAS --------------------------------------------");
@@ -65,7 +66,7 @@ public class ComidaDAO implements ProdutoDAO {
     }
   
   }
-
+  // recupera os dados do banco de dados e adiciona-os em um array list
     public ArrayList<Comida> pegarComidasDAO() throws SQLException, ClassNotFoundException{
         PreparedStatement ps = BancoDeDados.criarPreparedStatement("SELECT * FROM Comida");
 

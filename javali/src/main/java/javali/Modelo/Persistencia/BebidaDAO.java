@@ -46,7 +46,7 @@ public class BebidaDAO implements ProdutoDAO{
     @Override
     public void lerProdutosDAO() throws ClassNotFoundException, SQLException{
         try{
-
+            // obtem um arraylist com os valores cadastrados na tabela
             ArrayList<Bebida> bebidas = pegarBebidasDAO();
 
             System.out.println("---------------------------------- BEBIDAS ----------------------------------");
@@ -63,7 +63,7 @@ public class BebidaDAO implements ProdutoDAO{
         }
     
     }
-
+    // recupera os dados do banco de dados e adiciona-os em um array list
   public ArrayList<Bebida> pegarBebidasDAO() throws SQLException, ClassNotFoundException {
     PreparedStatement ps = BancoDeDados.criarPreparedStatement("SELECT * FROM Bebida");
 

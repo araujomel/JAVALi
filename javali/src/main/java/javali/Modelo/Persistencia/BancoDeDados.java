@@ -15,6 +15,8 @@ public class BancoDeDados {
         Connection conexao = null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
+            // string de conexão com o banco de dados
+            // banco, usuario, senha
             conexao = DriverManager.getConnection
             ("jdbc:mysql://us-cdbr-east-05.cleardb.net:3306/heroku_16b6b58624fc4f3", 
             "b4d39d2a4a36d8", "9ac48a14");
@@ -29,6 +31,7 @@ public class BancoDeDados {
     }
 
     public static PreparedStatement criarPreparedStatement(String sql) throws SQLException, ClassNotFoundException {
+        // pre-compila comandos sql
         return getConexao().prepareStatement(sql);
     }
 

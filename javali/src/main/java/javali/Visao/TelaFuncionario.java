@@ -111,6 +111,7 @@ public class TelaFuncionario {
                 System.out.println("Digite uma descrição para a bebida");
                 String descricao = scanFuncionario.nextLine();
 
+                //chama o controle para adicionar bebida ao banco de dados
                 controleBebida.controleCadastrarBebida(nome, descricao, quantidade, precoMedio, precoGrande);
                 TelaFuncionario.paginaInicialFuncionario();
             }catch(NumberFormatException e){
@@ -138,9 +139,9 @@ public class TelaFuncionario {
                 System.out.println("Digite a descrição da comida:");
                 String descricao = scanFunc.nextLine();
             
-            
-            controleComida.controleCadastrarComida(nome, descricao, quantidade, preco);
-            TelaFuncionario.paginaInicialFuncionario();
+                //chama o controle para adicionar comida ao banco de dados
+                controleComida.controleCadastrarComida(nome, descricao, quantidade, preco);
+                TelaFuncionario.paginaInicialFuncionario();
 
             }catch(NumberFormatException e){
                 LOGGER.error("Erro!\nDetalhes: "+e);
@@ -177,12 +178,14 @@ public class TelaFuncionario {
                 }
 
                 System.out.println("Digite 1 caso o livro esteja disponível para leitura, caso não, digite 0:");
+                //inicializa a flag com 0 e caso o usuário escolha que está disponível, atribui 1
                 Boolean disponivel_leitura = false;
                 if(scanFunci.nextInt() == 1){
                     disponivel_leitura = true;
                 }
                 scanFunci.nextLine();
-                
+
+                //chama o controle para adicionar livro ao banco de dados
                 controleLivro.controleCadastrarLivro(titulo, autor, quantidade, disponivel_venda, preco, disponivel_leitura);
                 TelaFuncionario.paginaInicialFuncionario();
                 
@@ -220,7 +223,7 @@ public class TelaFuncionario {
                     System.out.println("Digite a função:");
                     String f = scanFun.nextLine().toLowerCase();
 
-                    
+                    // atribui o enum de acordo com a entrada do usuário
                     if(f.equals("barista"))
                         funcao = FuncaoFuncionario.BARISTA;
                     else if (f.equals("atendente"))
@@ -234,7 +237,7 @@ public class TelaFuncionario {
                         telaCadastrarFuncionario();
                     } 
 
-                    
+                    // chama o controle para adicionar o funcionário ao banco de dados
                     controleFuncionario.controleCadastrarFuncionario(nome, login, senha, funcao);
                 }else{
                     System.out.println("Você não tem permissões para cadastrar um funcionário");
@@ -263,14 +266,17 @@ public class TelaFuncionario {
                 int codigo = Integer.parseInt(scanf.nextLine());
                 switch(codigo){
                     case 1:
+                        //chama o controle para recuperar os dados do banco de dados
                         controlePedidos.controlePegarFilaDePedidos(codigo);
                         esconderPedidoBebida();
                     break;
                     case 2:
+                        //chama o controle para recuperar os dados do banco de dados
                         controlePedidos.controlePegarFilaDePedidos(codigo);
                         esconderPedidoComida();
                     break;
                     case 3:
+                        //chama o controle para recuperar os dados do banco de dados
                         controlePedidos.controlePegarFilaDePedidos(codigo);
                         esconderPedidoLivro();
                     break;
@@ -371,6 +377,7 @@ public class TelaFuncionario {
         do{      
             try{
 
+                // exibe as bebidas para o funcionário saber o id
                 controleBebida.controleMostrarBebidas();
                 
                 System.out.println("\nDigite o id da bebida:");
@@ -380,6 +387,7 @@ public class TelaFuncionario {
             
                 scanFunci.nextLine();
                 
+                // chama o controle para atualizar os dados no banco de dados
                 controleBebida.controleAtualizarEstoqueBebidas(idBebida, quantidade);
                 
             }catch(NumberFormatException e){
@@ -397,7 +405,7 @@ public class TelaFuncionario {
         ControleComida controleComida = new ControleComida();
         do{
             try{
-                
+                // exibe as comidas para o funcionário saber o id
                 controleComida.controleMostrarComidas();
                 
                 System.out.println("\nDigite o id da comida:");
@@ -405,6 +413,7 @@ public class TelaFuncionario {
                 System.out.println("Digite quanto incrementar à quantidade:");
                 int quantidade = Integer.parseInt(scanFunci.next());
                 
+                // chama o controle para atualizar os dados no banco de dados
                 controleComida.controleAtualizarEstoqueComidas(idComida, quantidade);
                 
             }catch(NumberFormatException e){
@@ -425,7 +434,7 @@ public class TelaFuncionario {
         boolean loop = true;
         do{
             try{
-
+                // exibe os livros para o funcionário saber o id
                 controleLivro.controleMostrarLivros();
                 
                 System.out.println("\nDigite o id do livro:");
@@ -435,6 +444,7 @@ public class TelaFuncionario {
             
                 scanFunci.nextLine();
                 
+                // chama o controle para atualizar os dados no banco de dados
                 controleLivro.controleAtualizarEstoqueLivro(idLivro, quantidade);
                 
             }catch(NumberFormatException e){
@@ -457,6 +467,7 @@ public class TelaFuncionario {
             try{
                 System.out.println("Digite o número da mesa");
                 int numMesa = Integer.parseInt(scanFuncionario.nextLine());
+                // chama o controle para cadastrar a a mesa no banco de dados
                 controleFuncionario.cadastrarMesaControle(numMesa);
                 
             }catch(NumberFormatException e){

@@ -42,6 +42,7 @@ public class TelaPedidos {
                         LOGGER.warn("Opção inválida!");
                         telaFazerPedidoComida();
                 }
+                //chama o controle para inserir os dados do banco de dados
                 controlePedidos.controleFazerPedidoComida( idComida, mesaCliente, descricao);
                 System.out.println("Pedido realizado com sucesso!");
                 TelaCliente.paginaInicialCliente();
@@ -84,7 +85,7 @@ public class TelaPedidos {
                         LOGGER.warn("Opção inválida!");
                         telaFazerPedidoComida();
                 }
-
+                    //chama o controle para inserir os dados do banco de dados
                     controlePedidos.controleFazerPedidoBebida(idBebida, mesaCliente, descricao);
                     System.out.println("Pedido realizado com sucesso!");
                     TelaCliente.paginaInicialCliente();
@@ -124,7 +125,7 @@ public class TelaPedidos {
                     default:
                         telaFazerPedidoLivro();
                 }
-                
+                //chama o controle para inserir os dados do banco de dados
                 controlePedidos.controleFazerPedidoLivro(idLivro, mesaCliente, flagLeituraCompra);
                 
 
@@ -154,7 +155,7 @@ public class TelaPedidos {
 
         System.out.println("Selecione o ID do pedido:");
         int idPedido = Integer.parseInt(scanner.nextLine());
-
+        //chama o controle para atualizar os dados do banco de dados
         controlePedidos.controleEsconderPedidoBebida(idPedido);
 
         }catch (NumberFormatException e){
@@ -173,7 +174,7 @@ public class TelaPedidos {
 
         System.out.println("Selecione o ID do pedido:");
         int idPedido = Integer.parseInt(scanner.nextLine());
-
+        //chama o controle para atualizar os dados do banco de dados
         controlePedidos.controleEsconderPedidoComida(idPedido);
 
         }catch (NumberFormatException e){
@@ -193,7 +194,7 @@ public class TelaPedidos {
 
         System.out.println("Selecione o ID do pedido:");
         int idPedido = Integer.parseInt(scanner.nextLine());
-
+        //chama o controle para atualizar os dados do banco de dados
         controlePedidos.controleEsconderPedidoLivro(idPedido);
 
         }catch (NumberFormatException e){

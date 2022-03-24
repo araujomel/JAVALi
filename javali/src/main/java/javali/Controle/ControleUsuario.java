@@ -14,7 +14,7 @@ public class ControleUsuario {
     }
 
     public boolean controleRealizarLogin(String login, String senha) throws ClassNotFoundException, SQLException, ExcecaoUsuarioInvalido{
-   
+        // retorna verdadeiro caso o login e a senha estejam certos
         if(dao.validarUsuarioDAO(login, senha))
             return true;
         else

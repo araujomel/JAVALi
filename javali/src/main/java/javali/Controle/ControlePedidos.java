@@ -43,6 +43,7 @@ public class ControlePedidos {
 
 
     public void controlePegarFilaDePedidos(int codigo) throws ClassNotFoundException, SQLException{
+        // caso o código for 1, chama a fila de bebidas, caso for 2, fila de comidas, caso 3, fila de livros
         if(codigo==1)
             dao.mostrarFilaBebidasDAO();
         else if (codigo == 2)
