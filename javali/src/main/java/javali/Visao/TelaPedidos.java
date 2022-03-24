@@ -37,13 +37,14 @@ public class TelaPedidos {
                         descricao = scanner.nextLine();
                         break;
                     case 2:
-                        TelaCliente.paginaInicialCliente();
                         break;
                     default:
                         LOGGER.warn("Opção inválida!");
                         telaFazerPedidoComida();
                 }
                 controlePedidos.controleFazerPedidoComida( idComida, mesaCliente, descricao);
+                System.out.println("Pedido realizado com sucesso!");
+                TelaCliente.paginaInicialCliente();
                 
             }catch (NumberFormatException e){
                 LOGGER.error("Erro!\nDetalhes: "+e);
@@ -77,7 +78,7 @@ public class TelaPedidos {
                         descricao = scanner.nextLine();
                         break;
                     case 2:
-                        TelaCliente.paginaInicialCliente();
+                        
                         break;
                     default:
                         LOGGER.warn("Opção inválida!");
@@ -86,6 +87,7 @@ public class TelaPedidos {
 
                     controlePedidos.controleFazerPedidoBebida(idBebida, mesaCliente, descricao);
                     System.out.println("Pedido realizado com sucesso!");
+                    TelaCliente.paginaInicialCliente();
             }catch (NumberFormatException e){
                 LOGGER.error("Erro!\nDetalhes: "+e);
                 System.out.println("Digite um número!");
@@ -124,7 +126,7 @@ public class TelaPedidos {
                 }
                 
                 controlePedidos.controleFazerPedidoLivro(idLivro, mesaCliente, flagLeituraCompra);
-                LOGGER.info("Pedido realizado com sucesso!");
+                
 
                 TelaCliente.paginaInicialCliente();
 

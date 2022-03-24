@@ -60,6 +60,7 @@ public class PedidoDAO {
             if(flagLeituraCompra){
                 st.executeUpdate("UPDATE Livro SET quantidade = quantidade - 1 WHERE idLivro ="+pedido.getIdLivro());
             }
+            System.out.println("Pedido realizado com sucesso!");
             con.close();
             st.close();
             

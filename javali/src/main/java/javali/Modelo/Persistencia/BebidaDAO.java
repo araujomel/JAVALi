@@ -49,11 +49,13 @@ public class BebidaDAO implements ProdutoDAO{
 
             ArrayList<Bebida> bebidas = pegarBebidasDAO();
 
-            System.out.println("-------------- BEBIDAS ----------------");
+            System.out.println("---------------------------------- BEBIDAS ----------------------------------");
             for(int i = 0; i < bebidas.size(); i++){
-                System.out.println(bebidas.get(i).getIdProduto()+" - "+bebidas.get(i).getNome()+"        "+bebidas.get(i).getDescricao()+"\nPREÇO NORMAL\nMédio: R$ "+ bebidas.get(i).getPrecoMedio()
-                +"   Grande: R$ "+bebidas.get(i).getPrecoGrande()+"\nPREÇO ESTUDANTE\nMédio: R$ "+ 
-                (bebidas.get(i).getPrecoMedio())/2 + "   Grande: R$ "+(bebidas.get(i).getPrecoGrande())/2+"\n-----------------------------------------");
+                if(bebidas.get(i).getQuantidade() > 0){
+                    System.out.println(bebidas.get(i).getIdProduto()+" - "+bebidas.get(i).getNome()+"        "+bebidas.get(i).getDescricao()+"\nPREÇO NORMAL\nMédio: R$ "+ bebidas.get(i).getPrecoMedio()
+                    +"   Grande: R$ "+bebidas.get(i).getPrecoGrande()+"\nPREÇO ESTUDANTE\nMédio: R$ "+ 
+                    (bebidas.get(i).getPrecoMedio())/2 + "   Grande: R$ "+(bebidas.get(i).getPrecoGrande())/2+"\n----------------------------------------------------------------------------------");
+                }
             }
         }catch (SQLException sqlException){
             System.out.println("Ocorreu um erro ao tentar recuperar os dados da bebida no banco de dados!");

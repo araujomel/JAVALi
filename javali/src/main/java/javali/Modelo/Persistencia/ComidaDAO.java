@@ -22,7 +22,6 @@ public class ComidaDAO implements ProdutoDAO {
         PreparedStatement st = null;
 
         try{
-           // coloquei de uma maneira diferente porque eu tava testando o banco, mas vou padronizar att Layon KKKKKKKKKKKKKK ok att melissa
            st = con.prepareStatement("INSERT INTO Comida(nome, quantidade, descricao, preco) VALUES(?,?,?,?)");
            st.setString(1,comida.getNome());
            st.setInt(2, comida.getQuantidade());
@@ -53,11 +52,12 @@ public class ComidaDAO implements ProdutoDAO {
 
         ArrayList<Comida> comidas = pegarComidasDAO();
 
-        System.out.println("-------------- COMIDAS ----------------");
-
+        System.out.println("--------------------------------------- COMIDAS --------------------------------------------");
         for(int i = 0; i < comidas.size(); i++){
-            System.out.println(comidas.get(i).getIdProduto() +" - " +comidas.get(i).getNome()+"        "+comidas.get(i).getDescricao()+"\nPREÇO NORMAL: R$ "+ comidas.get(i).getPreco()
-            +"\nPREÇO ESTUDANTE: R$ "+(comidas.get(i).getPreco())/2+"\n-----------------------------------------");
+            if(comidas.get(i).getQuantidade() > 0){
+                System.out.println(comidas.get(i).getIdProduto() +" - " +comidas.get(i).getNome()+"        "+comidas.get(i).getDescricao()+"\nPREÇO NORMAL: R$ "+ comidas.get(i).getPreco()
+                +"\nPREÇO ESTUDANTE: R$ "+(comidas.get(i).getPreco())/2+"\n--------------------------------------------------------------------------------------------");
+            }
         }
     }catch (NullPointerException e){
         System.out.println("Ocorreu um erro ao tentar recuperar a comida do banco de dados.");

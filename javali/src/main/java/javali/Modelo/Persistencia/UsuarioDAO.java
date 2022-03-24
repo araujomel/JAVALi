@@ -43,7 +43,7 @@ public class UsuarioDAO {
             if(cont == 1)  
                 return true;
         }catch(SQLException sqlException){
-            System.out.println("Ocorreu um erro ao atualizar o pedido no banco de dados.");
+            System.out.println("Ocorreu um erro ao selecionar usuarios no banco de dados.");
             LOGGER.error("Erro! \nDetalhes:" + sqlException.getMessage());
         }
         throw new ExcecaoUsuarioInvalido();

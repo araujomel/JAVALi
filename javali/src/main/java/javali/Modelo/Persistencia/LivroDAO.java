@@ -51,15 +51,17 @@ public class LivroDAO {
     
     public void mostrarLivrosDAO(ArrayList<Livro> livros) throws ClassNotFoundException, SQLException {
         try{
-            System.out.println("-------------- LIVROS --------------------");
+            System.out.println("---------------------------------- LIVROS ----------------------------------------");
             for(int i = 0; i < livros.size(); i++){
-                if(livros.get(i).getDisponivel_venda()){
-                    System.out.println(livros.get(i).getIdProduto()+" - "+livros.get(i).getTitulo()+"        "+livros.get(i).getAutor()+
-                    "\nPREÇO NORMAL: R$ "+ livros.get(i).getPreco() +"\nPREÇO ESTUDANTE: R$ "+(livros.get(i).getPreco())/2
-                    +"\n------------------------------------------");
-                } else{
-                    System.out.println(livros.get(i).getIdProduto()+" - "+livros.get(i).getTitulo()+"        "+livros.get(i).getAutor()+
-                    "\n------------------------------------------");
+                if(livros.get(i).getQuantidade() > 0){
+                    if(livros.get(i).getDisponivel_venda()){
+                        System.out.println(livros.get(i).getIdProduto()+" - "+livros.get(i).getTitulo()+"        "+livros.get(i).getAutor()+
+                        "\nPREÇO NORMAL: R$ "+ livros.get(i).getPreco() +"\nPREÇO ESTUDANTE: R$ "+(livros.get(i).getPreco())/2
+                                +"\n----------------------------------------------------------------------------------");
+                    } else{
+                        System.out.println(livros.get(i).getIdProduto()+" - "+livros.get(i).getTitulo()+"        "+livros.get(i).getAutor()+
+                                "\n----------------------------------------------------------------------------------");
+                    }
                 }
             }
         }catch (NullPointerException e){
