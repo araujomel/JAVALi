@@ -11,9 +11,6 @@ java -jar javali-1.0-SNAPSHOT-jar-with-dependencies.jar
 
 na pasta onde o arquivo javali-1.0-SNAPSHOT-jar-with-dependencies está armazenado.
 
-**LOGIN**: admin
-**SENHA**: 123
-
 ---
 
 
